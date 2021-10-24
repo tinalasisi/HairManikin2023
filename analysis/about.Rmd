@@ -7,4 +7,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-Describe your project.
+In this paper, we re-examine the effect of scalp hair on thermal load and further explore the effect of morphology. By using a thermal manikin in combination with solar lamps and human hair wigs of various textures, we generate empirical data on how differences in human scalp hair morphology influence heat transfer. This biophysical approach to the question allows for the collection of data on the thermal properties of different hair without noise that may be introduced through variability in the physiological responses humans have when under heat stress. Finally, we interpret the results in light of the hypothesis that (tightly curled) scalp hair may have evolved as a result of selective pressures to reduce the heat load on an increasingly large human brain.
