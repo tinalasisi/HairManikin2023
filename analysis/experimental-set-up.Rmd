@@ -37,12 +37,12 @@ Dry heat resistance experiments were carried out from October to November 2018 i
 
 
 ```{r}
-knitr::include_graphics("assets/manikin-chamber-setup.jpeg", error = FALSE)
+knitr::include_graphics(F("assets/manikin-chamber-setup.jpeg"), error = FALSE)
 
 ```
 
 ```{r}
-knitr::include_graphics("assets/manikin-chamber-setup-diagram.png", error = FALSE)
+knitr::include_graphics(F("assets/manikin-chamber-setup-diagram.png"), error = FALSE)
 
 ```
 
