@@ -86,7 +86,7 @@ raw_manikin <- read_csv(F("data/raw_manikin_output/round_1/HighCurv_RadOff_wind0
 head(raw_manikin)
 
 ```
-
+### Variables extracted
 Since we are only interested in the head, all other zones have been dropped. The variables are as follows:
 
 - `time_elapsed` (in seconds) describes how long the experiment has been running
@@ -117,6 +117,7 @@ raw_manikin_long %>%
 
 ```
 
+### Variables calculated
 A stable period is then chosen to average.
 
 Some information required for the calculations includes the Area of skin surface on the manikin (Ask), which is `0.0978` in meters squared.
@@ -138,6 +139,12 @@ raw_manikin %>%
 
 ```
 
+Two additional variables are calculated: `heat_resistance` and `clo`. Both are measures of insulation. 
+
+Heat resistance is calculated from the difference between the surface temperature and the ambient temperature
+
+
+- 
 
 Other calculations
 
