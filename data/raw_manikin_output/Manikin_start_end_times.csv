@@ -1,0 +1,76 @@
+Filename,Start,End,Round
+HighCurv_RadOff_wind0_3 (run with new conditions),15,40,1
+HighCurv_RadOff_wind1,5,40,1
+HighCurv_RadOff_wind2_5,20,45,1
+HighCurv_RadOn_wind0_3 (run with new conditions),15,45,1
+HighCurv_RadOn_wind1,10,45,1
+HighCurv_RadOn_wind2_5,15,40,1
+LowCurv_RadOff_wind0_3 (run with new conditions),20,40,1
+LowCurv_RadOff_wind0_3 (run with new conditions),30,60,1
+LowCurv_RadOff_wind1,15,45,1
+LowCurv_RadOff_wind2_5,15,45,1
+LowCurv_RadOn_wind0_3 (run with new conditions),15,45,1
+LowCurv_RadOn_wind0_3,25,40,1
+LowCurv_RadOn_wind1,10,40,1
+LowCurv_RadOn_wind2_5,15,40,1
+MidCurv_RadOff_wind0_3 (run with new conditions),15,35,1
+MidCurv_RadOff_wind1,10,40,1
+MidCurv_RadOff_wind2_5,10,45,1
+MidCurv_RadOn_wind0_3 (run with new conditions),40,80,1
+MidCurv_RadOn_wind1,20,50,1
+MidCurv_RadOn_wind2.5,10,40,1
+NoWig_RadOff_wind0_3 (run with new conditions),20,40,1
+NoWig_RadOff_wind0_3,25,45,1
+NoWig_RadOff_wind1,15,50,1
+NoWig_RadOff_wind2_5,20,40,1
+NoWig_RadOn_wind0_3 (run with new conditions),35,60,1
+NoWig_RadOn_wind1,30,50,1
+NoWig_RadOn_wind2_5,15,40,1
+HighCurv_RadOff_wind0_3 (run with new conditons),25,45,2
+HighCurv_RadOff_wind1,25,55,2
+HighCurv_RadOff_wind2_5,20,50,2
+HighCurv_RadOn_wind0_3 (run with new conditons),25,50,2
+HighCurv_RadOn_wind1,10,40,2
+HighCurv_RadOn_wind2_5,10,40,2
+LowCurv_RadOff_wind0_3 (run with new conditons),30,45,2
+LowCurv_RadOff_wind1,10,40,2
+LowCurv_RadOff_wind2_5,10,40,2
+LowCurv_RadOn_wind0_3 (run with new conditons),30,50,2
+LowCurv_RadOn_wind1,30,45,2
+LowCurv_RadOn_wind2_5,10,40,2
+MidCurv_RadOff_wind0_3 (run with new conditons),20,40,2
+MidCurv_RadOff_wind1,15,40,2
+MidCurv_RadOff_wind2_5,15,40,2
+MidCurv_RadOn_wind0_3 (run with new conditons),35,65,2
+MidCurv_RadOn_wind2_5,10,40,2
+MidCurv_RadOn_wind1,30,50,2
+NoWig_RadOff_wind0_3 (run with new conditons),15,35,2
+NoWig_RadOff_wind1,20,45,2
+NoWig_RadOff_wind2_5,20,40,2
+NoWig_RadOn_wind0_3 (run with new conditons),15,45,2
+NoWig_RadOn_wind1,45,65,2
+NoWig_RadOn_wind2_5,40,70,2
+HighCurv_RadOff_Wind0.3 (run with new conditions),40,55,3
+HighCurv_RadOff_Wind1,40,60,3
+HighCurv_RadOff_Wind2.5,30,50,3
+HighCurv_RadOn_Wind0.3 (run with new conditions),30,50,3
+HighCurv_RadOn_Wind1,15,45,3
+HighCurv_RadOn_Wind2_5,20,50,3
+LowCurv_RadOff_Wind0.3 (run with new conditions),25,40,3
+LowCurv_RadOff_Wind1,40,50,3
+LowCurv_RadOff_Wind2_5,20,50,3
+LowCurv_RadOn_Wind0.3 (run with new conditions),20,50,3
+LowCurv_RadOn_Wind1,30,50,3
+LowCurv_RadOn_Wind2_5,40,60,3
+MidCurv_RadOff_Wind0.3 (run with new conditions),30,40,3
+MidCurv_RadOff_Wind1,30,45,3
+MidCurv_RadOff_Wind2_5,20,45,3
+MidCurv_RadOn_Wind0.3 (run with new conditions),50,65,3
+MidCurv_RadOn_Wind1,35,50,3
+MidCurv_RadOn_Wind2_5,20,45,3
+NoWig_RadOff_Wind0.3 (run with new conditions),40,60,3
+NoWig_RadOff_Wind1,20,40,3
+NoWig_RadOff_Wind2_5,40,65,3
+NoWig_RadOn_Wind0.3 (run with new conditions),30,50,3
+NoWig_RadOn_Wind1,40,50,3
+NoWig_RadOn_Wind2_5,20,45,3
