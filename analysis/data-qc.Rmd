@@ -63,18 +63,18 @@ The data can be cleaned using the following pipeline.
 ```{r}
 library(lubridate)
 library(fs)
-data_dir1 <- "round_1"
-data_dir2 <- "round_2"
-data_dir3 <- "round_3"
+data_dir1 <- F("data/raw_manikin_output/round_1")
+data_dir2 <- F("data/raw_manikin_output/round_2")
+data_dir3 <- F("data/raw_manikin_output/round_3")
 round1 <- fs::dir_ls(data_dir1, regexp = "\\.csv$")
 round2 <- fs::dir_ls(data_dir2, regexp = "\\.csv$")
 round3 <- fs::dir_ls(data_dir3, regexp = "\\.csv$")
 round<-c(round1,round2,round3)
-raw_manikin<- round %>%   
+cleadata<- round %>%   
   map_dfr(read_csv,.id="source",skip=16)%>%
     clean_names() %>%
     select(c(source, x1, x2, contains("head"), ambient:ambient_3)) %>% 
-    rename(round = source,
+    rename(filepath = source,
            time_elapsed = x1,
            time_hms = x2,
            surface_temp = head,
@@ -88,7 +88,8 @@ raw_manikin<- round %>%
     mutate(time_hms = hms(time_hms)) %>% 
     mutate(time_elapsed = dseconds(time_elapsed)) %>% 
     select(time_elapsed, time_hms, everything())
-head(raw_manikin)
+cleandata$round=substr(cleandata$filepath,regexpr("round",cleandata$filepath),regexpr("round",cleandata$filepath)+6) 
+head(cleandata)
 ```
 ### Variables extracted
 Since we are only interested in the head, all other zones have been dropped. The variables are as follows:
