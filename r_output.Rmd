@@ -1,0 +1,114 @@
+---
+title: "manikin report"
+author: "Xinru Zhang"
+date: "12/17/2021"
+output: pdf_document
+---
+
+## wet dry data
+```{r}
+#ManikinData <- read.csv("/Users/mayzxr/Desktop/psu course/2021fall/STAT581/project/ManikinData_WetDry.csv")
+ManikinData <- read.csv("https://raw.githubusercontent.com/tinalasisi/HairManikin_manuscript/main/ManikinData_WetDry.csv")
+head(ManikinData)
+ManikinData$radiation <- factor(ManikinData$radiation, levels = c("off", "on"), labels = c("Radiation Off", "Radiation On"), ordered=TRUE)
+##ManikinData$Windspeed <- factor(ManikinData$Windspeed, levels = c("0.3","1","2.5" ), labels = c("0.3 m/s","1.0 m/s","2.5 m/s" ))
+ManikinData$wig <- factor(ManikinData$wig,levels = c("Nude","LowCurv", "MidCurv","HighCurv"), labels = c("Nude","Low Curvature","Mid Curvature","High Curvature"),ordered=TRUE)
+
+ManikinData$with_hair <- ifelse(ManikinData$wig=="Nude", "nohair","withhair")
+
+dry <- ManikinData[ManikinData$wet_dry=="dry",]
+wet <- ManikinData[ManikinData$wet_dry=="wet",]
+##model_dry <- lm(heat_loss~wig+wind+radiation+amb_temp+skin_temp, data=dry)
+##summary(model_dry)
+##ManikinData$curve <- ifelse(ManikinData$wig=="Nude", 0, ifelse(ManikinData$wig=="LowCurv", 1, ##ifelse(ManikinData$wig=="MidCurv", 2, 3)))
+##ManikinData$curve <- as.factor(ManikinData$curve)
+#dry_model1 <- lm(insulation~wind+radiation+with_hair, data=dry)
+#wet_model1 <- lm(heat_loss~wind+radiation+with_hair, data=wet)
+dry_model1_log <- lm(log(insulation)~wind+radiation+with_hair, data=dry)
+#wet_model1_log <- lm(log(heat_loss)~wind+radiation+with_hair, data=wet)
+#dry_model1_sqrt <- lm(sqrt(insulation)~wind+radiation+with_hair, data=dry)
+wet_model1_sqrt <- lm(sqrt(heat_loss)~wind+radiation+with_hair, data=wet)
+#summary(dry_model1)
+summary(dry_model1_log)
+#summary(dry_model1_sqrt)
+#summary(wet_model1)
+#summary(wet_model1_log)
+summary(wet_model1_sqrt)
+par(mfrow=c(2,2))
+#plot(dry_model1)
+
+plot(dry_model1_log)
+#plot(dry_model1_sqrt)
+#plot(wet_model1)
+#plot(wet_model1_log)
+
+plot(wet_model1_sqrt)
+dry_hair <- dry[dry$wig!="Nude",]
+wet_hair <- wet[wet$wig!="Nude",]
+
+#dry_hair$curve <- model.matrix(~wig, data=dry_hair)
+#dry_hair$curve <- dry_hair$curve[,-4]
+#dry_hair$curve<- dry_hair$curve[,-1]
+
+dry_hair$highcurv <- ifelse(dry_hair$wig=="High Curvature", 1,0)
+dry_hair$midcurv <- ifelse(dry_hair$wig=="Mid Curvature", 1,0)
+
+wet_hair$highcurv <- ifelse(wet_hair$wig=="High Curvature", 1,0)
+wet_hair$midcurv <- ifelse(wet_hair$wig=="Mid Curvature", 1,0)
+
+#dry_model2 <- lm(insulation~wind+radiation+highcurv+midcurv,data=dry_hair)
+wet_model2 <- lm(heat_loss~wind+radiation+highcurv+midcurv, data=wet_hair)
+dry_model2_log <- lm(log(insulation)~wind+radiation+highcurv+midcurv,data=dry_hair)
+#wet_model2_log <- lm(log(heat_loss)~wind+radiation+highcurv+midcurv, data=wet_hair)
+#dry_model2_sqrt <- lm(sqrt(insulation)~wind+radiation+highcurv+midcurv, data=dry_hair)
+#wet_model2_sqrt <- lm(sqrt(heat_loss)~wind+radiation+highcurv+midcurv, data=wet_hair)
+#summary(dry_model2)
+summary(dry_model2_log)
+#summary(dry_model2_sqrt)
+summary(wet_model2)
+#summary(wet_model2_log)
+#summary(wet_model2_sqrt)
+par(mfrow=c(2,2))
+#plot(dry_model2)
+plot(dry_model2_log)
+#plot(dry_model2_sqrt)
+plot(wet_model2)
+#plot(wet_model2_log)
+#plot(wet_model2_sqrt)
+
+#dry_model3 <- lm(insulation~wind+radiation+highcurv+midcurv+highcurv:radiation+midcurv:radiation, data=dry_hair)
+wet_model3<- lm(heat_loss~wind+radiation+highcurv+midcurv+highcurv:radiation+midcurv:radiation, data=wet_hair)
+
+dry_model3_log <- lm(log(insulation)~wind+radiation+highcurv+midcurv+highcurv:radiation+midcurv:radiation, data=dry_hair)
+#wet_model3_log<- lm(log(heat_loss)~wind+radiation+highcurv+midcurv+highcurv:radiation+midcurv:radiation, data=wet_hair)
+
+#dry_model3_sqrt <- lm(sqrt(insulation)~wind+radiation+with_hair, data=dry)
+#wet_model3_sqrt <- lm(sqrt(heat_loss)~wind+radiation+with_hair, data=wet)
+#summary(dry_model3)
+summary(dry_model3_log)
+#summary(dry_model3_sqrt)
+summary(wet_model3)
+#summary(wet_model3_log)
+#summary(wet_model3_sqrt)
+par(mfrow=c(2,2))
+#plot(dry_model3)
+plot(dry_model3_log)
+#plot(dry_model3_sqrt)
+plot(wet_model3)
+#plot(wet_model3_log)
+#plot(wet_model3_sqrt)
+
+wet <- wet[is.na(wet$heat_loss)==FALSE,]
+wet_hair <- wet_hair[is.na(wet_hair$heat_loss)==FALSE,]
+hist(dry$insulation)
+hist(log(dry$insulation))
+hist(wet$heat_loss)
+hist(sqrt(wet$heat_loss))
+cor(dry$wind, log(dry$insulation))
+cor(wet$wind, sqrt(wet$heat_loss))
+
+hist(dry_hair$insulation)
+hist(log(dry_hair$insulation))
+hist(wet_hair$heat_loss)
+hist(sqrt(wet_hair$heat_loss))
+```
