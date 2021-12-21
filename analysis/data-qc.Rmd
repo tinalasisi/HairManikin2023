@@ -70,7 +70,7 @@ round1 <- fs::dir_ls(data_dir1, regexp = "\\.csv$")
 round2 <- fs::dir_ls(data_dir2, regexp = "\\.csv$")
 round3 <- fs::dir_ls(data_dir3, regexp = "\\.csv$")
 round<-c(round1,round2,round3)
-cleadata<- round %>%   
+cleandata<- round %>%   
   map_dfr(read_csv,.id="source",skip=16)%>%
     clean_names() %>%
     select(c(source, x1, x2, contains("head"), ambient:ambient_3)) %>% 
