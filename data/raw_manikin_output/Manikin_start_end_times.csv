@@ -6,7 +6,7 @@ HighCurv_RadOn_wind0_3 (run with new conditions),15,45,1
 HighCurv_RadOn_wind1,10,45,1
 HighCurv_RadOn_wind2_5,15,40,1
 LowCurv_RadOff_wind0_3 (run with new conditions),20,40,1
-LowCurv_RadOff_wind0_3 (run with new conditions),30,60,1
+LowCurv_RadOff_wind0_3,30,60,1
 LowCurv_RadOff_wind1,15,45,1
 LowCurv_RadOff_wind2_5,15,45,1
 LowCurv_RadOn_wind0_3 (run with new conditions),15,45,1
