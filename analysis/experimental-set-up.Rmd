@@ -64,27 +64,36 @@ The data can be cleaned using the following pipeline.
 
 ```{r}
 
-raw_manikin <- read_csv(F("data/raw_manikin_output/round_1/HighCurv_RadOff_wind0_3 (run with new conditions).csv"), skip = 16) %>% 
-  clean_names() %>% 
-  select(c(x1, x2, contains("head"), ambient_71:ambient_74)) %>% 
-  rename(time_elapsed = x1,
-         time_hms = x2,
-         surface_temp = head_4,
-         heatflux = head_38,
-         avg_amb= ambient_71,
-         amb_1 = ambient_72,
-         amb_2 = ambient_73,
-         rh = ambient_74) %>% 
-  slice(-(1:2)) %>% 
-  as_tibble() %>% 
-  mutate(across(!time_hms, as.numeric)) %>% 
-  mutate(time_hms = hms(time_hms)) %>% 
-  mutate(time_elapsed = dseconds(time_elapsed)) %>% 
-  select(time_elapsed, time_hms, everything())
-  
-
-head(raw_manikin)
-
+library(lubridate)
+library(fs)
+data_dir1 <- F("data/raw_manikin_output/round_1")
+data_dir2 <- F("data/raw_manikin_output/round_2")
+data_dir3 <- F("data/raw_manikin_output/round_3")
+round1 <- fs::dir_ls(data_dir1, regexp = "\\.csv$")
+round2 <- fs::dir_ls(data_dir2, regexp = "\\.csv$")
+round3 <- fs::dir_ls(data_dir3, regexp = "\\.csv$")
+round<-c(round1,round2,round3)
+cleandata<- round %>%   
+  map_dfr(read_csv,.id="source",skip=16)%>%
+    clean_names() %>%
+    select(c(source, x1, x2, contains("head"), ambient:ambient_3)) %>% 
+    rename(filepath = source,
+           time_elapsed = x1,
+           time_hms = x2,
+           surface_temp = head,
+           heatflux = head_1,
+           avg_amb= ambient,
+           amb_1 = ambient_1,
+           amb_2 =  ambient_2,
+           rh = ambient_3)%>%
+    slice(-(1:2)) %>% 
+    as_tibble() %>% 
+    mutate(time_hms = hms(time_hms)) %>% 
+    mutate(time_elapsed = dseconds(time_elapsed)) %>% 
+    select(time_elapsed, time_hms, everything())
+cleandata$round=substr(cleandata$filepath,regexpr("round",cleandata$filepath),regexpr("round",cleandata$filepath)+6) 
+cleandata$filepath <- sub( ".*output/","", cleandata$filepath)
+head(cleandata)
 ```
 ### Variables extracted
 Since we are only interested in the head, all other zones have been dropped. The variables are as follows:
@@ -131,11 +140,12 @@ area = 0.0978
 start_time = start_time_mins*60
 end_time = end_time_mins*60
 
-raw_manikin %>% 
+cleandata %>% 
   filter(time_elapsed > start_time & time_elapsed < end_time) %>% 
-  summarise(across(!c(time_elapsed, time_hms), ~ mean(.x, na.rm = TRUE))) %>% 
     mutate(heat_resistance = (surface_temp-avg_amb)/max(0.01, heatflux),
            clo = (heat_resistance/0.155))
+     
+  
 
 ```
 
