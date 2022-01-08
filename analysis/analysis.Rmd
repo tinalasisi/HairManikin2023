@@ -1,0 +1,27 @@
+---
+title: "Analysis"
+author: "Tina Lasisi"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  workflowr::wflow_html:
+    toc: yes
+    number_sections: yes
+editor_options:
+  chunk_output_type: console
+---
+
+## Thermal resistance
+
+
+```{r}
+
+```
+
+## Evaporative resistance
+
+## Solar influx
+
+
+## Sweating estimations
+
+
