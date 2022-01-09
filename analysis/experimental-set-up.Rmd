@@ -156,18 +156,11 @@ Heat resistance is calculated from the difference between the surface temperatur
 
 - 
 
-Other calculations
+Other calculations:
 
-net solar influx (W/m2) is calculated as: 
+Net solar influx (W/m2) is calculated as: 
 
 $$heatflux_{(radiation)}- heatflux_{(no \ radiation)}$$
-
-temperature correction for 4C (no radiation) is calculated as:
-
-$$28/heat\ resistance_{(no \ radiation)} $$
-temperature correction for 4C (radiation) is calculated as:
-
-$$temp\ corrected \ heat loss_{(4C)} - solar\ influx $$
 
 temperature correction for 30C (no radiation) is calculated as:
 
