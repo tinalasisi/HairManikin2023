@@ -11,6 +11,8 @@ navbar:
     href: license.html
   - text: Experimental setup
     href: experimental-set-up.html
+  - text: Analysis
+    href: analysis.html
 output:
   workflowr::wflow_html:
     toc: yes

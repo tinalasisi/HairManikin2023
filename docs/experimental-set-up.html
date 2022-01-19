@@ -11,7 +11,7 @@
 
 <meta name="author" content="Tina Lasisi" />
 
-<meta name="date" content="2021-10-24" />
+<meta name="date" content="2022-01-19" />
 
 <title>Experimental Set Up &amp; Data</title>
 
@@ -341,6 +341,9 @@ div.tocify {
 <li>
   <a href="experimental-set-up.html">Experimental setup</a>
 </li>
+<li>
+  <a href="analysis.html">Analysis</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -355,14 +358,14 @@ div.tocify {
 
 <h1 class="title toc-ignore">Experimental Set Up &amp; Data</h1>
 <h4 class="author">Tina Lasisi</h4>
-<h4 class="date">October 24, 2021</h4>
+<h4 class="date">January 19, 2022</h4>
 
 </div>
 
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -371,7 +374,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -380,10 +383,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-10-24
+<strong>Last updated:</strong> 2022-01-19
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>HairManikin_manuscript/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -399,12 +402,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -471,16 +474,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikinmanuscripttree6ab220a1275985e8a1627b9af9f09fb84f770dbctargetblank6ab220aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/tinalasisi/HairManikin_manuscript/tree/6ab220a1275985e8a1627b9af9f09fb84f770dbc" target="_blank">6ab220a</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treebb99f1dce5a475cfeca059fc0a0004ca480a3771targetblankbb99f1da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/tinalasisi/HairManikin2022/tree/bb99f1dce5a475cfeca059fc0a0004ca480a3771" target="_blank">bb99f1d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikinmanuscripttree6ab220a1275985e8a1627b9af9f09fb84f770dbctargetblank6ab220aa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treebb99f1dce5a475cfeca059fc0a0004ca480a3771targetblankbb99f1da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/tinalasisi/HairManikin_manuscript/tree/6ab220a1275985e8a1627b9af9f09fb84f770dbc" target="_blank">6ab220a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/tinalasisi/HairManikin2022/tree/bb99f1dce5a475cfeca059fc0a0004ca480a3771" target="_blank">bb99f1d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -490,13 +493,21 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .RData
     Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
     Ignored:    data/.DS_Store
+    Ignored:    data/.Rhistory
+    Ignored:    data/current/.DS_Store
+    Ignored:    data/raw_manikin_output/.DS_Store
 
 Untracked files:
-    Untracked:  data/raw_manikin_output/
+    Untracked:  output/plt_heatloss_line.png
+    Untracked:  output/plt_influx_line.png
 
 Unstaged changes:
     Modified:   analysis/_site.yml
+    Modified:   analysis/analysis.Rmd
+    Modified:   analysis/experimental-set-up.Rmd
 
 </code></pre>
 <p>
@@ -540,16 +551,50 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin_manuscript/blob/6ab220a1275985e8a1627b9af9f09fb84f770dbc/analysis/experimental-set-up.Rmd" target="_blank">6ab220a</a>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/bb99f1dce5a475cfeca059fc0a0004ca480a3771/analysis/experimental-set-up.Rmd" target="_blank">bb99f1d</a>
 </td>
 <td>
 Tina Lasisi
 </td>
 <td>
-2021-10-24
+2022-01-08
 </td>
 <td>
-update images
+Update analysis.rmd + add data
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/680aafe67ebb3ad38b845f1ab83259b4f89b74de/analysis/experimental-set-up.Rmd" target="_blank">680aafe</a>
+</td>
+<td>
+Ginawsy
+</td>
+<td>
+2021-12-26
+</td>
+<td>
+change file of analysis
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/9feaa00d90091cb16d4a13acd554058f125fb093/analysis/experimental-set-up.Rmd" target="_blank">9feaa00</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2021-11-11
+</td>
+<td>
+Updated data
 </td>
 </tr>
 <tr>
@@ -557,7 +602,7 @@ update images
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin_manuscript/b7aa96707e8ddc4ceaeb2db71066004a78d34cd6/docs/experimental-set-up.html" target="_blank">b7aa967</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/700233ba13156f5bbf279013a9c160f642db7395/docs/experimental-set-up.html" target="_blank">700233b</a>
 </td>
 <td>
 Tina Lasisi
@@ -574,7 +619,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin_manuscript/blob/6a6f477fda200126fccdee6b8e1719145f5bca31/analysis/experimental-set-up.Rmd" target="_blank">6a6f477</a>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/6ab220a1275985e8a1627b9af9f09fb84f770dbc/analysis/experimental-set-up.Rmd" target="_blank">6ab220a</a>
 </td>
 <td>
 Tina Lasisi
@@ -591,7 +636,7 @@ update images
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin_manuscript/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/experimental-set-up.html" target="_blank">b319b9e</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/b7aa96707e8ddc4ceaeb2db71066004a78d34cd6/docs/experimental-set-up.html" target="_blank">b7aa967</a>
 </td>
 <td>
 Tina Lasisi
@@ -608,7 +653,41 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin_manuscript/blob/68a2c58cecb2ce7dcac58942e45358978da4c731/analysis/experimental-set-up.Rmd" target="_blank">68a2c58</a>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/6a6f477fda200126fccdee6b8e1719145f5bca31/analysis/experimental-set-up.Rmd" target="_blank">6a6f477</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2021-10-24
+</td>
+<td>
+update images
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/experimental-set-up.html" target="_blank">b319b9e</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2021-10-24
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/68a2c58cecb2ce7dcac58942e45358978da4c731/analysis/experimental-set-up.Rmd" target="_blank">68a2c58</a>
 </td>
 <td>
 Tina Lasisi
@@ -661,7 +740,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin_manuscript/blob/afab42a4b3dd36256c5f5e3bfff91556e2b5e388/docs/assets/manikin-chamber-setup.jpeg" target="_blank">afab42a</a>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/afab42a4b3dd36256c5f5e3bfff91556e2b5e388/docs/assets/manikin-chamber-setup.jpeg" target="_blank">afab42a</a>
 </td>
 <td>
 Tina Lasisi
@@ -700,7 +779,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin_manuscript/blob/c5d61989510f4032b74775b39f00cb72d8ec158a/docs/assets/manikin-chamber-setup-diagram.png" target="_blank">c5d6198</a>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/c5d61989510f4032b74775b39f00cb72d8ec158a/docs/assets/manikin-chamber-setup-diagram.png" target="_blank">c5d6198</a>
 </td>
 <td>
 Tina Lasisi
@@ -738,36 +817,48 @@ head(raw_manikin)</code></pre>
 #   l_up_thigh_fr_24 &lt;chr&gt;, l_up_thigh_grd_25 &lt;chr&gt;, l_up_thigh_bk_26 &lt;chr&gt;,
 #   r_lwr_thigh_fr_27 &lt;chr&gt;, r_lwr_thigh_bk_28 &lt;chr&gt;, …</code></pre>
 <p>The data can be cleaned using the following pipeline.</p>
-<pre class="r"><code>raw_manikin &lt;- read_csv(F(&quot;data/raw_manikin_output/round_1/HighCurv_RadOff_wind0_3 (run with new conditions).csv&quot;), skip = 16) %&gt;% 
-  clean_names() %&gt;% 
-  select(c(x1, x2, contains(&quot;head&quot;), ambient_71:ambient_74)) %&gt;% 
-  rename(time_elapsed = x1,
-         time_hms = x2,
-         surface_temp = head_4,
-         heatflux = head_38,
-         avg_amb= ambient_71,
-         amb_1 = ambient_72,
-         amb_2 = ambient_73,
-         rh = ambient_74) %&gt;% 
-  slice(-(1:2)) %&gt;% 
-  as_tibble() %&gt;% 
-  mutate(across(!time_hms, as.numeric)) %&gt;% 
-  mutate(time_hms = hms(time_hms)) %&gt;% 
-  mutate(time_elapsed = dseconds(time_elapsed)) %&gt;% 
-  select(time_elapsed, time_hms, everything())
-  
-
+<pre class="r"><code>library(lubridate)
+library(fs)
+data_dir1 &lt;- F(&quot;data/raw_manikin_output/round_1&quot;)
+data_dir2 &lt;- F(&quot;data/raw_manikin_output/round_2&quot;)
+data_dir3 &lt;- F(&quot;data/raw_manikin_output/round_3&quot;)
+round1 &lt;- fs::dir_ls(data_dir1, regexp = &quot;\\.csv$&quot;)
+round2 &lt;- fs::dir_ls(data_dir2, regexp = &quot;\\.csv$&quot;)
+round3 &lt;- fs::dir_ls(data_dir3, regexp = &quot;\\.csv$&quot;)
+round&lt;-c(round1,round2,round3)
+raw_manikin&lt;- round %&gt;%   
+  map_dfr(read_csv,.id=&quot;source&quot;,skip=16)%&gt;%
+    clean_names() %&gt;%
+    select(c(source, x1, x2, contains(&quot;head&quot;), ambient_71:ambient_74)) %&gt;% 
+    rename(filepath = source,
+           time_elapsed = x1,
+           time_hms = x2,
+           surface_temp = head_4,
+           heatflux = head_38,
+           avg_amb= ambient_71,
+           amb_1 = ambient_72,
+           amb_2 =  ambient_73,
+           rh = ambient_74)%&gt;%
+    slice(-(1:2)) %&gt;% 
+    as_tibble() %&gt;% 
+    mutate(time_hms = hms(time_hms)) %&gt;% 
+    mutate(time_elapsed = dseconds(time_elapsed)) %&gt;% 
+    select(time_elapsed, time_hms, everything())
+raw_manikin$round=substr(raw_manikin$filepath,regexpr(&quot;round&quot;,raw_manikin$filepath),regexpr(&quot;round&quot;,raw_manikin$filepath)+6) 
+raw_manikin$filepath &lt;- sub( &quot;.*output/&quot;,&quot;&quot;, raw_manikin$filepath)
 head(raw_manikin)</code></pre>
-<pre><code># A tibble: 6 × 8
-  time_elapsed                time_hms    surface_temp heatflux avg_amb amb_1
-  &lt;Duration&gt;                  &lt;Period&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-1 30.0117166s                 15H 27M 8S          38.0     87      1.76  1.47
-2 60.0264333s (~1 minutes)    15H 27M 38S         38.0     90.4    1.72  1.44
-3 90.04015s (~1.5 minutes)    15H 28M 8S          38.0     92      1.67  1.4 
-4 120.0548667s (~2 minutes)   15H 28M 38S         37.9     93.7    1.62  1.37
-5 150.0695835s (~2.5 minutes) 15H 29M 8S          37.9     95      1.57  1.34
-6 180.0843002s (~3 minutes)   15H 29M 38S         37.9     96.7    1.53  1.31
-# … with 2 more variables: amb_2 &lt;dbl&gt;, rh &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 6 × 10
+  time_elapsed                time_hms    filepath surface_temp heatflux avg_amb
+  &lt;Duration&gt;                  &lt;Period&gt;    &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;  
+1 30.0117166s                 15H 27M 8S  round_1… 37.96        87.0     1.76   
+2 60.0264333s (~1 minutes)    15H 27M 38S round_1… 37.95        90.4     1.72   
+3 90.04015s (~1.5 minutes)    15H 28M 8S  round_1… 37.95        92.0     1.67   
+4 120.0548667s (~2 minutes)   15H 28M 38S round_1… 37.94        93.7     1.62   
+5 150.0695835s (~2.5 minutes) 15H 29M 8S  round_1… 37.94        95.0     1.57   
+6 180.0843002s (~3 minutes)   15H 29M 38S round_1… 37.94        96.7     1.53   
+# … with 4 more variables: amb_1 &lt;chr&gt;, amb_2 &lt;chr&gt;, rh &lt;chr&gt;, round &lt;chr&gt;</code></pre>
+<div id="variables-extracted" class="section level3" number="0.3.1">
+<h3><span class="header-section-number">0.3.1</span> Variables extracted</h3>
 <p>Since we are only interested in the head, all other zones have been dropped. The variables are as follows:</p>
 <ul>
 <li><code>time_elapsed</code> (in seconds) describes how long the experiment has been running</li>
@@ -811,7 +902,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin_manuscript/blob/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/figure/experimental-set-up.Rmd/unnamed-chunk-6-1.png" target="_blank">b319b9e</a>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/figure/experimental-set-up.Rmd/unnamed-chunk-6-1.png" target="_blank">b319b9e</a>
 </td>
 <td>
 Tina Lasisi
@@ -824,6 +915,9 @@ Tina Lasisi
 </table>
 </div>
 </div>
+</div>
+<div id="variables-calculated" class="section level3" number="0.3.2">
+<h3><span class="header-section-number">0.3.2</span> Variables calculated</h3>
 <p>A stable period is then chosen to average.</p>
 <p>Some information required for the calculations includes the Area of skin surface on the manikin (Ask), which is <code>0.0978</code> in meters squared.</p>
 <pre class="r"><code>start_time_mins = 15
@@ -833,21 +927,19 @@ area = 0.0978
 start_time = start_time_mins*60
 end_time = end_time_mins*60
 
-raw_manikin %&gt;% 
-  filter(time_elapsed &gt; start_time &amp; time_elapsed &lt; end_time) %&gt;% 
-  summarise(across(!c(time_elapsed, time_hms), ~ mean(.x, na.rm = TRUE))) %&gt;% 
-    mutate(heat_resistance = (surface_temp-avg_amb)/max(0.01, heatflux),
-           clo = (heat_resistance/0.155))</code></pre>
-<pre><code># A tibble: 1 × 8
-  surface_temp heatflux avg_amb amb_1 amb_2    rh heat_resistance   clo
-         &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt; &lt;dbl&gt;
-1         38.0     98.1    1.23  1.08  1.38  48.6           0.375  2.42</code></pre>
-<p>Other calculations</p>
-<p>net solar influx (W/m2) is calculated as:</p>
+# raw_manikin %&gt;% 
+#   filter(time_elapsed &gt; start_time &amp; time_elapsed &lt; end_time) %&gt;% 
+#     mutate(heat_resistance = (surface_temp-avg_amb)/ max(0.01, heatflux)) %&gt;% 
+#     mutate(clo = heat_resistance/0.155)
+#      </code></pre>
+<p>Two additional variables are calculated: <code>heat_resistance</code> and <code>clo</code>. Both are measures of insulation.</p>
+<p>Heat resistance is calculated from the difference between the surface temperature and the ambient temperature</p>
+<ul>
+<li></li>
+</ul>
+<p>Other calculations:</p>
+<p>Net solar influx (W/m2) is calculated as:</p>
 <p><span class="math display">\[heatflux_{(radiation)}- heatflux_{(no \ radiation)}\]</span></p>
-<p>temperature correction for 4C (no radiation) is calculated as:</p>
-<p><span class="math display">\[28/heat\ resistance_{(no \ radiation)} \]</span> temperature correction for 4C (radiation) is calculated as:</p>
-<p><span class="math display">\[temp\ corrected \ heat loss_{(4C)} - solar\ influx \]</span></p>
 <p>temperature correction for 30C (no radiation) is calculated as:</p>
 <p><span class="math display">\[5/heat\ resistance_{(no \ radiation)} \]</span> temperature correction for 30C (radiation) is calculated as:</p>
 <p><span class="math display">\[temp\ corrected \ heat loss_{(30C)} - solar\ influx \]</span></p>
@@ -859,7 +951,7 @@ raw_manikin %&gt;%
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.1 (2021-08-10)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-apple-darwin17.0 (64-bit)
 Running under: macOS Big Sur 10.16
 
@@ -874,9 +966,10 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] janitor_2.1.0   lubridate_1.8.0 forcats_0.5.1   stringr_1.4.0  
- [5] dplyr_1.0.7     purrr_0.3.4     readr_2.0.2     tidyr_1.1.4    
- [9] tibble_3.1.5    ggplot2_3.3.5   tidyverse_1.3.1 workflowr_1.6.2
+ [1] fs_1.5.0        janitor_2.1.0   lubridate_1.8.0 forcats_0.5.1  
+ [5] stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4     readr_2.0.2    
+ [9] tidyr_1.1.4     tibble_3.1.5    ggplot2_3.3.5   tidyverse_1.3.1
+[13] workflowr_1.6.2
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.7       assertthat_0.2.1 rprojroot_2.0.2  digest_0.6.28   
@@ -884,18 +977,19 @@ loaded via a namespace (and not attached):
  [9] reprex_2.0.1     evaluate_0.14    highr_0.9        httr_1.4.2      
 [13] pillar_1.6.4     rlang_0.4.12     readxl_1.3.1     rstudioapi_0.13 
 [17] whisker_0.4      jquerylib_0.1.4  rmarkdown_2.11   labeling_0.4.2  
-[21] bit_4.0.4        munsell_0.5.0    broom_0.7.9      compiler_4.1.1  
+[21] bit_4.0.4        munsell_0.5.0    broom_0.7.9      compiler_4.1.2  
 [25] httpuv_1.6.3     modelr_0.1.8     xfun_0.27        pkgconfig_2.0.3 
 [29] htmltools_0.5.2  tidyselect_1.1.1 fansi_0.5.0      crayon_1.4.1    
 [33] tzdb_0.1.2       dbplyr_2.1.1     withr_2.4.2      later_1.3.0     
-[37] grid_4.1.1       jsonlite_1.7.2   gtable_0.3.0     lifecycle_1.0.1 
+[37] grid_4.1.2       jsonlite_1.7.2   gtable_0.3.0     lifecycle_1.0.1 
 [41] DBI_1.1.1        git2r_0.28.0     magrittr_2.0.1   scales_1.1.1    
-[45] vroom_1.5.5      cli_3.0.1        stringi_1.7.5    farver_2.1.0    
-[49] fs_1.5.0         promises_1.2.0.1 snakecase_0.11.0 xml2_1.3.2      
-[53] ellipsis_0.3.2   generics_0.1.0   vctrs_0.3.8      tools_4.1.1     
-[57] bit64_4.0.5      glue_1.4.2       hms_1.1.1        parallel_4.1.1  
-[61] fastmap_1.1.0    yaml_2.2.1       colorspace_2.0-2 rvest_1.0.2     
-[65] knitr_1.36       haven_2.4.3     </code></pre>
+[45] vroom_1.5.5      cli_3.1.0        stringi_1.7.5    farver_2.1.0    
+[49] promises_1.2.0.1 snakecase_0.11.0 xml2_1.3.2       ellipsis_0.3.2  
+[53] generics_0.1.0   vctrs_0.3.8      tools_4.1.2      bit64_4.0.5     
+[57] glue_1.4.2       hms_1.1.1        parallel_4.1.2   fastmap_1.1.0   
+[61] yaml_2.2.1       colorspace_2.0-2 rvest_1.0.2      knitr_1.36      
+[65] haven_2.4.3     </code></pre>
+</div>
 </div>
 </div>
 
