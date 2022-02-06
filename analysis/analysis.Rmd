@@ -235,29 +235,43 @@ pltsave_func(plt_heatloss_line, plot_path, width = 7, height = 4)
 
 # Analyses
 
+# Analyses
+
 ## Solar influx
 
 ### Dry
 
 Here, we model the effect of the `wig` variable on `influx` while correcting for `wind`. 
+In case of solar influx, having hair will decrease solar influx when the hair is dry. The curvature of hair will decrease more solar influx.
 
 ```{r lm-dry-influx}
 
-df <- df_wetdry_final %>% 
+df_dry <- df_wetdry_final %>% 
   filter(wet_dry == "dry")
+
+
+model_dry <- lm(influx~wind+wig, data=df_dry)
+summary(model_dry)
+plot(model_dry)
 
 ```
 
 
 ### Wet
 
-Here, we repeat the same model for the wet data.
+Here, we repeat the same modelling process for the wet data.
 
+When the hair is sweaty, having curliest hair would decrease solar influx.
 ```{r lm-wet-influx}
 
 df <- df_wetdry_final %>% 
   filter(wet_dry == "wet")
-
+df_wet <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+model_wet <- lm(influx~wind+wig, data=df_wet)
+model_wet
+plot(model_wet)
+summary(model_wet)
 ```
 
 
@@ -269,19 +283,30 @@ df <- df_wetdry_final %>%
 
 Here, we model the effect of the `wig` variable on the `off` (heat loss without radiation) variable while correcting for `wind`. 
 
+when the radiation is off, having straight or curly hair will decrease the heat loss.
 ```{r lm-dry-heatloss-off}
 
 df <- df_wetdry_final %>% 
   filter(wet_dry == "dry")
-
+df_dry_off <- df_wetdry_final %>% 
+  filter(wet_dry == "dry")
+df_dry_off ## what are the rows 37-72
+model_dry_off<- lm(off~wind+wig, data=df_dry_off[1:36,])
+summary(model_dry_off)
 ```
 
 #### Radiation on
+
+when radiation is on and hair is dry, the heat loss would increase given the presence of hair. The curvature of hair would increase the heat loss.
 ```{r lm-dry-heatloss-on}
 
 df <- df_wetdry_final %>% 
   filter(wet_dry == "dry")
+df_dry_on <- df_wetdry_final %>% 
+  filter(wet_dry == "dry")
 
+model_dry_on<- lm(on~wind+wig, data=df_dry_on[1:36,])
+summary(model_dry_on)
 ```
 
 ### Wet
@@ -290,19 +315,28 @@ df <- df_wetdry_final %>%
 
 Here, we model the effect of the `wig` variable on the `off` (heat loss without radiation) variable while correcting for `wind`. 
 
+when the radiation is off, having straight or curly hair will decrease the heat loss.
 ```{r lm-wet-heatloss-off}
 
 df <- df_wetdry_final %>% 
   filter(wet_dry == "wet")
-
+df_wet_off <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+model_wet_off<- lm(off~wind+wig, data=df_wet_off)
+summary(model_wet_off)
 ```
 
 #### Radiation on
+
+when the radiation is on, having straight or curly hair will decrease the heat loss.
 ```{r lm-wet-heatloss-on}
 
 df <- df_wetdry_final %>% 
   filter(wet_dry == "wet")
-
+df_wet_on <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+model_wet_on<- lm(on~wind+wig, data=df_wet_on)
+summary(model_wet_on)
 ```
 
 
