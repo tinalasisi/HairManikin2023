@@ -110,7 +110,8 @@ A plot of solar influx shows an outlier in the wet experiments where the heat lo
 
 df_influx <- df_influx %>% 
   mutate(influx = replace(influx, influx<0, NA)) %>% 
-  drop_na()
+  drop_na() %>% 
+  distinct()
 
 ```
 
@@ -126,7 +127,8 @@ $$Heat\ loss (W/m^2)_{(30C\ no\ radiation)} = 5/heat\ resistance_{(no \ radiatio
 
 df_dry_off <- df_wetdry %>% 
   filter(radiation=="off" & wet_dry == "dry") %>% 
-  select(c(wig, wind, wet_dry, resistance, trial))
+  select(c(wig, wind, wet_dry, resistance, trial)) %>% 
+  distinct()
 
 df_dry_off
 
@@ -136,7 +138,8 @@ df_dry30_off<- df_influx %>%
             df_dry_off) %>% 
   mutate(heatloss30 = 5/resistance) %>% 
   select(-c(on, off)) %>% 
-  rename(off = heatloss30)
+  rename(off = heatloss30) %>% 
+  distinct()
 
 df_dry30_off
 
@@ -152,14 +155,16 @@ $$Heat\ loss (W/m^2)_{(30C\ with\ radiation)}  = Heat\ loss (W/m^2)_{(30C\ no\ r
 
 df_dry_on <- df_wetdry %>% 
   filter(radiation=="on" & wet_dry =="dry") %>% 
-  select(c(wig, wind, wet_dry, resistance, trial))
+  select(c(wig, wind, wet_dry, resistance, trial)) %>% 
+  distinct()
 
 df_dry_on
 
 
 df_dry30<- df_dry30_off %>% 
   mutate(on = off-influx) %>% 
-  select(-resistance)
+  select(-resistance) %>% 
+  distinct()
 
 df_dry30
 
@@ -167,12 +172,14 @@ df_dry30
 
 
 ```{r df-wet-dry}
-df_wetdry_final <- bind_rows(df_dry30, df_influx)
+df_wetdry_final <- bind_rows(df_dry30, df_influx) %>% 
+  distinct()
 
 df_wetdry_final
 
 df_long_wetdry_final <- df_wetdry_final %>% 
-  pivot_longer(influx:on, names_to = "var", values_to = "heatloss")
+  pivot_longer(influx:on, names_to = "var", values_to = "heatloss") %>% 
+  distinct()
 
 df_long_wetdry_final
 
@@ -190,6 +197,9 @@ sum_manikin_df <- df_long_wetdry_final %>%
   )
 
 sum_manikin_df
+
+df_long_wetdry_final %>% 
+  filter(wig == "Nude" & wind == 0.3 & wet_dry=="dry" & var =="on")
 
 # n seems wrong?
 
