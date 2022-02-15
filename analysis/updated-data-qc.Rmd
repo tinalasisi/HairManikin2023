@@ -1,0 +1,222 @@
+---
+title: "Data QC"
+author: "Tina Lasisi"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  workflowr::wflow_html:
+    toc: yes
+    number_sections: yes
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(gridExtra)
+
+  F = rprojroot::is_rstudio_project$make_fix_file()
+
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, eval = TRUE, warning = FALSE, message = FALSE, fig.retina = 2, fig.width = 8, fig.height = 6, out.width = "100%")
+```
+## Introduction
+
+In brief, the experiments were carried out in a climate controlled chamber at the University of Loughborough (UK) using a full-body thermal manikin with 20 independently controllable zones. Human hair wigs ranging from straight to tightly curled were used to test the effect of hair on heat gain/loss in a number of conditions.
+
+The experimental variables were:
+- head covering (no wig, straight wig, moderately curled wig, tightly curled wig)
+- radiation (on vs. off)
+- wind speed (0.3m/s, 1m/s, 2.5m/s)
+- evaporation (manikin with dry scalp vs. manikin with wet scalp)
+
+## Set-up
+Dry heat resistance experiments were carried out from October to November 2018 in a climate controlled chamber with a custom-built wind tunnel (see below).
+
+
+```{r}
+knitr::include_graphics("assets/manikin-chamber-setup.jpeg", error = FALSE)
+
+```
+
+```{r}
+knitr::include_graphics("assets/manikin-chamber-setup-diagram.png", error = FALSE)
+
+```
+
+
+## Data
+
+The raw data from the manikin is structured as follows
+
+```{r}
+
+raw_manikin <- read_csv(F("data/raw_manikin_output/round_1/HighCurv_RadOff_wind0_3 (run with new conditions).csv"), skip = 16) %>% 
+  clean_names()
+
+head(raw_manikin)
+
+```
+The data can be cleaned using the following pipeline.
+
+```{r}
+
+file_parser<- function(file){
+  return(file %>% 
+        clean_names() %>% 
+        select(c(x1, x2, contains("head"), ambient_71:ambient_74)) %>% 
+        rename(time_elapsed = x1,
+               time_hms = x2,
+               surface_temp = head_4,
+               heatflux = head_38,
+               avg_amb= ambient_71,
+               amb_1 = ambient_72,
+               amb_2 = ambient_73,
+               rh = ambient_74) %>% 
+        slice(-(1:2)) %>% 
+        as_tibble() %>% 
+        mutate(across(!time_hms, as.numeric)) %>% 
+        mutate(time_hms = hms(time_hms)) %>% 
+        mutate(time_elapsed = dseconds(time_elapsed)) %>% 
+        select(time_elapsed, time_hms, everything())
+      )
+}
+
+head(file_parser(raw_manikin))
+```
+
+We can then run this pipeline on all the files below.
+```{r}
+
+paths<-list.files("data/raw_manikin_output")
+paths<-paths[paths!="Manikin_start_end_times.csv"]
+
+path_info <- list(list())
+
+for (path in paths) {
+  for (file in list.files(sprintf("data/raw_manikin_output/%s", path))) {
+    info <- list(path, file)
+    
+    # print(info[[2]])
+    path_info <- append(path_info, list(info))
+  }
+}
+
+path_info <- path_info[-1]
+
+get_file <- function(file_info) {
+  round<-file_info[1]
+  file_name<-file_info[2]
+  return(read_csv(F(sprintf("data/raw_manikin_output/%s/%s",round, file_name)), skip = 16))
+}
+
+raw_data<-map_df(path_info, function(.x) {
+  # print(.x)
+  return(data.frame(round = .x[[1]],
+                    description = .x[[2]],
+                    fullPath = paste(.x[[1]], .x[[2]], sep="/"),
+                    data = file_parser(get_file(.x))
+                    ))
+})
+head(raw_data)
+```
+Next, we group the data (currently this is by every file, but we may want to replace it with some other grouping, I don't totally understand this part yet!)
+
+```{r}
+good_data <- raw_data %>% 
+  group_by(fullPath) %>% 
+  nest()
+head(good_data)
+```
+In order to visualize data, we then create a plot for each file.
+
+```{r}
+get_image<-function(.x) {
+  plotted<-.x %>% 
+    pivot_longer(cols = data.surface_temp:data.rh, names_to = "var")
+
+  return(
+    plotted %>% 
+      ggplot(aes(x = data.time_elapsed, 
+                 y = value,
+                 col = var)) +
+      geom_line() +
+      facet_grid(var ~ ., scales = "free")
+  ) + theme(legend.position = "none")
+}
+
+good_data<-good_data  %>% 
+  mutate(img = map(data,  ~{get_image(.x)}))
+
+head(good_data)
+```  
+For example, the first image looks like this.
+```{r}
+
+print(good_data$img[2])
+print(grid.arrange(grobs= good_data$img))
+# print(good_data$img[1])
+# 
+# 
+# for (plot in good_data$img) {
+#   print(plot)
+# }
+```
+
+Using the start and end times found in the start and end times file, we create specific data.
+```{r}
+times<-read_csv(F("data/raw_manikin_output/Manikin_start_end_times.csv"))
+
+get_start_time<-function(path_name, round_num) {
+  temp<-times[times$Round == round_num,]
+  return( temp[temp$Filename == path_name,]$Start)
+}
+
+get_end_time<-function(path_name, round_num) {
+  temp<-times[times$Round == round_num,]
+  return( temp[temp$Filename == path_name,]$End)
+}
+
+get_advanced<-function(info, run_data){
+  round = info[[1]]
+  round = substring(round, nchar(round))
+  filename = info[[2]]
+  filename = substr(filename, 0, nchar(filename)-4)
+  start_time_mins<-get_start_time(filename, round)
+
+  end_time_mins<-get_end_time(filename, round)
+
+  area = 0.0978
+  
+  start_time = start_time_mins*60
+  end_time = end_time_mins*60
+  
+  return (
+    run_data %>% 
+      filter(data.time_elapsed > start_time & data.time_elapsed < end_time) %>% 
+      summarise(across(!c(data.time_elapsed, data.time_hms), ~ mean(.x, na.rm = TRUE))) %>% 
+        mutate(heat_resistance = (data.surface_temp-data.avg_amb)/max(0.01, data.heatflux),
+               clo = (heat_resistance/0.155))
+  )
+}
+
+
+good_data$advanced_data = map2(path_info, good_data$data, get_advanced)
+```
+### Variables extracted
+Since we are only interested in the head, all other zones have been dropped. The variables are as follows:
+
+- `time_elapsed` (in seconds) describes how long the experiment has been running
+- `surface_temp` (deg C) describes surface temperature for head zone
+- `heatflux` (W/m2) describes heat loss in watts per meter square.
+- `avg_amb` (deg C) describes average ambient temperature based on two measurements
+- `amb_1` (deg C) first ambient temperature sensor
+- `amb_2` (deg C) second ambient temperature sensor
+- `rh` (percentage) describes relative humidity in the chamber.
+
+```{r}
+head(good_data)
+```
+
