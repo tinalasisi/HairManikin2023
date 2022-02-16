@@ -271,7 +271,7 @@ plot(model_dry)
 
 Here, we repeat the same modelling process for the wet data.
 
-When the hair is sweaty, having curliest hair would decrease solar influx.
+When the hair is sweaty, having hair would decrease solar influx. Having mid-curvature hair will decrease more solar influx than straight hair and curliest hair do.
 ```{r lm-wet-influx}
 
 df <- df_wetdry_final %>% 
