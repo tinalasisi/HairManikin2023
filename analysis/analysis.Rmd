@@ -41,6 +41,8 @@ pltsave_func <- function(plot, plot_path, width, height){
 
 ```{r df-import, include=FALSE}
 # Importing data
+a <- read_csv(F("data/current/ManikinData_WetDry.csv"))
+
 df_wetdry <- read_csv(F("data/current/ManikinData_WetDry.csv"), 
     col_types = cols(
       wig = col_factor(levels = c("Nude", 
@@ -50,9 +52,6 @@ df_wetdry <- read_csv(F("data/current/ManikinData_WetDry.csv"),
       wet_dry = col_factor(levels = c("dry", 
             "wet")),
       trial = col_factor(levels = c("1", "2", "3"))))
-
-head(df_wetdry)
-
 ```
 
 # Preparing data
@@ -69,7 +68,6 @@ $$Solar\ influx \ (W/m^2) = heatflux_{(radiation)}- heatflux_{(no \ radiation)}$
 
 ```{r df-solar-influx}
 
-
 df_influx <- df_wetdry %>% 
   pivot_longer(cols = c("heatloss", "resistance", "clo")) %>% 
   filter(name == "heatloss") %>% 
@@ -78,8 +76,6 @@ df_influx <- df_wetdry %>%
   mutate(influx = off-on) %>% 
   drop_na() %>% 
   select(-name)
-
-df_influx
 
 ```
 
@@ -160,19 +156,18 @@ df_dry_on <- df_wetdry %>%
 
 df_dry_on
 
-
 df_dry30<- df_dry30_off %>% 
   mutate(on = off-influx) %>% 
   select(-resistance) %>% 
   distinct()
 
 df_dry30
-
 ```
 
 
 ```{r df-wet-dry}
-df_wetdry_final <- bind_rows(df_dry30, df_influx) %>% 
+
+df_wetdry_final <- bind_rows(df_dry30, df_influx[df_influx$wet_dry == "wet",]) %>% 
   distinct()
 
 df_wetdry_final
@@ -191,9 +186,9 @@ df_long_wetdry_final
 ```{r df-summary, include=FALSE}
 # means and sd
 sum_manikin_df <- df_long_wetdry_final %>% 
-  group_by(wig, wind, wet_dry, var) %>% 
-  summarise( mean = mean(heatloss), sd = sd(heatloss, na.rm = TRUE),
-    n = n()
+  group_by(wig, wind, wet_dry, var)%>%
+  summarise(mean = mean(heatloss), sd = sd(heatloss, na.rm = TRUE), 
+            n= n()
   )
 
 sum_manikin_df
