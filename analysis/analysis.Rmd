@@ -16,6 +16,10 @@ library(knitr)
 library(kableExtra)
 library(fs)
 library(ggstatsplot)
+library(gridExtra)
+library(patchwork)
+library(jtools)
+library(gtsummary)
 # knitting to pdf
 # rmarkdown::render(input = "analysis/analysis.Rmd", output_format = "pdf_document", output_dir = "output")
 F = rprojroot::is_rstudio_project$make_fix_file()
@@ -41,7 +45,7 @@ pltsave_func <- function(plot, plot_path, width, height){
 
 ```{r df-import, include=FALSE}
 # Importing data
-a <- read_csv(F("data/current/ManikinData_WetDry.csv"))
+# a <- read_csv(F("data/current/ManikinData_WetDry.csv"))
 
 df_wetdry <- read_csv(F("data/current/ManikinData_WetDry.csv"), 
     col_types = cols(
@@ -102,7 +106,7 @@ df_influx %>%
 
 A plot of solar influx shows an outlier in the wet experiments where the heat loss with solar radiation was somehow less than the heat loss without solar radiation. We will exclude this outlier.
 
-```{r}
+```{r include=FALSE}
 
 df_influx <- df_influx %>% 
   mutate(influx = replace(influx, influx<0, NA)) %>% 
@@ -119,7 +123,7 @@ For the dry heat loss experiments (measuring dry heat resistance), we had to run
 We thus need to bring all the measurements of heat loss to the same temperature. As heat resistance is temperature independent, we can use this to calculate the expected heat loss at various temperatures. We estimate heat loss at 30C with the following calculation. 
 
 $$Heat\ loss (W/m^2)_{(30C\ no\ radiation)} = 5/heat\ resistance_{(no \ radiation)} $$
-```{r df-30c-radoff}
+```{r df-30c-radoff, include=FALSE}
 
 df_dry_off <- df_wetdry %>% 
   filter(radiation=="off" & wet_dry == "dry") %>% 
@@ -147,7 +151,7 @@ To calculate the heat loss at 30C with radiation, we subtract the solar influx f
 
 $$Heat\ loss (W/m^2)_{(30C\ with\ radiation)}  = Heat\ loss (W/m^2)_{(30C\ no\ radiation)}- solar\ influx(W/m^2) $$
 
-```{r df-30c-radon}
+```{r df-30c-radon, include=FALSE}
 
 df_dry_on <- df_wetdry %>% 
   filter(radiation=="on" & wet_dry =="dry") %>% 
@@ -165,7 +169,7 @@ df_dry30
 ```
 
 
-```{r df-wet-dry}
+```{r df-wet-dry, include=FALSE}
 
 df_wetdry_final <- bind_rows(df_dry30, df_influx[df_influx$wet_dry == "wet",]) %>% 
   distinct()
@@ -193,16 +197,9 @@ sum_manikin_df <- df_long_wetdry_final %>%
 
 sum_manikin_df
 
-df_long_wetdry_final %>% 
-  filter(wig == "Nude" & wind == 0.3 & wet_dry=="dry" & var =="on")
-
-# n seems wrong?
-
-
 ```
 
-## Solar Influx
-```{r plt-solar-influx-error, fig.height=4, fig.width=7}
+```{r plt-solar-influx-error, fig.height=4, fig.width=7, include=FALSE}
 
 plt_influx_line <- sum_manikin_df %>% 
     filter(var == "influx") %>% 
@@ -218,8 +215,34 @@ pltsave_func(plt_influx_line, plot_path, width = 7, height = 4)
 
 ```
 
-## Heat loss
-```{r plt-heatloss-error, fig.height=4, fig.width=7}
+```{r plt-influx-dry, eval=FALSE, include=FALSE}
+
+plt_influx_dry <- sum_manikin_df %>% 
+    filter(var == "influx" & wet_dry == "dry") %>% 
+  ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+  theme_classic()
+
+
+```
+
+```{r plt-influx-wet, include=FALSE}
+
+plt_influx_wet <- sum_manikin_df %>% 
+    filter(var == "influx" & wet_dry == "wet") %>% 
+  ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+  theme_classic()
+
+
+```
+
+
+```{r plt-heatloss-influx-error, fig.height=4, fig.width=7, include=FALSE}
 
 heatloss_sum_manikin_df <- sum_manikin_df %>% 
   filter(var != "influx") 
@@ -237,90 +260,248 @@ pltsave_func(plt_heatloss_line, plot_path, width = 7, height = 4)
 
 ```
 
+```{r plt-heatloss-error-dry, eval=FALSE, fig.height=4, fig.width=7, include=FALSE}
 
-# Analyses
+plt_heatloss_line_off <- heatloss_sum_manikin_df %>%
+    filter(var == "off" & wet_dry == "dry") %>% 
+  ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+  theme_classic()
+  
+plt_heatloss_line_on <- heatloss_sum_manikin_df %>%
+    filter(var == "on" & wet_dry == "dry") %>% 
+  ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+  theme_classic()
 
-# Analyses
 
-## Solar influx
+```
 
-### Dry
+```{r plt-heatloss-error-wet, eval=FALSE, fig.height=4, fig.width=7, include=FALSE}
+
+plt_heatloss_line_off <- heatloss_sum_manikin_df %>%
+    filter(var == "off" & wet_dry == "wet") %>% 
+  ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+  theme_classic()
+  
+plt_heatloss_line_on <- heatloss_sum_manikin_df %>%
+    filter(var == "on" & wet_dry == "wet") %>% 
+  ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+  theme_classic()
+
+
+```
+
+```{r plt-dry, include=FALSE}
+
+plt_dry_combo <- sum_manikin_df %>% 
+    filter(wet_dry == "dry") %>% 
+  mutate(var = factor(var, levels = c("off", "on", "influx"))) %>% 
+  ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+  facet_grid(cols = vars(var))+
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x = bquote('Wind speed'~(m/s)), y=bquote('Heat flux'~(W/m^2))) +
+  theme_classic()
+
+# pltsave_func(plt_dry_combo, plot_path, width = 8, height = 3)
+  
+  
+  
+```
+
+
+```{r plt-wet, include=FALSE}
+
+plt_wet_combo <- sum_manikin_df %>% 
+    filter(wet_dry == "wet") %>% 
+  mutate(var = factor(var, levels = c("off", "on", "influx"))) %>% 
+  ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+  facet_grid(cols = vars(var))+
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x = bquote('Wind speed'~(m/s)), y=bquote('Evaporative resistance'~(W/m^2))) +
+  theme_classic()
+
+# pltsave_func(plt_dry_combo, plot_path, width = 8, height = 3)
+  
+  
+```
+
+```{r plt-wetdry}
+
+p1 <- plt_dry_combo / plt_wet_combo
+
+p1 + plot_annotation(tag_levels = "A") + plot_layout(guides='collect')
+
+```
+
+## Sweating
+
+We use the dry and wet data to infer the amount of sweat that a scalp could evaporate under conditions of solar radiation at 30C (maximum sweat capacity) and how much evaporative cooling from sweat would be needed to cancel out any heat gain (zero heat gain sweat). 
+
+
+```{r df-sweat}
+
+df_sweat <- sum_manikin_df %>% 
+  select(-c(sd, n)) %>% 
+  pivot_wider(names_from = c(wet_dry, var), values_from = mean) %>% 
+  mutate(wet_dry_w_m2 = dry_off + wet_on,
+         solar_w_m2 = dry_off - dry_influx,
+         diff_dry_wet = wet_dry_w_m2 - solar_w_m2,
+         sweat_max = diff_dry_wet/2430*3600,
+         sweat_zero_gain = case_when(
+           solar_w_m2 < 0 ~ abs(solar_w_m2/2430*3600),
+           TRUE ~ 0
+         )) %>% 
+  # select(wig, wind, wet_dry_w_m2, solar_w_m2, diff_dry_wet, sweat_max, sweat_zero_gain)
+  select(wig, wind, sweat_max, sweat_zero_gain) %>% 
+  pivot_longer(sweat_max:sweat_zero_gain, names_to = "sweat_type", values_to = "mean")
+
+```
+
+
+Here, we plot the sweat rate potential (left) and the sweat rate required to cancel out heat gain at $T_{ambient} = 30^\circ C$.
+
+```{r plt-sweat, fig.cap="The quantity of sweat that can be maximally evaporated (left) and that is required for zero heat gain (right) with various head coverings under three wind speeds", fig.height=3, fig.width=6}
+plt_sweat_max_zero <- ggplot(df_sweat, aes(wind, mean)) +
+  geom_point(aes(color=wig, fill=wig)) +
+  geom_path(aes(group=wig, color=wig))+
+  theme_classic() +
+  labs(x = bquote('Wind speed'~(m/s)),
+       y=bquote('Sweat'~(g/m^2/h))) +
+  facet_wrap(vars(sweat_type))
+
+pltsave_func(plt_sweat_max_zero, plot_path, width = 8, height = 4)
+```
+
+What emerges is that while heat loss potential is higher without hair as a barrier (i.e. the "nude" condition), the *potential* sweat far exceeds the physiologically possible sweat rate for humans. The plot for zero heat gain shoes that a nude scalp requires the most sweat and this requirement is inversely correlated with hair curvature.
+
+```{r plt-combo, eval=FALSE, include=FALSE}
+
+# p1 <- plt_dry_combo / plt_wet_combo
+# 
+# plt_dry_combo <- plt_dry_combo +
+#   theme(legend.position = "none")
+# 
+# plt_wet_combo <- plt_wet_combo +
+#   theme(legend.position = "none")
+
+plt_dry_combo + 
+  plt_wet_combo + plot_layout(ncol = 1) +
+  (plt_sweat_max_zero + guide_area() + plot_layout(widths = c(2,1), guides = "collect")) + plot_annotation(tag_levels = "A")
+
+# plt_dry_combo + plt_wet_combo + (plt_sweat_max_zero + guide_area()) + plot_layout(ncol = 1, guides = "collect", a) 
+
+# plot_annotation(tag_levels = "A") + plot_layout(guides='collect')
+
+```
+
+# Regression models
+
+## Dry heat loss
+
+
+### Radiation off
+
+Here, we model the effect of the `wig` variable on the `off` (heat loss without radiation) variable while correcting for `wind`. 
+
+Without radiation, having hair will reduce the heat loss.
+
+```{r lm-dry-heatloss-off}
+
+# df <- df_wetdry_final %>% 
+#   filter(wet_dry == "dry")
+
+df_dry_off <- df_wetdry_final %>%
+  filter(wet_dry == "dry")
+
+# df_dry_off
+model_dry_off<- lm(off~wind+wig, data=df_dry_off)
+summary(model_dry_off)
+
+```
+
+
+### Radiation on
+
+With radiation, there is a net increase in heat (i.e. heat gain) without any hair. Additonally, we observe that heat gain decreases with increasingly curled hair.
+
+```{r lm-dry-heatloss-on}
+# 
+# df <- df_wetdry_final %>% 
+#   filter(wet_dry == "dry")
+df_dry_on <- df_wetdry_final %>% 
+  filter(wet_dry == "dry")
+
+model_dry_on<- lm(on~wind+wig, data=df_dry_on)
+summary(model_dry_on)
+
+
+
+# summ(model_dry_on, scale = TRUE, confint = TRUE, digits = 5)
+# 
+# plot_summs(model_dry_on, scale = TRUE, inner_ci_level = .9)
+```
+
+### Solar influx
 
 Here, we model the effect of the `wig` variable on `influx` while correcting for `wind`. 
-In case of solar influx, having hair will decrease solar influx when the hair is dry. The curvature of hair will decrease more solar influx.
+
+In the dry heat loss experiments, we see that all hair (regardless of curliness) decreases the solar influx. Additionally, the curlier the hair, the lower the solar influx.
+
 
 ```{r lm-dry-influx}
-
 df_dry <- df_wetdry_final %>% 
   filter(wet_dry == "dry")
 
 
 model_dry <- lm(influx~wind+wig, data=df_dry)
+
 summary(model_dry)
-plot(model_dry)
+```
+
+
+### Summary of all dry heat loss models
+
+```{r eval=FALSE, include=FALSE, results='asis'}
+
+export_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE, error_format = "[{conf.low}, {conf.high}]")
+```
+
+```{r plt-summary-models, eval=FALSE, include=FALSE}
+
+plot_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 
 ```
 
 
-### Wet
 
-Here, we repeat the same modelling process for the wet data.
+## Evaporative resistance (wet experiments)
 
-When the hair is sweaty, having hair would decrease solar influx. Having mid-curvature hair will decrease more solar influx than straight hair and curliest hair do.
-```{r lm-wet-influx}
-
-df <- df_wetdry_final %>% 
-  filter(wet_dry == "wet")
-df_wet <- df_wetdry_final %>% 
-  filter(wet_dry == "wet")
-model_wet <- lm(influx~wind+wig, data=df_wet)
-model_wet
-plot(model_wet)
-summary(model_wet)
-```
+Here, we repeat the same modelling process for the evaporative resistance data from the wet experiments.
 
 
-## Heat loss
-
-### Dry
-
-#### Radiation off
+### Radiation off
 
 Here, we model the effect of the `wig` variable on the `off` (heat loss without radiation) variable while correcting for `wind`. 
 
-when the radiation is off, having straight or curly hair will decrease the heat loss.
-```{r lm-dry-heatloss-off}
+Without solar radiation, all hair (regardless of texture) decreases evaporative resistance. 
 
-df <- df_wetdry_final %>% 
-  filter(wet_dry == "dry")
-df_dry_off <- df_wetdry_final %>% 
-  filter(wet_dry == "dry")
-df_dry_off ## what are the rows 37-72
-model_dry_off<- lm(off~wind+wig, data=df_dry_off[1:36,])
-summary(model_dry_off)
-```
-
-#### Radiation on
-
-when radiation is on and hair is dry, the heat loss would increase given the presence of hair. The curvature of hair would increase the heat loss.
-```{r lm-dry-heatloss-on}
-
-df <- df_wetdry_final %>% 
-  filter(wet_dry == "dry")
-df_dry_on <- df_wetdry_final %>% 
-  filter(wet_dry == "dry")
-
-model_dry_on<- lm(on~wind+wig, data=df_dry_on[1:36,])
-summary(model_dry_on)
-```
-
-### Wet
-
-#### Radiation off
-
-Here, we model the effect of the `wig` variable on the `off` (heat loss without radiation) variable while correcting for `wind`. 
-
-when the radiation is off, having straight or curly hair will decrease the heat loss.
 ```{r lm-wet-heatloss-off}
 
 df <- df_wetdry_final %>% 
@@ -331,9 +512,10 @@ model_wet_off<- lm(off~wind+wig, data=df_wet_off)
 summary(model_wet_off)
 ```
 
-#### Radiation on
+### Radiation on
 
-when the radiation is on, having straight or curly hair will decrease the heat loss.
+With radiation, hair decreases evaporative resistance. 
+
 ```{r lm-wet-heatloss-on}
 
 df <- df_wetdry_final %>% 
@@ -344,5 +526,25 @@ model_wet_on<- lm(on~wind+wig, data=df_wet_on)
 summary(model_wet_on)
 ```
 
+
+### Solar influx
+
+Combining the above data to calculate solar influx, we see that there is not a considerable effect of radiation on evaporative resistance.
+
+```{r lm-wet-influx}
+
+df <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+
+df_wet <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+
+model_wet <- lm(influx~wind+wig, data=df_wet)
+
+model_wet
+
+plot(model_wet)
+summary(model_wet)
+```
 
 

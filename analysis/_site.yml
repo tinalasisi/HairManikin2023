@@ -9,8 +9,6 @@ navbar:
     href: about.html
   - text: License
     href: license.html
-  - text: Experimental setup
-    href: experimental-set-up.html
   - text: Analysis
     href: analysis.html
 output:
