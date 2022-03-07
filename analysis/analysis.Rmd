@@ -20,12 +20,14 @@ library(gridExtra)
 library(patchwork)
 library(jtools)
 library(gtsummary)
+library(broom.mixed)
+library(huxtable)
 # knitting to pdf
 # rmarkdown::render(input = "analysis/analysis.Rmd", output_format = "pdf_document", output_dir = "output")
 F = rprojroot::is_rstudio_project$make_fix_file()
 palettedf <- tibble(paletteer::palettes_d_names)
 # filter(.data = palettedf, length > 10 & type == "qualitative")
-knitr::opts_chunk$set(echo = FALSE, include = TRUE, eval = TRUE, warning = FALSE, message = FALSE, fig.retina = 2, fig.width = 8, fig.height = 6, out.width = "100%")
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, eval = TRUE, warning = FALSE, message = FALSE, fig.retina = 2, fig.width = 8, fig.height = 6)
 ```
 
 
@@ -189,9 +191,16 @@ df_long_wetdry_final
 
 ```{r df-summary, include=FALSE}
 # means and sd
+# sum_manikin_df <- df_long_wetdry_final %>% 
+#   group_by(wig, wind, wet_dry, var)%>%
+#   summarise(mean = mean(heatloss), sd = sd(heatloss, na.rm = TRUE), 
+#             n= n()
+#   )
+
+# min and max
 sum_manikin_df <- df_long_wetdry_final %>% 
   group_by(wig, wind, wet_dry, var)%>%
-  summarise(mean = mean(heatloss), sd = sd(heatloss, na.rm = TRUE), 
+  summarise(mean = mean(heatloss), min = min(heatloss, na.rm = TRUE), max = max(heatloss, na.rm = TRUE),
             n= n()
   )
 
@@ -206,7 +215,8 @@ plt_influx_line <- sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   facet_grid(cols = vars(wet_dry))+
   theme_classic()
   
@@ -222,7 +232,8 @@ plt_influx_dry <- sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
 
 
@@ -235,7 +246,8 @@ plt_influx_wet <- sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
 
 
@@ -251,7 +263,8 @@ plt_heatloss_line <- ggplot(
   heatloss_sum_manikin_df, aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   facet_grid(cols = vars(var), rows = vars(wet_dry)) +
   theme_classic()
   
@@ -267,7 +280,8 @@ plt_heatloss_line_off <- heatloss_sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
   
 plt_heatloss_line_on <- heatloss_sum_manikin_df %>%
@@ -275,7 +289,8 @@ plt_heatloss_line_on <- heatloss_sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
 
 
@@ -288,7 +303,8 @@ plt_heatloss_line_off <- heatloss_sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
   
 plt_heatloss_line_on <- heatloss_sum_manikin_df %>%
@@ -296,7 +312,8 @@ plt_heatloss_line_on <- heatloss_sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
 
 
@@ -310,7 +327,8 @@ plt_dry_combo <- sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   facet_grid(cols = vars(var))+
   theme(plot.title = element_text(hjust = 0.5)) +
   labs(x = bquote('Wind speed'~(m/s)), y=bquote('Heat flux'~(W/m^2))) +
@@ -331,7 +349,8 @@ plt_wet_combo <- sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   facet_grid(cols = vars(var))+
   theme(plot.title = element_text(hjust = 0.5)) +
   labs(x = bquote('Wind speed'~(m/s)), y=bquote('Evaporative resistance'~(W/m^2))) +
@@ -358,7 +377,8 @@ We use the dry and wet data to infer the amount of sweat that a scalp could evap
 ```{r df-sweat}
 
 df_sweat <- sum_manikin_df %>% 
-  select(-c(sd, n)) %>% 
+  # select(-c(sd, n)) %>% 
+  select(-c(min, max, n)) %>% 
   pivot_wider(names_from = c(wet_dry, var), values_from = mean) %>% 
   mutate(wet_dry_w_m2 = dry_off + wet_on,
          solar_w_m2 = dry_off - dry_influx,
@@ -476,16 +496,51 @@ summary(model_dry)
 ```
 
 
-### Summary of all dry heat loss models
+### Summary of dry heat loss regression models
 
-```{r eval=FALSE, include=FALSE, results='asis'}
 
-export_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE, error_format = "[{conf.low}, {conf.high}]")
+#### All separate
+
+```{r lm-summary, echo=FALSE, results='asis'}
+
+# export_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+export_summs(model_dry_off, model_dry_on, model_dry, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 ```
 
-```{r plt-summary-models, eval=FALSE, include=FALSE}
+```{r plt-summary-models, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=6}
 
-plot_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+# scaled 
+# plot_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+# unscaled 
+plot_summs(model_dry_off, model_dry_on, model_dry,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+```
+
+#### Radiation conditions combined
+```{r lm-dry-radcombo}
+df_dry_radcombo <- df_long_wetdry_final %>% 
+  filter(wet_dry == "dry" & var != "influx")
+
+
+model_dry_radcombo <- lm(heatloss~wind+wig+var+var*wig, data=df_dry_radcombo)
+
+summary(model_dry_radcombo)
+```
+
+```{r lm-dry-radcombo-tbl, echo=FALSE, results='asis'}
+
+# export_summs(model_dry_radcombo, error_format = "[{conf.low}, {conf.high}]", scale = TRUE)
+export_summs(model_dry_radcombo, error_format = "[{conf.low}, {conf.high}]")
+```
+
+```{r plt-dry-radcombo, echo=FALSE, fig.cap="Regression coefficients for dry heatloss", fig.height=3, fig.width=6}
+
+# scaled 
+# plot_summs(model_dry_radcombo)
+
+# unscaled 
+plot_summs(model_dry_radcombo)
 
 ```
 
@@ -541,10 +596,57 @@ df_wet <- df_wetdry_final %>%
 
 model_wet <- lm(influx~wind+wig, data=df_wet)
 
-model_wet
+# model_wet
 
-plot(model_wet)
+# plot(model_wet)
 summary(model_wet)
 ```
 
+### Summary of evaporative heat loss regression models
+
+
+#### All separate
+
+```{r lm-summary-wet, echo=FALSE, results='asis'}
+
+# export_summs(model_wet_off, model_weet_on, model_wet, scale = TRUE, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+export_summs(model_wet_off, model_wet_on, model_wet, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+```
+
+```{r plt-summary-models-wet, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=6}
+
+# scaled 
+# plot_summs(model_wet_off, model_wet_on, model_wet, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+# unscaled 
+plot_summs(model_wet_off, model_wet_on, model_wet,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+```
+
+#### Radiation conditions combined
+```{r lm-wet-radcombo}
+df_wet_radcombo <- df_long_wetdry_final %>% 
+  filter(wet_dry == "wet" & var != "influx")
+
+
+model_wet_radcombo <- lm(heatloss~wind+wig+var+var*wig, data=df_wet_radcombo)
+
+summary(model_wet_radcombo)
+```
+
+```{r lm-wet-radcombo-tbl, echo=FALSE, results='asis'}
+
+# export_summs(model_dry_radcombo, error_format = "[{conf.low}, {conf.high}]", scale = TRUE)
+export_summs(model_wet_radcombo, error_format = "[{conf.low}, {conf.high}]")
+```
+
+```{r plt-wet-radcombo, echo=FALSE, fig.cap="Regression coefficients for evaporative heatloss", fig.height=3, fig.width=6}
+
+# scaled 
+# plot_summs(model_dry_radcombo)
+
+# unscaled 
+plot_summs(model_wet_radcombo)
+
+```
 
