@@ -11,7 +11,7 @@
 
 <meta name="author" content="Tina Lasisi" />
 
-<meta name="date" content="2022-03-06" />
+<meta name="date" content="2022-03-07" />
 
 <title>Analysis</title>
 
@@ -355,7 +355,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Analysis</h1>
 <h4 class="author">Tina Lasisi</h4>
-<h4 class="date">March 06, 2022</h4>
+<h4 class="date">March 07, 2022</h4>
 
 </div>
 
@@ -380,7 +380,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-03-06
+<strong>Last updated:</strong> 2022-03-07
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -471,16 +471,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022tree4041aec07ff991f3b62a11670ec42a79e5e647e2targetblank4041aeca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/tinalasisi/HairManikin2022/tree/4041aec07ff991f3b62a11670ec42a79e5e647e2" target="_blank">4041aec</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022tree7478e4c3ccd86466e8836b3cf9ab141488325169targetblank7478e4ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/tinalasisi/HairManikin2022/tree/7478e4c3ccd86466e8836b3cf9ab141488325169" target="_blank">7478e4c</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022tree4041aec07ff991f3b62a11670ec42a79e5e647e2targetblank4041aeca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022tree7478e4c3ccd86466e8836b3cf9ab141488325169targetblank7478e4ca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/tinalasisi/HairManikin2022/tree/4041aec07ff991f3b62a11670ec42a79e5e647e2" target="_blank">4041aec</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/tinalasisi/HairManikin2022/tree/7478e4c3ccd86466e8836b3cf9ab141488325169" target="_blank">7478e4c</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -496,10 +496,9 @@ Ignored files:
     Ignored:    data/current/.DS_Store
     Ignored:    data/raw_manikin_output/.DS_Store
 
-Untracked files:
-    Untracked:  data/raw_manikin_output/~$2020_Dec_GH_WigData_reworked.xlsx
-    Untracked:  output/plt_dry_combo.png
-    Untracked:  output/plt_sweat_max_zero.png
+Unstaged changes:
+    Modified:   output/plt_heatloss_line.png
+    Modified:   output/plt_influx_line.png
 
 </code></pre>
 <p>
@@ -538,6 +537,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/7478e4c3ccd86466e8836b3cf9ab141488325169/analysis/analysis.Rmd" target="_blank">7478e4c</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-03-07
+</td>
+<td>
+updating analyses with models
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/analysis.html" target="_blank">c0ce5d2</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-03-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -776,7 +809,7 @@ Adding main analysis file
 <p>Solar influx (difference between heat loss with radiation on and off) is calculated as:</p>
 <p><span class="math display">\[Solar\ influx \ (W/m^2) = heatflux_{(radiation)}- heatflux_{(no \ radiation)}\]</span></p>
 <p>Here we plot the solar influx.</p>
-<p><img src="figure/analysis.Rmd/plt-solar-influx-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/analysis.Rmd/plt-solar-influx-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plt-solar-influx-1">
 Past versions of plt-solar-influx-1.png
@@ -839,16 +872,90 @@ Tina Lasisi
 </div>
 <div id="exploratory-plots" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Exploratory plots</h1>
-<p><img src="figure/analysis.Rmd/plt-wetdry-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/analysis.Rmd/plt-wetdry-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plt-wetdry-1">
+Past versions of plt-wetdry-1.png
+</button>
+</p>
+<div id="fig-plt-wetdry-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/figure/analysis.Rmd/plt-wetdry-1.png" target="_blank">c0ce5d2</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-03-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="sweating" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Sweating</h2>
 <p>We use the dry and wet data to infer the amount of sweat that a scalp could evaporate under conditions of solar radiation at 30C (maximum sweat capacity) and how much evaporative cooling from sweat would be needed to cancel out any heat gain (zero heat gain sweat).</p>
 <p>Here, we plot the sweat rate potential (left) and the sweat rate required to cancel out heat gain at <span class="math inline">\(T_{ambient} = 30^\circ C\)</span>.</p>
 <div class="figure" style="text-align: center">
-<img src="figure/analysis.Rmd/plt-sweat-1.png" alt="The quantity of sweat that can be maximally evaporated (left) and that is required for zero heat gain (right) with various head coverings under three wind speeds" width="100%" />
+<img src="figure/analysis.Rmd/plt-sweat-1.png" alt="The quantity of sweat that can be maximally evaporated (left) and that is required for zero heat gain (right) with various head coverings under three wind speeds" width="576" />
 <p class="caption">
 The quantity of sweat that can be maximally evaporated (left) and that is required for zero heat gain (right) with various head coverings under three wind speeds
 </p>
+</div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plt-sweat-1">
+Past versions of plt-sweat-1.png
+</button>
+</p>
+<div id="fig-plt-sweat-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/figure/analysis.Rmd/plt-sweat-1.png" target="_blank">c0ce5d2</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-03-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <p>What emerges is that while heat loss potential is higher without hair as a barrier (i.e. the “nude” condition), the <em>potential</em> sweat far exceeds the physiologically possible sweat rate for humans. The plot for zero heat gain shoes that a nude scalp requires the most sweat and this requirement is inversely correlated with hair curvature.</p>
 </div>
@@ -934,8 +1041,129 @@ Residual standard error: 4.966 on 31 degrees of freedom
 Multiple R-squared:  0.994, Adjusted R-squared:  0.9932 
 F-statistic:  1275 on 4 and 31 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div id="summary-of-all-dry-heat-loss-models" class="section level3" number="3.1.4">
-<h3><span class="header-section-number">3.1.4</span> Summary of all dry heat loss models</h3>
+<div id="summary-of-dry-heat-loss-regression-models" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Summary of dry heat loss regression models</h3>
+<div id="all-separate" class="section level4" number="3.1.4.1">
+<h4><span class="header-section-number">3.1.4.1</span> All separate</h4>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:lm-summary">
+<col><col><col><col><tr>
+<th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Radiation Off</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Radiation On</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Solar Influx</th></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(Intercept)</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">46.19 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-129.29 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">175.48 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[41.54, 50.84]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-135.11, -123.47]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[171.38, 179.58]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wind</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11.32 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">17.45 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-6.13 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[9.23, 13.40]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[14.84, 20.06]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-7.97, -4.29]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigLowCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.45 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">69.73 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-110.18 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-45.86, -35.04]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[62.95, 76.50]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-114.95, -105.40]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigMidCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.84 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">91.44 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-132.28 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-46.25, -35.43]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[84.66, 98.22]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-137.05, -127.50]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigHighCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-38.45 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">113.59 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-152.03 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-43.86, -33.04]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[106.81, 120.36]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-156.81, -147.26]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">N</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">R2</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.94&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.98&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.99&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th colspan="4" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</th></tr>
+</table>
+
+<div class="figure" style="text-align: center">
+<img src="figure/analysis.Rmd/plt-summary-models-1.png" alt="Regression coefficients across regression models." width="576" />
+<p class="caption">
+Regression coefficients across regression models.
+</p>
+</div>
+</div>
+<div id="radiation-conditions-combined" class="section level4" number="3.1.4.2">
+<h4><span class="header-section-number">3.1.4.2</span> Radiation conditions combined</h4>
+<pre><code>
+Call:
+lm(formula = heatloss ~ wind + wig + var + var * wig, data = df_dry_radcombo)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-14.4757  -4.5094  -0.4139   4.7580  22.7503 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         42.3079     2.5983   16.28   &lt;2e-16 ***
+wind                14.3839     0.8996   15.99   &lt;2e-16 ***
+wigLowCurv         -40.4490     3.3023  -12.25   &lt;2e-16 ***
+wigMidCurv         -40.8384     3.3023  -12.37   &lt;2e-16 ***
+wigHighCurv        -38.4455     3.3023  -11.64   &lt;2e-16 ***
+varon             -167.7111     3.3023  -50.79   &lt;2e-16 ***
+wigLowCurv:varon   110.1778     4.6702   23.59   &lt;2e-16 ***
+wigMidCurv:varon   132.2778     4.6702   28.32   &lt;2e-16 ***
+wigHighCurv:varon  152.0333     4.6702   32.55   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 7.005 on 63 degrees of freedom
+Multiple R-squared:  0.9826,    Adjusted R-squared:  0.9804 
+F-statistic: 444.5 on 8 and 63 DF,  p-value: &lt; 2.2e-16</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:lm-dry-radcombo-tbl">
+<col><col><tr>
+<th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Model 1</th></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(Intercept)</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">42.31 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[37.12, 47.50]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wind</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">14.38 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[12.59, 16.18]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigLowCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.45 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-47.05, -33.85]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigMidCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.84 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-47.44, -34.24]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigHighCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-38.45 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-45.04, -31.85]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">varon</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-167.71 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-174.31, -161.11]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigLowCurv:varon</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">110.18 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[100.85, 119.51]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigMidCurv:varon</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">132.28 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[122.95, 141.61]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigHighCurv:varon</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">152.03 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[142.70, 161.37]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">N</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">72&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">R2</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.98&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th colspan="2" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</th></tr>
+</table>
+
+<div class="figure" style="text-align: center">
+<img src="figure/analysis.Rmd/plt-dry-radcombo-1.png" alt="Regression coefficients for dry heatloss" width="576" />
+<p class="caption">
+Regression coefficients for dry heatloss
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="evaporative-resistance-wet-experiments" class="section level2" number="3.2">
@@ -999,165 +1227,6 @@ F-statistic: 52.77 on 4 and 17 DF,  p-value: 2.307e-09</code></pre>
 Call:
 lm(formula = influx ~ wind + wig, data = df_wet)
 
-Coefficients:
-(Intercept)         wind   wigLowCurv   wigMidCurv  wigHighCurv  
-     53.511      -12.857       -9.392      -15.259      -10.537  </code></pre>
-<p><img src="figure/analysis.Rmd/lm-wet-influx-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lm-wet-influx-1">
-Past versions of lm-wet-influx-1.png
-</button>
-</p>
-<div id="fig-lm-wet-influx-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/9c5b0d86d638b5c8d14208e36baee75f17d40d6e/docs/figure/analysis.Rmd/lm-wet-influx-1.png" target="_blank">9c5b0d8</a>
-</td>
-<td>
-Tina Lasisi
-</td>
-<td>
-2022-02-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/analysis.Rmd/lm-wet-influx-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lm-wet-influx-2">
-Past versions of lm-wet-influx-2.png
-</button>
-</p>
-<div id="fig-lm-wet-influx-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/9c5b0d86d638b5c8d14208e36baee75f17d40d6e/docs/figure/analysis.Rmd/lm-wet-influx-2.png" target="_blank">9c5b0d8</a>
-</td>
-<td>
-Tina Lasisi
-</td>
-<td>
-2022-02-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/analysis.Rmd/lm-wet-influx-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lm-wet-influx-3">
-Past versions of lm-wet-influx-3.png
-</button>
-</p>
-<div id="fig-lm-wet-influx-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/9c5b0d86d638b5c8d14208e36baee75f17d40d6e/docs/figure/analysis.Rmd/lm-wet-influx-3.png" target="_blank">9c5b0d8</a>
-</td>
-<td>
-Tina Lasisi
-</td>
-<td>
-2022-02-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/analysis.Rmd/lm-wet-influx-4.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lm-wet-influx-4">
-Past versions of lm-wet-influx-4.png
-</button>
-</p>
-<div id="fig-lm-wet-influx-4" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/9c5b0d86d638b5c8d14208e36baee75f17d40d6e/docs/figure/analysis.Rmd/lm-wet-influx-4.png" target="_blank">9c5b0d8</a>
-</td>
-<td>
-Tina Lasisi
-</td>
-<td>
-2022-02-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre><code>
-Call:
-lm(formula = influx ~ wind + wig, data = df_wet)
-
 Residuals:
      Min       1Q   Median       3Q      Max 
 -13.4541  -4.2173  -0.8525   3.9887  15.0463 
@@ -1175,6 +1244,129 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 8.425 on 17 degrees of freedom
 Multiple R-squared:  0.7498,    Adjusted R-squared:  0.6909 
 F-statistic: 12.74 on 4 and 17 DF,  p-value: 5.664e-05</code></pre>
+</div>
+<div id="summary-of-evaporative-heat-loss-regression-models" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Summary of evaporative heat loss regression models</h3>
+<div id="all-separate-1" class="section level4" number="3.2.4.1">
+<h4><span class="header-section-number">3.2.4.1</span> All separate</h4>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:lm-summary-wet">
+<col><col><col><col><tr>
+<th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Radiation Off</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Radiation On</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Solar Influx</th></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(Intercept)</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">171.05 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">117.54 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">53.51 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[151.76, 190.34]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[90.68, 144.39]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[43.85, 63.17]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wind</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">42.59 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">55.44 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-12.86 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[34.29, 50.88]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[43.89, 67.00]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-17.01, -8.70]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigLowCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-116.04 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-106.65 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-9.39&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-137.54, -94.54]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-136.58, -76.71]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-20.16, 1.37]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigMidCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-129.16 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-113.90 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-15.26 **&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-150.66, -107.65]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-143.83, -83.96]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-26.02, -4.49]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigHighCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-134.40 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-123.87 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-10.54&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-157.00, -111.81]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-155.32, -92.41]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-21.85, 0.77]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">N</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">R2</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.96&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.93&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.75&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th colspan="4" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</th></tr>
+</table>
+
+<div class="figure" style="text-align: center">
+<img src="figure/analysis.Rmd/plt-summary-models-wet-1.png" alt="Regression coefficients across regression models." width="576" />
+<p class="caption">
+Regression coefficients across regression models.
+</p>
+</div>
+</div>
+<div id="radiation-conditions-combined-1" class="section level4" number="3.2.4.2">
+<h4><span class="header-section-number">3.2.4.2</span> Radiation conditions combined</h4>
+<pre><code>
+Call:
+lm(formula = heatloss ~ wind + wig + var + var * wig, data = df_wet_radcombo)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-54.026  -5.065   1.900   7.208  52.264 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        162.561     10.524  15.446  &lt; 2e-16 ***
+wind                49.014      3.496  14.021 6.29e-16 ***
+wigLowCurv        -115.696     12.808  -9.033 1.13e-10 ***
+wigMidCurv        -128.813     12.808 -10.057 7.31e-12 ***
+wigHighCurv       -132.476     13.418  -9.873 1.18e-11 ***
+varon              -36.540     13.377  -2.732  0.00981 ** 
+wigLowCurv:varon     8.707     18.112   0.481  0.63371    
+wigMidCurv:varon    14.573     18.112   0.805  0.42647    
+wigHighCurv:varon    6.680     18.917   0.353  0.72612    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 21.15 on 35 degrees of freedom
+Multiple R-squared:  0.9351,    Adjusted R-squared:  0.9203 
+F-statistic: 63.04 on 8 and 35 DF,  p-value: &lt; 2.2e-16</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:lm-wet-radcombo-tbl">
+<col><col><tr>
+<th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Model 1</th></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(Intercept)</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">162.56 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[141.20, 183.93]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wind</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">49.01 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[41.92, 56.11]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigLowCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-115.70 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-141.70, -89.69]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigMidCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-128.81 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-154.82, -102.81]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigHighCurv</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-132.48 ***</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-159.71, -105.24]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">varon</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-36.54 **&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-63.70, -9.38]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigLowCurv:varon</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8.71&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-28.06, 45.48]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigMidCurv:varon</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">14.57&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-22.20, 51.34]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigHighCurv:varon</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6.68&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-31.72, 45.08]&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">N</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">R2</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.94&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<th colspan="2" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</th></tr>
+</table>
+
+<div class="figure" style="text-align: center">
+<img src="figure/analysis.Rmd/plt-wet-radcombo-1.png" alt="Regression coefficients for evaporative heatloss" width="576" />
+<p class="caption">
+Regression coefficients for evaporative heatloss
+</p>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1197,46 +1389,48 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] gtsummary_1.5.2   jtools_2.1.4      patchwork_1.1.1   gridExtra_2.3    
- [5] ggstatsplot_0.9.0 fs_1.5.2          kableExtra_1.3.4  knitr_1.37       
- [9] forcats_0.5.1     stringr_1.4.0     dplyr_1.0.8       purrr_0.3.4      
-[13] readr_2.0.2       tidyr_1.1.4       tibble_3.1.6      ggplot2_3.3.5    
-[17] tidyverse_1.3.1   workflowr_1.6.2  
+ [1] huxtable_5.4.0    broom.mixed_0.2.7 gtsummary_1.5.2   jtools_2.1.4     
+ [5] patchwork_1.1.1   gridExtra_2.3     ggstatsplot_0.9.0 fs_1.5.2         
+ [9] kableExtra_1.3.4  knitr_1.37        forcats_0.5.1     stringr_1.4.0    
+[13] dplyr_1.0.8       purrr_0.3.4       readr_2.0.2       tidyr_1.1.4      
+[17] tibble_3.1.6      ggplot2_3.3.5     tidyverse_1.3.1   workflowr_1.6.2  
 
 loaded via a namespace (and not attached):
- [1] colorspace_2.0-2       ellipsis_0.3.2         rprojroot_2.0.2       
- [4] parameters_0.15.0      mc2d_0.1-21            rstudioapi_0.13       
- [7] farver_2.1.0           bit64_4.0.5            fansi_0.5.0           
-[10] mvtnorm_1.1-3          lubridate_1.8.0        xml2_1.3.2            
-[13] cachem_1.0.6           SuppDists_1.1-9.5      zeallot_0.1.0         
-[16] jsonlite_1.7.2         gt_0.4.0               broom_0.7.12          
-[19] Rmpfr_0.8-7            dbplyr_2.1.1           compiler_4.1.2        
-[22] httr_1.4.2             PMCMRplus_1.9.3        backports_1.2.1       
-[25] assertthat_0.2.1       fastmap_1.1.0          cli_3.2.0             
-[28] later_1.3.0            htmltools_0.5.2        tools_4.1.2           
-[31] gmp_0.6-2.1            gtable_0.3.0           glue_1.6.2            
-[34] Rcpp_1.0.7             cellranger_1.1.0       jquerylib_0.1.4       
-[37] vctrs_0.3.8            svglite_2.0.0          broom.helpers_1.6.0   
-[40] insight_0.14.5         xfun_0.29              rvest_1.0.2           
-[43] lifecycle_1.0.1        MASS_7.3-54            scales_1.1.1          
-[46] vroom_1.5.5            hms_1.1.1              promises_1.2.0.1      
-[49] parallel_4.1.2         RColorBrewer_1.1-2     rematch2_2.1.2        
-[52] yaml_2.2.1             memoise_2.0.0          pander_0.6.4          
-[55] reshape_0.8.8          stringi_1.7.5          highr_0.9             
-[58] paletteer_1.4.0        bayestestR_0.11.5      rlang_1.0.2           
-[61] pkgconfig_2.0.3        systemfonts_1.0.3      evaluate_0.14         
-[64] labeling_0.4.2         bit_4.0.4              tidyselect_1.1.1      
-[67] plyr_1.8.6             magrittr_2.0.2         R6_2.5.1              
-[70] generics_0.1.0         multcompView_0.1-8     BWStest_0.2.2         
-[73] DBI_1.1.1              pillar_1.6.4           haven_2.4.3           
-[76] whisker_0.4            withr_2.4.2            datawizard_0.2.1      
-[79] performance_0.8.0      modelr_0.1.8           crayon_1.4.1          
-[82] WRS2_1.1-3             utf8_1.2.2             correlation_0.7.1     
-[85] tzdb_0.1.2             rmarkdown_2.11         kSamples_1.2-9        
-[88] grid_4.1.2             readxl_1.3.1           git2r_0.28.0          
-[91] reprex_2.0.1           digest_0.6.28          webshot_0.5.2         
-[94] httpuv_1.6.3           statsExpressions_1.2.0 munsell_0.5.0         
-[97] viridisLite_0.4.0     </code></pre>
+  [1] colorspace_2.0-2       ellipsis_0.3.2         rprojroot_2.0.2       
+  [4] ggstance_0.3.5         parameters_0.15.0      mc2d_0.1-21           
+  [7] rstudioapi_0.13        farver_2.1.0           bit64_4.0.5           
+ [10] fansi_0.5.0            mvtnorm_1.1-3          lubridate_1.8.0       
+ [13] xml2_1.3.2             splines_4.1.2          cachem_1.0.6          
+ [16] SuppDists_1.1-9.5      zeallot_0.1.0          jsonlite_1.7.2        
+ [19] gt_0.4.0               broom_0.7.12           Rmpfr_0.8-7           
+ [22] dbplyr_2.1.1           compiler_4.1.2         httr_1.4.2            
+ [25] PMCMRplus_1.9.3        backports_1.2.1        assertthat_0.2.1      
+ [28] fastmap_1.1.0          cli_3.2.0              later_1.3.0           
+ [31] htmltools_0.5.2        tools_4.1.2            gmp_0.6-2.1           
+ [34] gtable_0.3.0           glue_1.6.2             Rcpp_1.0.7            
+ [37] cellranger_1.1.0       jquerylib_0.1.4        vctrs_0.3.8           
+ [40] svglite_2.0.0          nlme_3.1-153           broom.helpers_1.6.0   
+ [43] insight_0.14.5         xfun_0.29              rvest_1.0.2           
+ [46] lifecycle_1.0.1        MASS_7.3-54            scales_1.1.1          
+ [49] vroom_1.5.5            hms_1.1.1              promises_1.2.0.1      
+ [52] parallel_4.1.2         RColorBrewer_1.1-2     rematch2_2.1.2        
+ [55] yaml_2.2.1             memoise_2.0.0          pander_0.6.4          
+ [58] reshape_0.8.8          stringi_1.7.5          highr_0.9             
+ [61] paletteer_1.4.0        bayestestR_0.11.5      commonmark_1.7        
+ [64] rlang_1.0.2            pkgconfig_2.0.3        systemfonts_1.0.3     
+ [67] evaluate_0.14          lattice_0.20-45        labeling_0.4.2        
+ [70] bit_4.0.4              tidyselect_1.1.1       plyr_1.8.6            
+ [73] magrittr_2.0.2         R6_2.5.1               generics_0.1.0        
+ [76] multcompView_0.1-8     BWStest_0.2.2          DBI_1.1.1             
+ [79] pillar_1.6.4           haven_2.4.3            whisker_0.4           
+ [82] withr_2.4.2            datawizard_0.2.1       performance_0.8.0     
+ [85] modelr_0.1.8           crayon_1.4.1           WRS2_1.1-3            
+ [88] utf8_1.2.2             correlation_0.7.1      tzdb_0.1.2            
+ [91] rmarkdown_2.11         kSamples_1.2-9         grid_4.1.2            
+ [94] readxl_1.3.1           git2r_0.28.0           reprex_2.0.1          
+ [97] digest_0.6.28          webshot_0.5.2          httpuv_1.6.3          
+[100] statsExpressions_1.2.0 munsell_0.5.0          viridisLite_0.4.0     </code></pre>
+</div>
 </div>
 </div>
 </div>
