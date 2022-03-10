@@ -1,5 +1,5 @@
 ---
-title: "Analysis"
+title: "Regression"
 author: "Tina Lasisi"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
@@ -15,13 +15,13 @@ library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(fs)
-library(ggstatsplot)
 library(gridExtra)
 library(patchwork)
 library(jtools)
 library(gtsummary)
 library(broom.mixed)
 library(huxtable)
+library(finalfit)
 # knitting to pdf
 # rmarkdown::render(input = "analysis/analysis.Rmd", output_format = "pdf_document", output_dir = "output")
 F = rprojroot::is_rstudio_project$make_fix_file()
@@ -536,9 +536,100 @@ design <- "
 # plot_annotation(tag_levels = "A") + plot_layout(guides='collect')
 
 ```
+
 # Regression models
 
 ## Dry heat loss
+
+```{r df-lm-prep}
+
+# adding some variables to allow for comparison between 
+
+df_wetdry_final_dummy <- df_wetdry_final %>% 
+  mutate(hair = factor(case_when(
+    wig == "no hair" ~ "no hair",
+    TRUE ~ "hair"), levels = c("no hair", "hair")),
+    curvature = factor(case_when(
+      wig == "straight" ~ "straight",
+      wig == "curled" ~ "curled",
+      wig == "tightly curled" ~ "tightly curled",
+      TRUE ~ NA_character_), ordered = TRUE))
+
+
+df_long_wetdry_final_dummy <- df_wetdry_final_dummy %>% 
+  pivot_longer(influx:on, names_to = "rad") %>% 
+  mutate(rad = factor(rad, levels = c("off", "on")))
+
+```
+
+```{r lm-dry-hair}
+
+df_dry_hair <- df_long_wetdry_final_dummy%>%
+  filter(wet_dry == "dry" & rad != "influx")
+
+
+model_dry_hair<- lm(value~wind+hair+rad+rad*hair, data=df_dry_hair)
+summary(model_dry_hair)
+
+```
+
+```{r lm-dry-curv}
+
+df_dry_curv <- df_long_wetdry_final_dummy%>%
+  filter(wet_dry == "dry" & rad != "influx")
+
+
+model_dry_curv<- lm(value~wind+curvature+rad+rad*curvature, data=df_dry_curv)
+summary(model_dry_curv)
+
+```
+
+```{r lm-summary-dry-dummy, echo=FALSE, results='asis'}
+
+# export_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+export_summs(model_dry_hair, model_dry_curv, error_format = "[{conf.low}, {conf.high}]", model.names = c("Hair effect", "Curvature effect"))
+```
+
+```{r plt-summary-models-dummy, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=6}
+
+# scaled 
+# plot_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+# unscaled 
+plot_summs(model_dry_hair, model_dry_curv,  model.names = c("Hair effect", "Curvature effect"))
+
+
+
+
+```
+
+```{r lm-ff-dry}
+# 
+# ff_df_dry_curv <- df_dry_curv %>% 
+#   mutate(hair.factor = factor(hair, levels = c("no hair", "hair"),
+#                               labels = c("no hair", "hair")) %>% 
+#            ff_label("hair"),
+#          curvature.ordered = factor(curvature, levels = c("straight", "curled", "tightly curled"), 
+#                                     ordered = TRUE, 
+#                                     labels = c("straight", "curled", "tightly curled")) %>% 
+#            ff_label("curvature"),
+#          rad.factor = factor(rad, levels = c("off", "on")))
+# 
+# ff_glimpse(ff_df_dry_curv)
+# 
+# explanatory = c("wind", "rad.factor", "hair")
+# explanatory_multi = c("rad.factor", "hair")
+# dependent = "value"
+# 
+# ff_df_dry_curv %>% 
+#   summary_factorlist(dependent, 
+#                      explanatory, fit_id = TRUE)
+# 
+# ff_df_dry_curv %>% 
+#   coefficient_plot(dependent, explanatory)
+
+```
+
 
 
 ### Radiation off
@@ -618,9 +709,7 @@ export_summs(model_dry_off, model_dry_on, model_dry, error_format = "[{conf.low}
 # plot_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 
 # unscaled 
-plt_sum_dry <- plot_summs(model_dry_off, model_dry_on, model_dry,  model.names = c("Radiation Off", "Radiation On", "Solar Influx")) + xlim(-200, 200)
-
-plt_sum_dry
+plot_summs(model_dry_off, model_dry_on, model_dry,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 
 ```
 
@@ -726,9 +815,7 @@ export_summs(model_wet_off, model_wet_on, model_wet, error_format = "[{conf.low}
 # plot_summs(model_wet_off, model_wet_on, model_wet, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 
 # unscaled 
-plt_sum_wet <- plot_summs(model_wet_off, model_wet_on, model_wet,  model.names = c("Radiation Off", "Radiation On", "Solar Influx")) + xlim(-200, 200)
-
-plt_sum_wet
+plot_summs(model_wet_off, model_wet_on, model_wet,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 
 ```
 
@@ -758,11 +845,4 @@ export_summs(model_wet_radcombo, error_format = "[{conf.low}, {conf.high}]")
 plot_summs(model_wet_radcombo)
 
 ```
-
-```{r plt-lm-combo-sep, echo=FALSE, include=FALSE}
-
-plt_sum_dry + plt_sum_wet + plot_annotation(tag_levels = "A") +  plot_layout(ncol = 1, guides = "collect") & theme(legend.position = "bottom") 
-
-```
-
 
