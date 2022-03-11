@@ -444,7 +444,7 @@ df_sum_wetdry <- sum_manikin_df %>%
 
 ```
 
-```{r plt-wetdry-sum }
+```{r plt-wetdry-sum, fig.height=3, fig.width=7}
 
 plt_sum_wetdry <- df_sum_wetdry %>% 
   mutate(var = factor(var, levels = c("off", "on", "influx"))) %>% 
