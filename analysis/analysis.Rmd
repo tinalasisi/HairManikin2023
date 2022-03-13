@@ -44,9 +44,13 @@ pltsave_func <- function(plot, plot_path, width, height){
 }
 ```
 
-```{r df-import, include=FALSE}
+
+# Preparing data
+
+
+First, we import the data and label the variables.
+```{r df-import, echo=TRUE}
 # Importing data
-# a <- read_csv(F("data/current/ManikinData_WetDry.csv"))
 
 df_wetdry <- read_csv(F("data/current/ManikinData_WetDry.csv"), 
     col_types = cols(
@@ -60,9 +64,12 @@ df_wetdry <- read_csv(F("data/current/ManikinData_WetDry.csv"),
   mutate(wig = factor(wig, levels = c("Nude", 
         "LowCurv", "MidCurv", "HighCurv"), labels = c("no hair", 
         "straight", "curled", "tightly curled")))
+
+head(df_wetdry)
+
 ```
 
-# Preparing data
+
 
 ## Estimating dry heat loss at 30C and solar influx
 
@@ -74,7 +81,7 @@ Solar influx (difference between heat loss with radiation on and off) is calcula
 
 $$Solar\ influx \ (W/m^2) = heatflux_{(radiation)}- heatflux_{(no \ radiation)}$$
 
-```{r df-solar-influx}
+```{r df-solar-influx, echo=TRUE}
 
 df_influx <- df_wetdry %>% 
   pivot_longer(cols = c("heatloss", "resistance", "clo")) %>% 
@@ -84,6 +91,8 @@ df_influx <- df_wetdry %>%
   mutate(influx = off-on) %>% 
   drop_na() %>% 
   select(-name)
+
+head(df_influx)
 
 ```
 
@@ -110,12 +119,14 @@ df_influx %>%
 
 A plot of solar influx shows an outlier in the wet experiments where the heat loss with solar radiation was somehow less than the heat loss without solar radiation. We will exclude this outlier.
 
-```{r df-influx, include=FALSE}
+```{r df-influx, echo=TRUE}
 
 df_influx <- df_influx %>% 
   mutate(influx = replace(influx, influx<0, NA)) %>% 
   drop_na() %>% 
   distinct()
+
+write_csv(df_influx, F("data/df_influx.csv"))
 
 ```
 
@@ -127,8 +138,9 @@ For the dry heat loss experiments (measuring dry heat resistance), we had to run
 We thus need to bring all the measurements of heat loss to the same temperature. As heat resistance is temperature independent, we can use this to calculate the expected heat loss at various temperatures. We estimate heat loss at 30C with the following calculation. 
 
 $$Heat\ loss (W/m^2)_{(30C\ no\ radiation)} = 5/heat\ resistance_{(no \ radiation)} $$
-```{r df-30c-radoff, include=FALSE}
+```{r df-30c-radoff, echo=TRUE}
 
+# take original df imported and filter for values without solar radiation and for dry heat loss only
 df_dry_off <- df_wetdry %>% 
   filter(radiation=="off" & wet_dry == "dry") %>% 
   select(c(wig, wind, wet_dry, resistance, trial)) %>% 
@@ -136,6 +148,7 @@ df_dry_off <- df_wetdry %>%
 
 df_dry_off
 
+# take influx calculated above for dry heat loss and add this as a variable to the df created above for dry heat loss (no radiation). Then calculate the heat loss for 30C using the resistance.
 df_dry30_off<- df_influx %>% 
   filter(wet_dry == "dry") %>% 
   left_join(., 
@@ -157,6 +170,7 @@ $$Heat\ loss (W/m^2)_{(30C\ with\ radiation)}  = Heat\ loss (W/m^2)_{(30C\ no\ r
 
 ```{r df-30c-radon, include=FALSE}
 
+# filter originally imported df for radiation on and dry heat loss only
 df_dry_on <- df_wetdry %>% 
   filter(radiation=="on" & wet_dry =="dry") %>% 
   select(c(wig, wind, wet_dry, resistance, trial)) %>% 
@@ -164,6 +178,7 @@ df_dry_on <- df_wetdry %>%
 
 df_dry_on
 
+# take df created above for temperature corrected (30C) dry heat loss with no solar radiation and subtract solar influx (therewith adding the heat loss attributed to solar radiation)
 df_dry30<- df_dry30_off %>% 
   mutate(on = off-influx) %>% 
   select(-resistance) %>% 
@@ -175,16 +190,22 @@ df_dry30
 
 ```{r df-wet-dry, include=FALSE}
 
+# create final df by binding the complete temperature corrected (30C) df with the wet data for radiation on, radiation off, and solar influx
 df_wetdry_final <- bind_rows(df_dry30, df_influx[df_influx$wet_dry == "wet",]) %>% 
   distinct()
 
 df_wetdry_final
 
+write_csv(df_wetdry_final, F("data/df_wetdry_final.csv"))
+
+# here we create the same table but in long pivoted format for some of the analyses.
 df_long_wetdry_final <- df_wetdry_final %>% 
   pivot_longer(influx:on, names_to = "var", values_to = "heatloss") %>% 
   distinct()
 
 df_long_wetdry_final
+
+write_csv(df_wetdry_final, F("data/df_long_wetdry_final.csv"))
 
 ```
 
@@ -236,14 +257,9 @@ plt_heatloss_30_radoff
 # Exploratory plots
 
 ```{r df-summary, include=FALSE}
-# means and sd
-# sum_manikin_df <- df_long_wetdry_final %>% 
-#   group_by(wig, wind, wet_dry, var)%>%
-#   summarise(mean = mean(heatloss), sd = sd(heatloss, na.rm = TRUE), 
-#             n= n()
-#   )
 
-# min and max
+
+# For visualization purposes, we summarize the df created above to provide mean, min, and max for each condition
 sum_manikin_df <- df_long_wetdry_final %>% 
   group_by(wig, wind, wet_dry, var)%>%
   summarise(mean = mean(heatloss), min = min(heatloss, na.rm = TRUE), max = max(heatloss, na.rm = TRUE),
@@ -251,6 +267,8 @@ sum_manikin_df <- df_long_wetdry_final %>%
   )
 
 sum_manikin_df
+
+write_csv(df_wetdry_final, F("data/sum_manikin_df.csv"))
 
 ```
 
@@ -311,7 +329,6 @@ plt_heatloss_line <- ggplot(
   heatloss_sum_manikin_df, aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
     geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   facet_grid(cols = vars(var), rows = vars(wet_dry)) +
   theme_classic()
@@ -330,7 +347,6 @@ plt_heatloss_line_off <- heatloss_sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
     geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
   
@@ -339,7 +355,6 @@ plt_heatloss_line_on <- heatloss_sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
     geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
 
@@ -353,7 +368,6 @@ plt_heatloss_line_off <- heatloss_sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
     geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
   
@@ -362,7 +376,6 @@ plt_heatloss_line_on <- heatloss_sum_manikin_df %>%
   ggplot( aes(x = wind, y = mean, group = wig, color = wig)) + 
     geom_line() +
     geom_point() +
-    # geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.2, position=position_dodge(0.05)) +
     geom_errorbar(aes(ymin=min, ymax=max), width = 0.2, position=position_dodge(0.05)) +
   theme_classic()
 
@@ -404,7 +417,8 @@ plt_wet_combo <- sum_manikin_df %>%
   facet_grid(cols = vars(var))+
   theme(plot.title = element_text(hjust = 0.5)) +
   labs(x = bquote('Wind speed'~(m/s)), y=bquote('Wet heat loss'~(W/m^2))) +
-  theme_classic()
+  theme_classic()+
+  ylim(c(0, 400))
 
 # pltsave_func(plt_dry_combo, plot_path, width = 8, height = 3)
   
@@ -421,25 +435,53 @@ p1 + plot_annotation(tag_levels = "A") + plot_layout(guides='collect')
 
 Here we show the combined heat loss for wet heat loss and and dry heat loss
 
+The calculation of these combined values is as follows:
+
+$$Combined \ heat\ loss (W/m^2)_{(30C\ wet+dry + no \ radiation)}  = Dry\ heat\ loss (W/m^2)_{(30C\ no\ radiation)} +  Wet\ heat\ loss (W/m^2)_{(30C\ no\ radiation)} $$
+
+$$Combined \ heat\ loss (W/m^2)_{(30C\ wet+dry +  radiation)}  = Dry\ heat\ loss (W/m^2)_{(30C\ no\ radiation)} +  Wet\ heat\ loss (W/m^2)_{(30C\ + radiation)} $$
+$$Combined \ influx (W/m^2)_{(30C\ wet+dry)}  = Combined \ heat\ loss (W/m^2)_{(30C\ wet+dry + no \ radiation)}  - Combined \ heat\ loss (W/m^2)_{(30C\ wet+dry +  radiation)}  $$
+
 ```{r df-wetdry-sum}
+
+# takiing the summary df created above, we create combined wet and dry values for each condition
 
 df_sum_wetdry <- sum_manikin_df %>% 
   select(-n) %>%
   # select(-c(min, max, n)) %>% 
   pivot_wider(names_from = c(wet_dry, var), values_from = c(mean, min, max)) %>% 
   mutate(mean.wetdry_off = mean_dry_off + mean_wet_off,
-         mean.wetdry_on = mean_dry_on + mean_wet_on,
+         mean.wetdry_on = mean_dry_off + mean_wet_on,
          mean.wetdry_influx = mean.wetdry_off - mean.wetdry_on,
          max.wetdry_off = max_dry_off + max_wet_off,
-         max.wetdry_on = max_dry_on + max_wet_on,
+         max.wetdry_on = max_dry_off + max_wet_on,
          max.wetdry_influx = max.wetdry_off - max.wetdry_on,
          min.wetdry_off = min_dry_off + min_wet_off,
-         min.wetdry_on = min_dry_on + min_wet_on,
+         min.wetdry_on = min_dry_off + min_wet_on,
          min.wetdry_influx = min.wetdry_off - min.wetdry_on) %>% 
   select(c(wig, wind, contains("wetdry"))) %>% 
   pivot_longer(mean.wetdry_off:min.wetdry_influx, names_to = c("stat", "var"), names_sep = "_") %>% 
   mutate(stat = str_remove_all(stat, ".wetdry")) %>% 
   pivot_wider(names_from = stat)
+
+head(df_sum_wetdry)
+
+write_csv(df_sum_wetdry, F("data/df_sum_wetdry.csv"))
+# 
+# sum_manikin_df %>% 
+#   select(-n) %>%
+#   # select(-c(min, max, n)) %>% 
+#   pivot_wider(names_from = c(wet_dry, var), values_from = c(mean, min, max)) %>% 
+#   mutate(mean.wetdry_off = mean_dry_off + mean_wet_off,
+#          mean.wetdry_on = mean_dry_off + mean_wet_on,
+#          mean.wetdry_influx = mean.wetdry_off - mean.wetdry_on,
+#          max.wetdry_off = max_dry_off + max_wet_off,
+#          max.wetdry_on = max_dry_off + max_wet_on,
+#          max.wetdry_influx = max.wetdry_off - max.wetdry_on,
+#          min.wetdry_off = min_dry_off + min_wet_off,
+#          min.wetdry_on = min_dry_off + min_wet_on,
+#          min.wetdry_influx = min.wetdry_off - min.wetdry_on) %>% 
+#   select(c(wig, wind, mean_wet_off, mean.wetdry_off, mean_wet_on, mean.wetdry_on))
   
 
 ```
@@ -456,7 +498,8 @@ plt_sum_wetdry <- df_sum_wetdry %>%
   geom_hline(yintercept = 0, linetype="dashed")+
   facet_grid(cols = vars(var))+
   labs(x = bquote('Wind speed'~(m/s)), y=bquote('Dry + wet heat loss'~(W/m^2))) +
-  theme_classic() 
+  theme_classic() +
+  ylim(c(0, 400))
 
 plt_sum_wetdry
 # pltsave_func(plt_dry_combo, plot_path, width = 8, height = 3)
@@ -474,7 +517,6 @@ We use the dry and wet data to infer the amount of sweat that a scalp could evap
 ```{r df-sweat}
 
 df_sweat <- sum_manikin_df %>% 
-  # select(-c(sd, n)) %>% 
   select(-c(min, max, n)) %>% 
   pivot_wider(names_from = c(wet_dry, var), values_from = mean) %>% 
   mutate(wet_dry_w_m2 = dry_off + wet_on,
