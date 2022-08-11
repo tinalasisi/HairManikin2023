@@ -134,7 +134,7 @@ head(df_wetdry)
 
 ```{r General Plots, echo=FALSE}
 
-ggplot(df_wetdry_plots, aes(x = wig, y = heat_loss, fill = data_points)) + 
+raw_barplot <- ggplot(df_wetdry_plots, aes(x = wig, y = heat_loss, fill = data_points)) + 
   geom_bar(stat = "identity", position = "dodge", colour="black") + 
   facet_grid(wet_dry ~ wind, labeller = labeller(radiation = as_labeller(radiation_names),
                                                    wind = as_labeller(wind_names, label_parsed)))+ 
@@ -143,7 +143,9 @@ ggplot(df_wetdry_plots, aes(x = wig, y = heat_loss, fill = data_points)) +
 scale_color_discrete(guide = "none") +  theme_bw()
 ```
 
-```{r General Plots Old, echo=FALSE,, include=FALSE}
+raw_barplot
+
+
 change_winds <- function(df, windCol, wigCol) {
   # view(df[windCol])
   # view(df[wigCol])
@@ -155,24 +157,26 @@ change_winds <- function(df, windCol, wigCol) {
 
 
 df_wetdry_plots <- change_winds(df_wetdry_plots, 'wind', 'wig')
-# view(df_wetdry_plots['wind'])
+view(df_wetdry_plots['wind'])
 
-
-# SCATTER PLOT
-ggplot(df_wetdry_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wet_dry)) +
-  geom_point(size = 2) +
-  facet_grid(. ~ radiation, labeller = labeller(radiation = as_labeller(radiation_names))) +
-  scale_fill_manual(values = c(dryHairColor, wetHairColor)) +
-  scale_shape_manual(values = c(21,22,25,24)) + 
-
-  scale_y_continuous(breaks= seq(0,500,25),
-    labels = every_nth(seq(0,500,25), 3, inverse = TRUE)) +
-
-  scale_x_continuous(limits = c(0, 3), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
-  guides(fill = guide_legend(override.aes=list(shape=21))) +
-  labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )'))) +
-theme_bw() + theme( panel.grid.major = element_blank(),
-panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+# 
+# # SCATTER PLOT
+# raw_scatter <- ggplot(df_wetdry_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wet_dry)) +
+#   geom_point(size = 2) +
+#   facet_grid(. ~ radiation, labeller = labeller(radiation = as_labeller(radiation_names))) +
+#   scale_fill_manual(values = c(dryHairColor, wetHairColor)) +
+#   scale_shape_manual(values = c(21,22,25,24)) + 
+# 
+#   scale_y_continuous(breaks= seq(0,500,25),
+#     labels = every_nth(seq(0,500,25), 3, inverse = TRUE)) +
+# 
+#   scale_x_continuous(limits = c(0, 3), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
+#   guides(fill = guide_legend(override.aes=list(shape=21))) +
+#   labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )'))) +
+# theme_bw() + theme( panel.grid.major = element_blank(),
+# panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+# 
+# raw_scatter
 
 ``` 
 
@@ -183,6 +187,18 @@ It was noticed that the 2nd trial conducted with wet, tightly curled hair, 2.5 m
 df_wetdry %>% filter((wig == "Tightly\nCurled" & wind == 2.5 & radiation == "on" & wet_dry == "wet" & trial == "1"))
 
 df_wetdry <- df_wetdry %>% filter(!(wig == "Tightly\nCurled" & wind == 2.5 & radiation == "on" & wet_dry == "wet" & trial == "1"))
+
+df_wetdry_plots <- df_wetdry_plots %>% filter(!(wig == "Tightly\nCurled" & wind == 2.5 & radiation == "on" & wet_dry == "wet" & trial == "1"))
+
+raw_barplot_minoutlier <- ggplot(df_wetdry_plots, aes(x = wig, y = heat_loss, fill = data_points)) + 
+  geom_bar(stat = "identity", position = "dodge", colour="black") + 
+  facet_grid(radiation ~ wind, labeller = labeller(radiation = as_labeller(radiation_names),
+                                                   wind = as_labeller(wind_names, label_parsed)))+ 
+  scale_fill_manual(values = colourslist, breaks = c('dry_1', 'wet_1'), labels = c('Dry Hair', 'Wet Hair')) + 
+  labs(x = "", y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )')), fill = '') + 
+scale_color_discrete(guide = "none") +  theme_bw()
+
+raw_barplot_minoutlier
 ```
 
 # Calculating Thermal Resistance

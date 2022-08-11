@@ -22,6 +22,7 @@ library(gtsummary)
 library(broom.mixed)
 library(huxtable)
 library(finalfit)
+library(ggstance)
 # knitting to pdf
 # rmarkdown::render(input = "analysis/analysis.Rmd", output_format = "pdf_document", output_dir = "output")
 F = rprojroot::is_rstudio_project$make_fix_file()
