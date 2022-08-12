@@ -206,6 +206,241 @@ raw_barplot_minoutlier
 manuscript_plt1 <- raw_barplot_minoutlier + coord_flip()
 ```
 
+
+# Regression models
+
+```{r df-solar-influx}
+
+df_influx <- df_wetdry %>% 
+  pivot_longer(cols = c("heat_loss", "resistance", "clo")) %>% 
+  filter(name == "heat_loss") %>% 
+  select(-c(skin_temp, amb_temp, amb_rh)) %>% 
+  pivot_wider(names_from = radiation, values_from = value) %>% 
+  mutate(influx = off-on) %>% 
+  drop_na() %>% 
+  select(-name)
+
+```
+
+```{r df-30c-radoff, include=FALSE}
+
+df_dry_off <- df_wetdry %>% 
+  filter(radiation=="off" & wet_dry == "dry") %>% 
+  select(c(wig, wind, wet_dry, resistance, trial)) %>% 
+  distinct()
+
+df_dry_off
+
+df_dry30_off<- df_influx %>% 
+  filter(wet_dry == "dry") %>% 
+  left_join(., 
+            df_dry_off) %>% 
+  mutate(heatloss30 = 5/resistance) %>% 
+  select(-c(on, off)) %>% 
+  rename(off = heatloss30) %>% 
+  distinct()
+
+df_dry30_off
+
+```
+
+```{r df-30c-radon, include=FALSE}
+
+df_dry_on <- df_wetdry %>% 
+  filter(radiation=="on" & wet_dry =="dry") %>% 
+  select(c(wig, wind, wet_dry, resistance, trial)) %>% 
+  distinct()
+
+df_dry_on
+
+df_dry30<- df_dry30_off %>% 
+  mutate(on = off-influx) %>% 
+  select(-resistance) %>% 
+  distinct()
+
+df_dry30
+```
+
+```{r df-wet-dry, include=FALSE}
+
+df_wetdry_final <- bind_rows(df_dry30, df_influx[df_influx$wet_dry == "wet",]) %>% 
+  distinct()
+
+df_wetdry_final
+
+df_long_wetdry_final <- df_wetdry_final %>% 
+  pivot_longer(influx:on, names_to = "var", values_to = "heatloss") %>% 
+  distinct()
+
+df_long_wetdry_final
+
+```
+
+
+### Radiation off
+
+Here, we model the effect of the `wig` variable on the `off` (heat loss without radiation) variable while correcting for `wind`. 
+
+Without radiation, having hair will reduce the heat loss.
+
+```{r lm-dry-heatloss-off}
+
+# df <- df_wetdry_final %>% 
+#   filter(wet_dry == "dry")
+
+df_dry_off <- df_wetdry_final %>%
+  filter(wet_dry == "dry")
+
+# df_dry_off
+model_dry_off<- lm(off~wind+wig, data=df_dry_off)
+summary(model_dry_off)
+
+```
+
+
+### Radiation on
+
+With radiation, there is a net increase in heat (i.e. heat gain) without any hair. Additonally, we observe that heat gain decreases with increasingly curled hair.
+
+```{r lm-dry-heatloss-on}
+# 
+# df <- df_wetdry_final %>% 
+#   filter(wet_dry == "dry")
+df_dry_on <- df_wetdry_final %>% 
+  filter(wet_dry == "dry")
+
+model_dry_on<- lm(on~wind+wig, data=df_dry_on)
+summary(model_dry_on)
+
+
+
+# summ(model_dry_on, scale = TRUE, confint = TRUE, digits = 5)
+# 
+# plot_summs(model_dry_on, scale = TRUE, inner_ci_level = .9)
+```
+
+### Solar influx
+
+Here, we model the effect of the `wig` variable on `influx` while correcting for `wind`. 
+
+In the dry heat loss experiments, we see that all hair (regardless of curliness) decreases the solar influx. Additionally, the curlier the hair, the lower the solar influx.
+
+
+```{r lm-dry-influx}
+df_dry <- df_wetdry_final %>% 
+  filter(wet_dry == "dry")
+
+
+model_dry <- lm(influx~wind+wig, data=df_dry)
+
+summary(model_dry)
+```
+
+
+### Summary of dry heat loss regression models
+
+
+#### All separate
+
+```{r lm-summary, echo=FALSE, results='asis'}
+
+# export_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+export_summs(model_dry_off, model_dry_on, model_dry, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+```
+
+```{r plt-summary-models, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=6}
+
+# scaled 
+# plot_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+# unscaled 
+manuscript_plt_dry_lm <- plot_summs(model_dry_off, model_dry_on, model_dry,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+manuscript_plt_dry_lm
+
+```
+
+## Evaporative resistance (wet experiments)
+
+Here, we repeat the same modelling process for the evaporative resistance data from the wet experiments.
+
+
+### Radiation off
+
+Here, we model the effect of the `wig` variable on the `off` (heat loss without radiation) variable while correcting for `wind`. 
+
+Without solar radiation, all hair (regardless of texture) decreases evaporative resistance. 
+
+```{r lm-wet-heatloss-off}
+
+df <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+df_wet_off <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+model_wet_off<- lm(off~wind+wig, data=df_wet_off)
+summary(model_wet_off)
+```
+
+### Radiation on
+
+With radiation, hair decreases evaporative resistance. 
+
+```{r lm-wet-heatloss-on}
+
+df <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+df_wet_on <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+model_wet_on<- lm(on~wind+wig, data=df_wet_on)
+summary(model_wet_on)
+```
+
+
+### Solar influx
+
+Combining the above data to calculate solar influx, we see that there is not a considerable effect of radiation on evaporative resistance.
+
+```{r lm-wet-influx}
+
+df <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+
+df_wet <- df_wetdry_final %>% 
+  filter(wet_dry == "wet")
+
+model_wet <- lm(influx~wind+wig, data=df_wet)
+
+# model_wet
+
+# plot(model_wet)
+summary(model_wet)
+```
+
+### Summary of evaporative heat loss regression models
+
+
+#### All separate
+
+```{r lm-summary-wet, echo=FALSE, results='asis'}
+
+# export_summs(model_wet_off, model_weet_on, model_wet, scale = TRUE, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+export_summs(model_wet_off, model_wet_on, model_wet, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+```
+
+```{r plt-summary-models-wet, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=6}
+
+# scaled 
+# plot_summs(model_wet_off, model_wet_on, model_wet, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+# unscaled 
+
+manuscript_plt_wet_lm <- plot_summs(model_wet_off, model_wet_on, model_wet,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
+manuscript_plt_wet_lm
+
+```
+
+
 # Calculating Thermal Resistance
 
 $$I_t = \frac{T_{Skin} - T_{Air}}{H_{Dry}}$$
@@ -222,13 +457,17 @@ df_wetdry <- df_wetdry %>% mutate(dry_heat_resistance = ifelse(wet_dry == 'wet',
 ```{r Thermal Resistance Plots, echo=FALSE}
 # Plot dry
 
-ggplot(df_wetdry, aes(x = wig, y = dry_heat_resistance, fill = trial)) + 
+dry_resist <- ggplot(df_wetdry, aes(x = wig, y = dry_heat_resistance, fill = trial)) + 
   geom_bar(stat = "identity", position = "dodge", colour = "black") + 
   facet_grid(radiation ~ wind, labeller = labeller(radiation = as_labeller(radiation_names),
                                                    wind = as_labeller(wind_names, label_parsed)))+ 
   scale_fill_manual(values = c(dryHairColor1, dryHairColor2, dryHairColor3), breaks = NULL, labels = c()) + 
   labs(x = '', y = expression(paste("Dry Heat Resistance ( ", frac("m"^"2"*"K","W"), ' )')), fill = '') + 
 scale_color_discrete(guide = "none") +  theme_classic()
+
+dry_resist
+
+manuscript_plt5 <- dry_resist
 
 
 df_wetdry_plots2 <- df_wetdry
@@ -523,11 +762,31 @@ manuscript_plt4 <- sweat_combo_plot
 ```{r plt-combo-paper, include=FALSE}
 
 
-manuscript_combo_fig <- manuscript_plt1 + manuscript_plt2 + manuscript_plt3 + manuscript_plt4 + plot_layout(guides = "collect") + plot_annotation(tag_levels = "A")
+manuscript_plt6 <- (manuscript_plt_dry_lm + theme(axis.text.y = element_blank())+ (manuscript_plt_wet_lm)) + plot_layout(guides = "collect")
+
+# manuscript_plt1 + manuscript_plt5 + manuscript_plt6 + guide_area() + manuscript_plt2 + manuscript_plt3 + manuscript_plt4 + plot_layout(design = design, guides = "collect") + plot_annotation(tag_levels = "A")
+
+left_plts <- manuscript_plt1 / manuscript_plt6 + plot_layout(guides = "auto", heights = c(1.5,1))
+
+right_plts <- (manuscript_plt2 / manuscript_plt3 / manuscript_plt4 + plot_layout(guides = "collect"))
+
+  patchwork <- left_plts | right_plts + plot_layout(widths = c(1.5, 1))
+  
+  # left_plts | manuscript_plt2/ guide_area() | manuscript_plt3/ manuscript_plt4/ manuscript_plt5 + plot_layout(guides = "collect")
+  
+patchwork
+  
+  # patchwork <- manuscript_plt1 / manuscript_plt6 | (manuscript_plt2 / manuscript_plt3 / manuscript_plt4 + plot_layout(guides = "collect"))
+  
+
+  
+  
+manuscript_combo_fig <- patchwork + plot_annotation(tag_levels = "A")
+ 
 
 manuscript_combo_fig
 
-pltsave_func(manuscript_combo_fig, plot_path, width = 10, height = 8)
+pltsave_func(manuscript_combo_fig, plot_path, width = 13, height = 7)
 
 
 ```
