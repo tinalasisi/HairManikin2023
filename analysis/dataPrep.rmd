@@ -3,20 +3,28 @@ library(readxl)
 library(dplyr)
 
 F = rprojroot::is_rstudio_project$make_fix_file()
-df <- read_excel(F("data/current/March2022Sheet.xlsx"))
+
+df <- read_excel(F("data/current/March2022Sheet.xlsx"), sheet = 1)
 
 
 
-df <- df[-c(1,2,27,28,29),][-c(3,12,13,14,17)][c(1:60),]
+df <- df[-c(1,2,3,4,5,30,31,32),][-c(3)][c(1:60),]
+
 
 # Takes first 15 columns
-df1 <- df[,1:10]
-colnames(df1) <- c("wind", "wig", "wet_dry", "heatloss", "skin_temp", "resistance", "clo", "Mean Tsk (sel zones)", "amb_temp", "amb_rh")
+df1 <- df[,1:9]
+colnames(df1) <- c("wind", "wig", "wet_dry", "heatloss", "skin_temp", "resistance", "clo", "amb_temp", "amb_rh")
+
 df1$radiation='on'
 
 # Takes rest of columns
-df2 <- df[,11:20]
-colnames(df2) <- c("wind", "wig", "wet_dry", "heatloss", "skin_temp", "resistance", "clo", "Mean Tsk (sel zones)", "amb_temp", "amb_rh")
+df2 <- df[,10:17]
+
+
+df2$wet_dry <- c(rep("wet", 24), rep("dry", 36))
+
+
+colnames(df2) <- c("wind", "wig", "heatloss", "skin_temp", "resistance", "clo", "amb_temp", "amb_rh", "wet_dry")
 df2$radiation='off'
 
 
@@ -27,6 +35,6 @@ df3 <- df3 %>%
   mutate(trial = row_number()) %>%
   ungroup()
 
-write.csv(df3,"data/current/reworkedUsable2.csv", row.names = FALSE)
+write.csv(df3,F("data/current/Aug2022.csv"), row.names = FALSE)
 
 ```
