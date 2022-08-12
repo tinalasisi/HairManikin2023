@@ -236,17 +236,17 @@ df_wetdry_plots2 <- change_winds(df_wetdry_plots2, 'wind', 'wig')
 ```{r Thermal Resistance Plots 2, echo=FALSE, include=FALSE}
 # Scatter plot dry
 
-ggplot(df_wetdry_plots2, aes(x = wind, y = dry_heat_resistance, shape = wig, fill = radiation)) +
-  geom_point(size = 2) +
-  scale_fill_manual(values = c('green', 'red')) +
-  scale_shape_manual(values = c(21,22,23,24)) + 
-  scale_y_continuous(breaks= seq(0,2,0.25),
-    labels = every_nth(seq(0,2,0.25), 2, inverse = TRUE)) +
-  scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
-  guides(fill = guide_legend(override.aes=list(shape=21))) +
-  labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Dry Heat Resistance ( ",  frac("m"^"2"*"K","W"), ' )'))) +
-theme_bw() + theme( panel.grid.major = element_blank(),
-panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+# ggplot(df_wetdry_plots2, aes(x = wind, y = dry_heat_resistance, shape = wig, fill = radiation)) +
+#   geom_point(size = 2) +
+#   scale_fill_manual(values = c('green', 'red')) +
+#   scale_shape_manual(values = c(21,22,23,24)) + 
+#   scale_y_continuous(breaks= seq(0,2,0.25),
+#     labels = every_nth(seq(0,2,0.25), 2, inverse = TRUE)) +
+#   scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
+#   guides(fill = guide_legend(override.aes=list(shape=21))) +
+#   labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Dry Heat Resistance ( ",  frac("m"^"2"*"K","W"), ' )'))) +
+# theme_bw() + theme( panel.grid.major = element_blank(),
+# panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 
 ```
 
@@ -278,15 +278,16 @@ df_net_influx <- df_net_influx_plots %>%  spread(wet_dry, net_influx)
 ```
 
 ```{r Net Solar Influx Plots, echo=FALSE}
-ggplot(df_net_influx_plots, aes(x = wig, y = net_influx, fill = wet_dry)) + 
+plt_influx_bar <- ggplot(df_net_influx_plots, aes(x = wig, y = net_influx, fill = wet_dry)) + 
   geom_bar(stat = "identity", position = "dodge", color = "black") + 
   facet_grid(. ~ wind, labeller = labeller(wind = as_labeller(wind_names, label_parsed)))+ 
   scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry Heat Loss", "Wet Heat Loss")) + 
   labs(x = "", y = expression(paste("Net Solar Influx ( ", frac("W","m"^"2"), ' )')), fill = '') + 
 scale_color_discrete(guide = "none") +  theme_bw()
 
+plt_influx_bar
 
-ggplot(df_net_influx_plots, aes(x = wind, y = net_influx, shape = wig, fill = wig)) +
+plt_influx_pointline <- ggplot(df_net_influx_plots, aes(x = wind, y = net_influx, shape = wig, fill = wig)) +
   geom_point(size = 3) +
   geom_line() +
   facet_grid(wet_dry ~ .,)+ 
@@ -299,21 +300,23 @@ ggplot(df_net_influx_plots, aes(x = wind, y = net_influx, shape = wig, fill = wi
   labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Net Solar Influx ( ", frac("W","m"^"2"), ' )'))) +
 theme_bw() + theme( panel.grid.major = element_blank(),
 panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+plt_influx_pointline
 ```
 
 ```{r Net Solar Influx Plots 2, echo=FALSE, include=FALSE}
-ggplot(df_net_influx_plots, aes(x = wind, y = net_influx, shape = wig, fill = wet_dry)) +
-  geom_point(size = 3) +
-  geom_line() +
-  scale_fill_manual(values = c(dryHairColor, wetHairColor)) +
-  scale_shape_manual(values = c(21,22,23,24)) + 
-  scale_y_continuous(breaks= seq(0,180,25),
-    labels = every_nth(seq(0,180,25), 2, inverse = TRUE)) +
-  scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
-  guides(fill = guide_legend(override.aes=list(shape=21))) +
-  labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Net Solar Influx ( ", frac("W","m"^"2"), ' )'))) +
-theme_bw() + theme( panel.grid.major = element_blank(),
-panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+# ggplot(df_net_influx_plots, aes(x = wind, y = net_influx, shape = wig, fill = wet_dry)) +
+#   geom_point(size = 3) +
+#   geom_line() +
+#   scale_fill_manual(values = c(dryHairColor, wetHairColor)) +
+#   scale_shape_manual(values = c(21,22,23,24)) + 
+#   scale_y_continuous(breaks= seq(0,180,25),
+#     labels = every_nth(seq(0,180,25), 2, inverse = TRUE)) +
+#   scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
+#   guides(fill = guide_legend(override.aes=list(shape=21))) +
+#   labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Net Solar Influx ( ", frac("W","m"^"2"), ' )'))) +
+# theme_bw() + theme( panel.grid.major = element_blank(),
+# panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 ```
 
 # Adjusting Heat Losses to 30 Degrees Celsius
@@ -371,15 +374,16 @@ df_adjusted_solar_plots <-df_adjusted_solar %>%
 
 ```{r Losses With Radiation Plots, echo=FALSE}
 
-ggplot(df_adjusted_solar_plots, aes(x = wig, y = heat_loss, fill = wet_dry)) + 
+plt_30_solar_bar <- ggplot(df_adjusted_solar_plots, aes(x = wig, y = heat_loss, fill = wet_dry)) + 
   geom_bar(stat = "identity", position = "dodge", color = "black") + 
   facet_grid(. ~ wind, labeller = labeller(wind = as_labeller(wind_names, label_parsed)))+ 
   scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry Heat Loss", "Wet Heat Loss")) + 
-  labs(title = 'Heat Loss with Solar Radiation', x = "", y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )')), fill = '') + 
+  labs(title = 'Heat Loss with Solar Radiation at 30C', x = "", y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )')), fill = '') + 
 scale_color_discrete(guide = "none") +  theme_bw()
 
+plt_30_solar_bar
 
-ggplot(df_adjusted_solar_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wet_dry)) +
+plt_30_solar_pointline <- ggplot(df_adjusted_solar_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wet_dry)) +
   geom_point(size = 3) +
   geom_line() +
   scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry Heat Loss", "Wet Heat Loss")) +
@@ -388,9 +392,11 @@ ggplot(df_adjusted_solar_plots, aes(x = wind, y = heat_loss, shape = wig, fill =
     labels = every_nth(seq(-300,400,25), 4, inverse = TRUE)) +
   scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
   guides(fill = guide_legend(override.aes=list(shape=21))) +
-  labs(title = 'Heat Loss with Solar Radiation', x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )'))) +
+  labs(title = 'Heat Loss with Solar Radiation at 30C', x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )'))) +
 theme_bw() + theme( panel.grid.major = element_blank(),
 panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+plt_30_solar_pointline
 ```
 
 ```{r Losses With Radiation Plots 2, echo=FALSE, include=FALSE}
@@ -398,8 +404,8 @@ panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 ggplot(df_adjusted_solar_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wet_dry)) +
   geom_point(size = 3) +
   geom_line() +
-  facet_grid(wet_dry ~ ., labeller = as_labeller(c(`dry_heat_loss` = 'Dry Hair', `wet_heat_loss` = 'Wet Hair')))+ 
-  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry Heat Loss", "Wet Heat Loss")) +
+  facet_grid(.~ wet_dry , labeller = as_labeller(c(`dry_heat_loss` = 'Dry heat loss', `wet_heat_loss` = 'Wet heat loss')))+ 
+  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry", "Wet")) +
   scale_shape_manual(values = c(21,22,23,24)) + 
   scale_y_continuous(breaks= seq(-200,401,50),
     labels = every_nth(seq(-200,401,50), 2, inverse = TRUE)) +
@@ -428,6 +434,7 @@ $$Sweat_{Max} = \frac{H_{Max}^{30^{\circ} C,\:Solar} * 3600}{2430}$$
 
 $$ IF \; H_{Dry}^{30^{\circ} C,\:Solar} < 0, \; Sweat_{Zero} = -\frac{H_{Dry}^{30^{\circ} C,\:Solar} * 3600}{2430} \\
 ELSE, \; Sweat_{Zero} = 0$$
+
 
 ```{r Sweat Requirements, echo=TRUE}
 # Create a new df with the sweat requirements
@@ -458,7 +465,7 @@ sweat_zero_plot <- ggplot(df_sweat_requirements, aes(x = wind, y = sweat_zero, s
     labels = every_nth(seq(0,300,25), 2, inverse = TRUE)) +
   scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
 # guides(fill = guide_legend(override.aes=list(shape=21))) +
-  labs(title = "Sweat Required to Achieve Zero Heat Gain", x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Sweat ( ", frac("g","m"^"2"*"h"), ' )'))) +
+  labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Sweat ( ", frac("g","m"^"2"*"h"), ' )'))) +
 theme_bw() + theme( panel.grid.major = element_blank(),
 panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 
@@ -470,18 +477,22 @@ sweat_max_plot <- ggplot(df_sweat_requirements, aes(x = wind, y = sweat_max, sha
   scale_y_continuous(breaks= seq(0,700,25),
     labels = every_nth(seq(0,700,25), 4, inverse = TRUE)) +
   scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
-  labs(title = "Maximum Possible Sweat Evaporation", x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Sweat ( ", frac("g","m"^"2"*"h"), ' )'))) +
+  labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Sweat ( ", frac("g","m"^"2"*"h"), ' )'))) +
 theme_bw() + theme( panel.grid.major = element_blank(),
 panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 
-sweat_max_plot
+
+sweat_max_plot + sweat_zero_plot + plot_layout(guides = "collect") + plot_annotation(tag_levels = "A")
+
+```
 
 
-sweat_zero_plot_panel <- sweat_zero_plot + theme(legend.position = "none")
+```{r plt-combo-paper, include=FALSE}
 
-sweat_max_plot_panel <- sweat_max_plot + theme(axis.title.y = element_blank())
 
-grid.arrange(sweat_zero_plot_panel, sweat_max_plot_panel, nrow=1)
+pltsave_func(plt_sweat_max_zero, plot_path, width = 8, height = 4)
+
+
 
 ```
 
