@@ -144,8 +144,6 @@ scale_color_discrete(guide = "none") +  theme_classic()
 
 raw_barplot
 
-manuscript_plt1 <- raw_barplot
-
 ```
 
 
@@ -204,6 +202,8 @@ raw_barplot_minoutlier <- ggplot(df_wetdry_plots, aes(x = wig, y = heat_loss, fi
 scale_color_discrete(guide = "none") +  theme_classic()
 
 raw_barplot_minoutlier
+
+manuscript_plt1 <- raw_barplot_minoutlier + coord_flip()
 ```
 
 # Calculating Thermal Resistance
@@ -283,7 +283,7 @@ df_net_influx <- df_net_influx_plots %>%  spread(wet_dry, net_influx)
 plt_influx_bar <- ggplot(df_net_influx_plots, aes(x = wig, y = net_influx, fill = wet_dry)) + 
   geom_bar(stat = "identity", position = "dodge", color = "black") + 
   facet_grid(. ~ wind, labeller = labeller(wind = as_labeller(wind_names, label_parsed)))+ 
-  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry Heat Loss", "Wet Heat Loss")) + 
+  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("dry", "wet")) + 
   labs(x = "", y = expression(paste("Net Solar Influx ( ", frac("W","m"^"2"), ' )')), fill = '') + 
 scale_color_discrete(guide = "none") +  theme_classic()
 
@@ -292,7 +292,7 @@ plt_influx_bar
 plt_influx_pointline <- ggplot(df_net_influx_plots, aes(x = wind, y = net_influx, shape = wig, fill = wig)) +
   geom_point(size = 3) +
   geom_line() +
-  facet_grid(wet_dry ~ .,)+ 
+  facet_grid(. ~ wet_dry,)+ 
   scale_fill_manual(values = c("red","blue","pink","orange")) +
   scale_shape_manual(values = c(21,22,23,24)) + 
   scale_y_continuous(breaks= seq(0,180,25),
@@ -304,6 +304,8 @@ theme_classic() + theme( panel.grid.major = element_blank(),
 panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 
 plt_influx_pointline
+
+manuscript_plt2 <- plt_influx_pointline
 ```
 
 ```{r Net Solar Influx Plots 2, echo=FALSE, include=FALSE}
@@ -379,7 +381,7 @@ df_adjusted_solar_plots <-df_adjusted_solar %>%
 plt_30_solar_bar <- ggplot(df_adjusted_solar_plots, aes(x = wig, y = heat_loss, fill = wet_dry)) + 
   geom_bar(stat = "identity", position = "dodge", color = "black") + 
   facet_grid(. ~ wind, labeller = labeller(wind = as_labeller(wind_names, label_parsed)))+ 
-  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry Heat Loss", "Wet Heat Loss")) + 
+  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("dry", "wet")) + 
   labs(title = 'Heat Loss with Solar Radiation at 30C', x = "", y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )')), fill = '') + 
 scale_color_discrete(guide = "none") +  theme_classic()
 
@@ -388,7 +390,7 @@ plt_30_solar_bar
 plt_30_solar_pointline <- ggplot(df_adjusted_solar_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wet_dry)) +
   geom_point(size = 3) +
   geom_line() +
-  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry Heat Loss", "Wet Heat Loss")) +
+  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("dry", "wet")) +
   scale_shape_manual(values = c(21,22,23,24)) + 
   scale_y_continuous(breaks= seq(-300,400,25),
     labels = every_nth(seq(-300,400,25), 4, inverse = TRUE)) +
@@ -401,21 +403,25 @@ panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 plt_30_solar_pointline
 ```
 
-```{r Losses With Radiation Plots 2, echo=FALSE, include=FALSE}
+```{r Losses With Radiation Plots 2, echo=FALSE, include=FALSE, fig.cap="Heat loss with solar radiation at 30C}
 
-ggplot(df_adjusted_solar_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wet_dry)) +
+plt_30_solar_pointline_panel <- ggplot(df_adjusted_solar_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wig)) +
   geom_point(size = 3) +
   geom_line() +
-  facet_grid(.~ wet_dry , labeller = as_labeller(c(`dry_heat_loss` = 'Dry heat loss', `wet_heat_loss` = 'Wet heat loss')))+ 
-  scale_fill_manual(values = c(dryHairColor, wetHairColor), labels = c("Dry", "Wet")) +
+  facet_grid(.~ wet_dry , labeller = as_labeller(c(`dry_heat_loss` = 'dry', `wet_heat_loss` = 'wet')))+ 
   scale_shape_manual(values = c(21,22,23,24)) + 
+  scale_fill_manual(values=c("red","blue","pink","orange")) +
   scale_y_continuous(breaks= seq(-200,401,50),
     labels = every_nth(seq(-200,401,50), 2, inverse = TRUE)) +
   scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
-  guides(fill = guide_legend(override.aes=list(shape=21))) +
-  labs(title = 'Heat Loss with Solar Radiation',  x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )'))) +
+  # guides(fill = guide_legend(override.aes=list(shape=21))) +
+  labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )'))) +
 theme_classic() + theme( panel.grid.major = element_blank(),
 panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+plt_30_solar_pointline_panel 
+
+manuscript_plt3 <- plt_30_solar_pointline_panel
 ```
 
 
@@ -449,7 +455,7 @@ df_sweat_requirements <- data.frame(
 )
 
 #Rename columns
-colnames(df_sweat_requirements) <- c('sweat_max', 'sweat_zero')
+colnames(df_sweat_requirements) <- c('sweat_max', 'sweat_zero', 'wig', 'wind')
 
 
 #Replace all values less than 0 with 0 per formula
@@ -459,10 +465,10 @@ df_sweat_requirements['sweat_zero'][df_sweat_requirements['sweat_zero'] < 0] <- 
 ```{r Sweat Requirements Plots, echo=FALSE}
 
 sweat_zero_plot <- ggplot(df_sweat_requirements, aes(x = wind, y = sweat_zero, shape = wig, fill = wig)) +
-  geom_point(size = 4) +
+  geom_point(size = 3) +
   geom_line() +
   scale_shape_manual(values = c(21,22,23,24)) + 
-  scale_fill_manual(values=c("blue", "red", "green", "pink")) +
+  scale_fill_manual(values=c("red","blue","pink","orange")) +
   scale_y_continuous(breaks= seq(0,300,25),
     labels = every_nth(seq(0,300,25), 2, inverse = TRUE)) +
   scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
@@ -475,7 +481,7 @@ sweat_max_plot <- ggplot(df_sweat_requirements, aes(x = wind, y = sweat_max, sha
   geom_point(size = 4) +
   geom_line() +
   scale_shape_manual(values = c(21,22,23,24)) + 
-  scale_fill_manual(values=c("blue", "red", "green", "pink")) +
+  scale_fill_manual(values=c("red","blue","pink","orange")) +
   scale_y_continuous(breaks= seq(0,700,25),
     labels = every_nth(seq(0,700,25), 4, inverse = TRUE)) +
   scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
@@ -486,14 +492,42 @@ panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 
 sweat_max_plot + sweat_zero_plot + plot_layout(guides = "collect") + plot_annotation(tag_levels = "A")
 
+
+```
+
+
+```{r plt sweat}
+
+df_sweat_requirements_long <- df_sweat_requirements %>% 
+  pivot_longer(cols = c('sweat_max', 'sweat_zero'), names_to = 'sweat', values_to = 'value')
+
+sweat_combo_plot <- ggplot(df_sweat_requirements_long, aes(x = wind, y = value, shape = wig, fill = wig)) +
+  geom_point(size = 3) +
+  geom_line() +
+  facet_grid(.~ sweat , labeller = as_labeller(c(`sweat_max` = 'Max', `sweat_zero` = 'Zero')))+   scale_shape_manual(values = c(21,22,23,24)) + 
+  scale_fill_manual(values=c("red","blue","pink","orange")) +
+  scale_y_continuous(breaks= seq(0,700,50),
+    labels = every_nth(seq(0,700,50), 2, inverse = TRUE)) +
+  scale_x_continuous(limits = c(0,2.7), breaks = c(0, 0.5, 1, 1.5, 2, 2.5)) +
+# guides(fill = guide_legend(override.aes=list(shape=21))) +
+  labs(x = expression(paste("Wind Speed ( ", frac("m", "s"), ' )')), y = expression(paste("Sweat ( ", frac("g","m"^"2"*"h"), ' )'))) +
+theme_classic() + theme( panel.grid.major = element_blank(),
+panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+manuscript_plt4 <- sweat_combo_plot
+
+
 ```
 
 
 ```{r plt-combo-paper, include=FALSE}
 
 
-pltsave_func(plt_sweat_max_zero, plot_path, width = 8, height = 4)
+manuscript_combo_fig <- manuscript_plt1 + manuscript_plt2 + manuscript_plt3 + manuscript_plt4 + plot_layout(guides = "collect") + plot_annotation(tag_levels = "A")
 
+manuscript_combo_fig
+
+pltsave_func(manuscript_combo_fig, plot_path, width = 10, height = 8)
 
 
 ```
