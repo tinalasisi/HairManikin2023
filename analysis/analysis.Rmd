@@ -199,7 +199,7 @@ raw_barplot_minoutlier <- ggplot(df_wetdry_plots, aes(x = wig, y = heat_loss, fi
                                                    wind = as_labeller(wind_names, label_parsed)))+ 
   scale_fill_manual(values = coloursList2, breaks = c('on_1', 'off_1'), labels = c('Radiation On', 'Radiation Off')) + 
   labs(x = "", y = expression(paste("Heat Loss ( ", frac("W","m"^"2"), ' )')), fill = '') + 
-scale_color_discrete(guide = "none") +  theme_classic()
+scale_color_discrete(guide = "none") + theme_classic() + scale_y_continuous(breaks=seq(0,450,150))
 
 raw_barplot_minoutlier
 
@@ -762,15 +762,15 @@ manuscript_plt4 <- sweat_combo_plot
 ```{r plt-combo-paper, include=FALSE}
 
 
-manuscript_plt6 <- (manuscript_plt_dry_lm + theme(axis.text.y = element_blank())+ (manuscript_plt_wet_lm)) + plot_layout(guides = "collect")
+manuscript_plt6 <- (manuscript_plt_dry_lm)+ (manuscript_plt_wet_lm + theme(axis.text.y = element_blank())) + plot_layout(guides = "collect") & theme(legend.title = element_blank())
 
 # manuscript_plt1 + manuscript_plt5 + manuscript_plt6 + guide_area() + manuscript_plt2 + manuscript_plt3 + manuscript_plt4 + plot_layout(design = design, guides = "collect") + plot_annotation(tag_levels = "A")
 
-left_plts <- manuscript_plt1 / manuscript_plt6 + plot_layout(guides = "auto", heights = c(1.5,1))
+left_plts <- manuscript_plt1 / manuscript_plt6 + plot_layout(guides = "auto", heights = c(1.5,1)) & theme(legend.position = 'bottom')
 
 right_plts <- (manuscript_plt2 / manuscript_plt3 / manuscript_plt4 + plot_layout(guides = "collect"))
 
-  patchwork <- left_plts | right_plts + plot_layout(widths = c(1.5, 1))
+  patchwork <- left_plts | right_plts + plot_layout(widths = c(1.5, 1), guides = "collect")
   
   # left_plts | manuscript_plt2/ guide_area() | manuscript_plt3/ manuscript_plt4/ manuscript_plt5 + plot_layout(guides = "collect")
   
@@ -778,15 +778,13 @@ patchwork
   
   # patchwork <- manuscript_plt1 / manuscript_plt6 | (manuscript_plt2 / manuscript_plt3 / manuscript_plt4 + plot_layout(guides = "collect"))
   
-
-  
   
 manuscript_combo_fig <- patchwork + plot_annotation(tag_levels = "A")
  
 
 manuscript_combo_fig
 
-pltsave_func(manuscript_combo_fig, plot_path, width = 13, height = 7)
+pltsave_func(manuscript_combo_fig, plot_path, width = 9, height = 8)
 
 
 ```
