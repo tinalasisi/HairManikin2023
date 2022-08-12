@@ -18,12 +18,15 @@ library(gridExtra)
 library(patchwork)
 library(broom.mixed)
 library(huxtable)
+library(jtools)
 # knitting to pdf
 # rmarkdown::render(input = "analysis/analysis.Rmd", output_format = "pdf_document", output_dir = "output")
 F = rprojroot::is_rstudio_project$make_fix_file()
 palettedf <- tibble(paletteer::palettes_d_names)
 # filter(.data = palettedf, length > 10 & type == "qualitative")
 knitr::opts_chunk$set(echo = FALSE, include = TRUE, eval = TRUE, warning = FALSE, message = FALSE, fig.retina = 2, fig.width = 8, fig.height = 6)
+
+knitr::opts_knit$set(root.dir = "..")
 ```
 
 ```{r functions, include=FALSE}
@@ -58,7 +61,7 @@ every_nth <- function(x, nth, empty = TRUE, inverse = FALSE)
 }
 ```
 
-```{r plot_helpers, include=FALSE}
+```{r plothelpers, include=FALSE}
 
 # Plot data as as a row of bar charts, each column being a different wind speed.
 dryHairColor1 = "#E69F00"
@@ -127,12 +130,12 @@ df_wetdry_plots <- df_wetdry %>%
 
 ```
 
-```{r Data Preview, echo=TRUE}
+```{r Data-preview, echo=TRUE}
 # Preview data
 head(df_wetdry)
 ```
 
-```{r General Plots, echo=FALSE}
+```{r General-Plots, echo=FALSE}
 
 raw_barplot <- ggplot(df_wetdry_plots, aes(x = wig, y = heat_loss, fill = data_points)) + 
   geom_bar(stat = "identity", position = "dodge", colour="black") + 
@@ -149,7 +152,7 @@ raw_barplot
 
 
 
-```{r General Not Used, echo=FALSE, include=FALSE}
+```{r General-Not-Used, echo=FALSE, include=FALSE}
 
 change_winds <- function(df, windCol, wigCol) {
   df[windCol] <- df[windCol] + (0.1)*(ifelse(df[wigCol] == "Nude", 0, ifelse(df[wigCol] == "Straight", -0.5, ifelse(df[wigCol] == "Slightly\nCurled", 0, 0.5))))
@@ -189,7 +192,7 @@ df_wetdry <- df_wetdry %>% filter(!(wig == "Tightly\nCurled" & wind == 2.5 & rad
 ```
 
 
-```{r General After Outliar Removal}
+```{r General-After-Outlier-Removal}
 df_wetdry_plots <- df_wetdry %>% 
   unite('data_points', c('radiation','trial'), remove=FALSE)
 
@@ -445,7 +448,7 @@ manuscript_plt_wet_lm
 
 $$I_t = \frac{T_{Skin} - T_{Air}}{H_{Dry}}$$
 
-```{r Thermal Resistance, echo=TRUE}
+```{r Thermal-Resistance, echo=TRUE}
 
 df_wetdry['dry_heat_resistance'] <- (df_wetdry['skin_temp'] - df_wetdry['amb_temp']) / df_wetdry['heat_loss']
 
@@ -454,7 +457,7 @@ df_wetdry <- df_wetdry %>% mutate(dry_heat_resistance = ifelse(wet_dry == 'wet',
 
 ```
 
-```{r Thermal Resistance Plots, echo=FALSE}
+```{r Thermal-Resistance-Plots, echo=FALSE}
 # Plot dry
 
 dry_resist <- ggplot(df_wetdry, aes(x = wig, y = dry_heat_resistance, fill = trial)) + 
@@ -474,7 +477,7 @@ df_wetdry_plots2 <- df_wetdry
 df_wetdry_plots2 <- change_winds(df_wetdry_plots2, 'wind', 'wig')
 ```
 
-```{r Thermal Resistance Plots 2, echo=FALSE, include=FALSE}
+```{r ThermalResistance-plt2, echo=FALSE, include=FALSE}
 # Scatter plot dry
 
 # ggplot(df_wetdry_plots2, aes(x = wind, y = dry_heat_resistance, shape = wig, fill = radiation)) +
@@ -495,7 +498,7 @@ df_wetdry_plots2 <- change_winds(df_wetdry_plots2, 'wind', 'wig')
 
 $$I_{Dry} = H_{Dry} - H_{Dry}^{Solar}$$ $$I_{Evap} = H_{Evap} - H_{Evap}^{Solar}$$
 
-```{r Net Solar Influx, echo=TRUE}
+```{r net-solar-influx, echo=TRUE}
 
 # Average all trials with the same characteristics
 df_averaged_trials <- df_wetdry %>%
@@ -518,7 +521,7 @@ df_net_influx_plots <- df_radiation_split %>%
 df_net_influx <- df_net_influx_plots %>%  spread(wet_dry, net_influx)
 ```
 
-```{r Net Solar Influx Plots, echo=FALSE}
+```{r net-solar-influx-plts, echo=FALSE}
 plt_influx_bar <- ggplot(df_net_influx_plots, aes(x = wig, y = net_influx, fill = wet_dry)) + 
   geom_bar(stat = "identity", position = "dodge", color = "black") + 
   facet_grid(. ~ wind, labeller = labeller(wind = as_labeller(wind_names, label_parsed)))+ 
@@ -547,7 +550,7 @@ plt_influx_pointline
 manuscript_plt2 <- plt_influx_pointline
 ```
 
-```{r Net Solar Influx Plots 2, echo=FALSE, include=FALSE}
+```{r plt-solar-influx-more, echo=FALSE, include=FALSE}
 # ggplot(df_net_influx_plots, aes(x = wind, y = net_influx, shape = wig, fill = wet_dry)) +
 #   geom_point(size = 3) +
 #   geom_line() +
@@ -568,7 +571,7 @@ manuscript_plt2 <- plt_influx_pointline
 
 $$H_{Dry}^{30^\circ C} = \frac{35 -30}{I_t}$$
 
-```{r Heat Adjustments, echo=TRUE}
+```{r heat-adj, echo=TRUE}
 
 # Their calculation
 df_wetdry['heat_30'] = (35 - 30) / df_wetdry['dry_heat_resistance']
@@ -592,7 +595,7 @@ df_radiation_split <- df_averaged_trials %>%
 
 $$H_{Dry}^{30^{\circ} C,\:Solar} = H_{Dry}^{30^{\circ} C} - I_{Dry}$$ $$H_{Wet}^{30^{\circ} C,\:Solar} = H_{Evap + Dry}^{30^{\circ} C} = H_{Evap} + I_{Dry} + H_{Dry}^{30^{\circ} C,\:Solar}$$
 
-```{r Losses With Radiation, echo=TRUE}
+```{r heatloss-radiation, echo=TRUE}
 
 dry_heat_30 = df_radiation_split[df_radiation_split$wet_dry == 'dry',]
 
@@ -615,7 +618,7 @@ df_adjusted_solar_plots <-df_adjusted_solar %>%
   pivot_longer(cols = c('dry_heat_loss', 'wet_heat_loss'), names_to = 'wet_dry', values_to = 'heat_loss')
 ```
 
-```{r Losses With Radiation Plots, echo=FALSE}
+```{r plt-heatloss-radiation, echo=FALSE}
 
 plt_30_solar_bar <- ggplot(df_adjusted_solar_plots, aes(x = wig, y = heat_loss, fill = wet_dry)) + 
   geom_bar(stat = "identity", position = "dodge", color = "black") + 
@@ -642,7 +645,7 @@ panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
 plt_30_solar_pointline
 ```
 
-```{r Losses With Radiation Plots 2, echo=FALSE, include=FALSE, fig.cap="Heat loss with solar radiation at 30C}
+```{r plt-heatloss-radiation2, echo=FALSE, include=FALSE, fig.cap="Heat loss with solar radiation at 30C"}
 
 plt_30_solar_pointline_panel <- ggplot(df_adjusted_solar_plots, aes(x = wind, y = heat_loss, shape = wig, fill = wig)) +
   geom_point(size = 3) +
@@ -669,7 +672,7 @@ manuscript_plt3 <- plt_30_solar_pointline_panel
 
 $$H_{Max}^{30^{\circ} C,\:Solar} = H_{Wet}^{30^{\circ} C,\:Solar} - H_{Dry}^{30^{\circ} C,\:Solar}$$
 
-```{r Evaportative Potential, echo=TRUE}
+```{r evap-potential, echo=TRUE}
 
 df_evaporative_potential <- df_adjusted_solar$wet_heat_loss - df_adjusted_solar$dry_heat_loss
 
@@ -683,7 +686,7 @@ $$ IF \; H_{Dry}^{30^{\circ} C,\:Solar} < 0, \; Sweat_{Zero} = -\frac{H_{Dry}^{3
 ELSE, \; Sweat_{Zero} = 0$$
 
 
-```{r Sweat Requirements, echo=TRUE}
+```{r sweat-req, echo=TRUE}
 # Create a new df with the sweat requirements
 
 df_sweat_requirements <- data.frame(
@@ -701,7 +704,7 @@ colnames(df_sweat_requirements) <- c('sweat_max', 'sweat_zero', 'wig', 'wind')
 df_sweat_requirements['sweat_zero'][df_sweat_requirements['sweat_zero'] < 0] <- 0
 ```
 
-```{r Sweat Requirements Plots, echo=FALSE}
+```{r plt-sweat-req, echo=FALSE}
 
 sweat_zero_plot <- ggplot(df_sweat_requirements, aes(x = wind, y = sweat_zero, shape = wig, fill = wig)) +
   geom_point(size = 3) +

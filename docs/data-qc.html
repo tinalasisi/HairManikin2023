@@ -11,11 +11,11 @@
 
 <meta name="author" content="Tina Lasisi" />
 
-<meta name="date" content="2022-03-06" />
+<meta name="date" content="2022-08-12" />
 
 <title>Data QC</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -38,7 +38,7 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -75,6 +75,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -95,6 +96,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -320,7 +324,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -355,14 +359,16 @@ div.tocify {
 
 <h1 class="title toc-ignore">Data QC</h1>
 <h4 class="author">Tina Lasisi</h4>
-<h4 class="date">March 06, 2022</h4>
+<h4 class="date">August 12, 2022</h4>
 
 </div>
 
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -371,7 +377,9 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -380,17 +388,27 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-03-06
+<strong>Last updated:</strong> 2022-08-12
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>HairManikin_manuscript/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>HairManikin2022/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -399,111 +417,154 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
 <div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211024code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20211024)</code> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211024code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20211024)</code> </a>
 </p>
 </div>
-<div id="strongSeedstrongcodesetseed20211024code" class="panel-collapse collapse">
+<div id="strongSeedstrongcodesetseed20211024code"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20211024)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20211024)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
 <div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
 <div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022tree4041aec07ff991f3b62a11670ec42a79e5e647e2targetblank4041aeca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/tinalasisi/HairManikin2022/tree/4041aec07ff991f3b62a11670ec42a79e5e647e2" target="_blank">4041aec</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treec817e49e2414e8907507f9e13023302fb28e2316targetblankc817e49a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/tinalasisi/HairManikin2022/tree/c817e49e2414e8907507f9e13023302fb28e2316" target="_blank">c817e49</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022tree4041aec07ff991f3b62a11670ec42a79e5e647e2targetblank4041aeca" class="panel-collapse collapse">
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treec817e49e2414e8907507f9e13023302fb28e2316targetblankc817e49a"
+class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/tinalasisi/HairManikin2022/tree/4041aec07ff991f3b62a11670ec42a79e5e647e2" target="_blank">4041aec</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version
+<a href="https://github.com/tinalasisi/HairManikin2022/tree/c817e49e2414e8907507f9e13023302fb28e2316" target="_blank">c817e49</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
 </p>
 <p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
 </p>
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
-    Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    data/.DS_Store
-    Ignored:    data/.Rhistory
-    Ignored:    data/current/.DS_Store
-    Ignored:    data/raw_manikin_output/.DS_Store
 
-Untracked files:
-    Untracked:  data/raw_manikin_output/~$2020_Dec_GH_WigData_reworked.xlsx
-    Untracked:  output/plt_dry_combo.png
-    Untracked:  output/plt_sweat_max_zero.png
+Unstaged changes:
+    Modified:   analysis/analysis.Rmd
+    Modified:   analysis/dataPrep.rmd
 
 </code></pre>
 <p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
 </p>
 </div>
 </div>
@@ -514,7 +575,12 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/data-qc.Rmd</code>) and HTML (<code>docs/data-qc.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/data-qc.Rmd</code>) and HTML
+(<code>docs/data-qc.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -543,13 +609,30 @@ Message
 html
 </td>
 <td>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/data-qc.html" target="_blank">c0ce5d2</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-03-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
 <a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/bb367202470261504c0355fb04ca3ce5ee3b50fc/docs/data-qc.html" target="_blank">bb36720</a>
 </td>
 <td>
 Tina Lasisi
 </td>
 <td>
-2022-01-19
+2022-01-18
 </td>
 <td>
 Build site.
@@ -720,12 +803,21 @@ Adding data and analysis file
 </div>
 <div id="introduction-1" class="section level2" number="0.2">
 <h2><span class="header-section-number">0.2</span> Introduction</h2>
-<p>In brief, the experiments were carried out in a climate controlled chamber at the University of Loughborough (UK) using a full-body thermal manikin with 20 independently controllable zones. Human hair wigs ranging from straight to tightly curled were used to test the effect of hair on heat gain/loss in a number of conditions.</p>
-<p>The experimental variables were: - head covering (no wig, straight wig, moderately curled wig, tightly curled wig) - radiation (on vs. off) - wind speed (0.3m/s, 1m/s, 2.5m/s) - evaporation (manikin with dry scalp vs. manikin with wet scalp)</p>
+<p>In brief, the experiments were carried out in a climate controlled
+chamber at the University of Loughborough (UK) using a full-body thermal
+manikin with 20 independently controllable zones. Human hair wigs
+ranging from straight to tightly curled were used to test the effect of
+hair on heat gain/loss in a number of conditions.</p>
+<p>The experimental variables were: - head covering (no wig, straight
+wig, moderately curled wig, tightly curled wig) - radiation (on vs. off)
+- wind speed (0.3m/s, 1m/s, 2.5m/s) - evaporation (manikin with dry
+scalp vs. manikin with wet scalp)</p>
 </div>
 <div id="set-up" class="section level2" number="0.3">
 <h2><span class="header-section-number">0.3</span> Set-up</h2>
-<p>Dry heat resistance experiments were carried out from October to November 2018 in a climate controlled chamber with a custom-built wind tunnel (see below).</p>
+<p>Dry heat resistance experiments were carried out from October to
+November 2018 in a climate controlled chamber with a custom-built wind
+tunnel (see below).</p>
 <pre class="r"><code>knitr::include_graphics(&quot;assets/manikin-chamber-setup.jpeg&quot;, error = FALSE)</code></pre>
 <p><img src="assets/manikin-chamber-setup.jpeg" width="100%" style="display: block; margin: auto;" /></p>
 <p>
@@ -813,21 +905,22 @@ Tina Lasisi
 
 head(raw_manikin)</code></pre>
 <pre><code># A tibble: 6 × 79
-  x1          x2       face_3  head_4  r_up_arm_fr_5 r_up_arm_bk_6 l_up_arm_fr_7
-  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;        
-1 Time        Clock    Averag… Averag… Average Surf… Average Surf… Average Surf…
-2 Seconds     &lt;NA&gt;     degC    degC    degC          degC          degC         
-3 30.0117166  15:27:08 37.99   37.96   37.94         37.97         37.95        
-4 60.0264333  15:27:38 37.98   37.95   37.96         37.97         37.96        
-5 90.04015    15:28:08 37.96   37.95   37.96         37.97         37.97        
-6 120.0548667 15:28:38 37.94   37.94   37.97         37.97         37.98        
-# … with 72 more variables: l_up_arm_bk_8 &lt;chr&gt;, r_forearm_fr_9 &lt;chr&gt;,
-#   r_forearm_bk_10 &lt;chr&gt;, l_forearm_fr_11 &lt;chr&gt;, l_forearm_bk_12 &lt;chr&gt;,
+  x1         x2    face_3 head_4 r_up_…¹ r_up_…² l_up_…³ l_up_…⁴ r_for…⁵ r_for…⁶
+  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+1 Time       Clock Avera… Avera… Averag… Averag… Averag… Averag… Averag… Averag…
+2 Seconds    &lt;NA&gt;  degC   degC   degC    degC    degC    degC    degC    degC   
+3 30.0117166 15:2… 37.99  37.96  37.94   37.97   37.95   37.96   37.96   37.99  
+4 60.0264333 15:2… 37.98  37.95  37.96   37.97   37.96   37.96   37.96   37.99  
+5 90.04015   15:2… 37.96  37.95  37.96   37.97   37.97   37.96   37.96   38.00  
+6 120.05486… 15:2… 37.94  37.94  37.97   37.97   37.98   37.96   37.97   38.00  
+# … with 69 more variables: l_forearm_fr_11 &lt;chr&gt;, l_forearm_bk_12 &lt;chr&gt;,
 #   r_hand_13 &lt;chr&gt;, l_hand_14 &lt;chr&gt;, upper_chest_15 &lt;chr&gt;, shoulders_16 &lt;chr&gt;,
 #   stomach_17 &lt;chr&gt;, mid_back_18 &lt;chr&gt;, waist_19 &lt;chr&gt;, lower_back_20 &lt;chr&gt;,
 #   r_up_thigh_fr_21 &lt;chr&gt;, r_up_thigh_grd_22 &lt;chr&gt;, r_up_thigh_bk_23 &lt;chr&gt;,
 #   l_up_thigh_fr_24 &lt;chr&gt;, l_up_thigh_grd_25 &lt;chr&gt;, l_up_thigh_bk_26 &lt;chr&gt;,
-#   r_lwr_thigh_fr_27 &lt;chr&gt;, r_lwr_thigh_bk_28 &lt;chr&gt;, …</code></pre>
+#   r_lwr_thigh_fr_27 &lt;chr&gt;, r_lwr_thigh_bk_28 &lt;chr&gt;, l_lwr_thigh_fr_29 &lt;chr&gt;,
+#   l_lwr_thigh_bk_30 &lt;chr&gt;, r_calf_fr_31 &lt;chr&gt;, r_calf_bk_32 &lt;chr&gt;, …
+# ℹ Use `colnames()` to see all variable names</code></pre>
 <p>The data can be cleaned using the following pipeline.</p>
 <pre class="r"><code># remember to use the correct filepath to point to the correct file, see below 
 # incorrect:
@@ -864,15 +957,17 @@ cleandata$round=substr(cleandata$filepath,regexpr(&quot;round&quot;,cleandata$fi
 cleandata$filepath &lt;- sub( &quot;.*output/&quot;,&quot;&quot;, cleandata$filepath)
 head(cleandata)</code></pre>
 <pre><code># A tibble: 6 × 10
-  time_elapsed                time_hms    filepath surface_temp heatflux avg_amb
-  &lt;Duration&gt;                  &lt;Period&gt;    &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;  
-1 30.0117166s                 15H 27M 8S  round_1… 37.96        87.0     1.76   
-2 60.0264333s (~1 minutes)    15H 27M 38S round_1… 37.95        90.4     1.72   
-3 90.04015s (~1.5 minutes)    15H 28M 8S  round_1… 37.95        92.0     1.67   
-4 120.0548667s (~2 minutes)   15H 28M 38S round_1… 37.94        93.7     1.62   
-5 150.0695835s (~2.5 minutes) 15H 29M 8S  round_1… 37.94        95.0     1.57   
-6 180.0843002s (~3 minutes)   15H 29M 38S round_1… 37.94        96.7     1.53   
-# … with 4 more variables: amb_1 &lt;chr&gt;, amb_2 &lt;chr&gt;, rh &lt;chr&gt;, round &lt;chr&gt;</code></pre>
+  time_elapsed                time_hms    filepath surfa…¹ heatf…² avg_amb amb_1
+  &lt;Duration&gt;                  &lt;Period&gt;    &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;
+1 30.0117166s                 15H 27M 8S  round_1… 37.96   87.0    1.76    1.47 
+2 60.0264333s (~1 minutes)    15H 27M 38S round_1… 37.95   90.4    1.72    1.44 
+3 90.04015s (~1.5 minutes)    15H 28M 8S  round_1… 37.95   92.0    1.67    1.40 
+4 120.0548667s (~2 minutes)   15H 28M 38S round_1… 37.94   93.7    1.62    1.37 
+5 150.0695835s (~2.5 minutes) 15H 29M 8S  round_1… 37.94   95.0    1.57    1.34 
+6 180.0843002s (~3 minutes)   15H 29M 38S round_1… 37.94   96.7    1.53    1.31 
+# … with 3 more variables: amb_2 &lt;chr&gt;, rh &lt;chr&gt;, round &lt;chr&gt;, and abbreviated
+#   variable names ¹​surface_temp, ²​heatflux
+# ℹ Use `colnames()` to see all variable names</code></pre>
 <pre class="r"><code>df1&lt;-cleandata %&gt;%
   group_by(filepath) %&gt;%
   nest()
@@ -902,16 +997,23 @@ head(cleandata)</code></pre>
 #   group_by(filepath) %&gt;%
 #   nest()</code></pre>
 <div id="variables-extracted" class="section level3" number="0.4.1">
-<h3><span class="header-section-number">0.4.1</span> Variables extracted</h3>
-<p>Since we are only interested in the head, all other zones have been dropped. The variables are as follows:</p>
+<h3><span class="header-section-number">0.4.1</span> Variables
+extracted</h3>
+<p>Since we are only interested in the head, all other zones have been
+dropped. The variables are as follows:</p>
 <ul>
-<li><code>time_elapsed</code> (in seconds) describes how long the experiment has been running</li>
-<li><code>surface_temp</code> (deg C) describes surface temperature for head zone</li>
-<li><code>heatflux</code> (W/m2) describes heat loss in watts per meter square.</li>
-<li><code>avg_amb</code> (deg C) describes average ambient temperature based on two measurements</li>
+<li><code>time_elapsed</code> (in seconds) describes how long the
+experiment has been running</li>
+<li><code>surface_temp</code> (deg C) describes surface temperature for
+head zone</li>
+<li><code>heatflux</code> (W/m2) describes heat loss in watts per meter
+square.</li>
+<li><code>avg_amb</code> (deg C) describes average ambient temperature
+based on two measurements</li>
 <li><code>amb_1</code> (deg C) first ambient temperature sensor</li>
 <li><code>amb_2</code> (deg C) second ambient temperature sensor</li>
-<li><code>rh</code> (percentage) describes relative humidity in the chamber.</li>
+<li><code>rh</code> (percentage) describes relative humidity in the
+chamber.</li>
 </ul>
 <pre class="r"><code>graph&lt;-function(data){
   data %&gt;%
@@ -927,9 +1029,14 @@ df2 &lt;- df1 %&gt;%
   mutate(figure = map(data,graph))</code></pre>
 </div>
 <div id="variables-calculated" class="section level3" number="0.4.2">
-<h3><span class="header-section-number">0.4.2</span> Variables calculated</h3>
+<h3><span class="header-section-number">0.4.2</span> Variables
+calculated</h3>
 <p>A stable period is then chosen to average.</p>
-<p>Some information required for the calculations includes the Area of skin surface on the manikin (Ask), which is <code>0.0978</code> in meters squared. regexpr(“.csv”,df1<span class="math inline">\(filepath[[1]) regexpr(&quot;round&quot;,cleandata\)</span>filepath)+6</p>
+<p>Some information required for the calculations includes the Area of
+skin surface on the manikin (Ask), which is <code>0.0978</code> in
+meters squared. regexpr(“.csv”,df1<span
+class="math inline">\(filepath[[1])
+regexpr(&quot;round&quot;,cleandata\)</span>filepath)+6</p>
 <pre class="r"><code>time &lt;- read_csv(F(&quot;data/raw_manikin_output/Manikin_start_end_times.csv&quot;))
 round&lt;- paste(&quot;round_&quot;,time$Round, sep = &quot;&quot;)
 filenames&lt;- paste(time$Filename,&quot;.csv&quot;,sep = &quot;&quot;)
@@ -957,29 +1064,33 @@ calculated&lt;- function(datac){
 
 df4&lt;-df3 %&gt;%
   mutate(data2 = map(datac,calculated))</code></pre>
-<p>Two additional variables are calculated: <code>heat_resistance</code> and <code>clo</code>. Both are measures of insulation.</p>
-<p>Heat resistance is calculated from the difference between the surface temperature and the ambient temperature</p>
+<p>Two additional variables are calculated: <code>heat_resistance</code>
+and <code>clo</code>. Both are measures of insulation.</p>
+<p>Heat resistance is calculated from the difference between the surface
+temperature and the ambient temperature</p>
 <ul>
 <li></li>
 </ul>
 <p>Other calculations</p>
 <p>net solar influx (W/m2) is calculated as:</p>
-<p><span class="math display">\[heatflux_{(radiation)}- heatflux_{(no \ radiation)}\]</span></p>
+<p><span class="math display">\[heatflux_{(radiation)}- heatflux_{(no \
+radiation)}\]</span></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
-<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.2 (2021-11-01)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Big Sur 10.16
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Monterey 12.3
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -989,27 +1100,36 @@ attached base packages:
 
 other attached packages:
  [1] fs_1.5.2        janitor_2.1.0   lubridate_1.8.0 forcats_0.5.1  
- [5] stringr_1.4.0   dplyr_1.0.8     purrr_0.3.4     readr_2.0.2    
- [9] tidyr_1.1.4     tibble_3.1.6    ggplot2_3.3.5   tidyverse_1.3.1
-[13] workflowr_1.6.2
+ [5] stringr_1.4.0   dplyr_1.0.9     purrr_0.3.4     readr_2.1.2    
+ [9] tidyr_1.2.0     tibble_3.1.8    ggplot2_3.3.6   tidyverse_1.3.2
+[13] workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.7       assertthat_0.2.1 rprojroot_2.0.2  digest_0.6.28   
- [5] utf8_1.2.2       R6_2.5.1         cellranger_1.1.0 backports_1.2.1 
- [9] reprex_2.0.1     evaluate_0.14    highr_0.9        httr_1.4.2      
-[13] pillar_1.6.4     rlang_1.0.2      readxl_1.3.1     rstudioapi_0.13 
-[17] whisker_0.4      jquerylib_0.1.4  rmarkdown_2.11   bit_4.0.4       
-[21] munsell_0.5.0    broom_0.7.12     compiler_4.1.2   httpuv_1.6.3    
-[25] modelr_0.1.8     xfun_0.29        pkgconfig_2.0.3  htmltools_0.5.2 
-[29] tidyselect_1.1.1 fansi_0.5.0      crayon_1.4.1     tzdb_0.1.2      
-[33] dbplyr_2.1.1     withr_2.4.2      later_1.3.0      grid_4.1.2      
-[37] jsonlite_1.7.2   gtable_0.3.0     lifecycle_1.0.1  DBI_1.1.1       
-[41] git2r_0.28.0     magrittr_2.0.2   scales_1.1.1     vroom_1.5.5     
-[45] cli_3.2.0        stringi_1.7.5    promises_1.2.0.1 snakecase_0.11.0
-[49] xml2_1.3.2       ellipsis_0.3.2   generics_0.1.0   vctrs_0.3.8     
-[53] tools_4.1.2      bit64_4.0.5      glue_1.6.2       hms_1.1.1       
-[57] parallel_4.1.2   fastmap_1.1.0    yaml_2.2.1       colorspace_2.0-2
-[61] rvest_1.0.2      knitr_1.37       haven_2.4.3     </code></pre>
+ [1] httr_1.4.3          sass_0.4.2          bit64_4.0.5        
+ [4] vroom_1.5.7         jsonlite_1.8.0      modelr_0.1.8       
+ [7] bslib_0.4.0         assertthat_0.2.1    getPass_0.2-2      
+[10] highr_0.9           googlesheets4_1.0.0 cellranger_1.1.0   
+[13] yaml_2.3.5          pillar_1.8.0        backports_1.4.1    
+[16] glue_1.6.2          digest_0.6.29       promises_1.2.0.1   
+[19] rvest_1.0.2         snakecase_0.11.0    colorspace_2.0-3   
+[22] htmltools_0.5.3     httpuv_1.6.5        pkgconfig_2.0.3    
+[25] broom_1.0.0         haven_2.5.0         scales_1.2.0       
+[28] processx_3.7.0      whisker_0.4         later_1.3.0        
+[31] tzdb_0.3.0          git2r_0.30.1        googledrive_2.0.0  
+[34] generics_0.1.3      ellipsis_0.3.2      cachem_1.0.6       
+[37] withr_2.5.0         cli_3.3.0           magrittr_2.0.3     
+[40] crayon_1.5.1        readxl_1.4.0        evaluate_0.16      
+[43] ps_1.7.1            fansi_1.0.3         xml2_1.3.3         
+[46] tools_4.2.1         hms_1.1.1           gargle_1.2.0       
+[49] lifecycle_1.0.1     munsell_0.5.0       reprex_2.0.1       
+[52] callr_3.7.1         compiler_4.2.1      jquerylib_0.1.4    
+[55] rlang_1.0.4         grid_4.2.1          rstudioapi_0.13    
+[58] rmarkdown_2.14      gtable_0.3.0        DBI_1.1.3          
+[61] R6_2.5.1            knitr_1.39          fastmap_1.1.0      
+[64] bit_4.0.4           utf8_1.2.2          rprojroot_2.0.3    
+[67] stringi_1.7.8       parallel_4.2.1      Rcpp_1.0.9         
+[70] vctrs_0.4.1         dbplyr_2.2.1        tidyselect_1.1.2   
+[73] xfun_0.32          </code></pre>
 </div>
 </div>
 </div>
@@ -1017,7 +1137,7 @@ loaded via a namespace (and not attached):
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->

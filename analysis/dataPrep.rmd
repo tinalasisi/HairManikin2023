@@ -1,8 +1,39 @@
+---
+title: "Analysis"
+author: "Tina Lasisi"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  workflowr::wflow_html:
+    toc: yes
+    number_sections: yes
+editor_options:
+  chunk_output_type: console
+---
+
 ```{r setup, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(tidyverse)
+library(knitr)
+library(fs)
+library(gridExtra)
+library(patchwork)
+library(broom.mixed)
+library(huxtable)
+library(jtools)
 library(readxl)
 library(dplyr)
 
 F = rprojroot::is_rstudio_project$make_fix_file()
+# knitting to pdf
+# rmarkdown::render(input = "analysis/analysis.Rmd", output_format = "pdf_document", output_dir = "output")
+F = rprojroot::is_rstudio_project$make_fix_file()
+palettedf <- tibble(paletteer::palettes_d_names)
+# filter(.data = palettedf, length > 10 & type == "qualitative")
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, eval = TRUE, warning = FALSE, message = FALSE, fig.retina = 2, fig.width = 8, fig.height = 6)
+
+knitr::opts_knit$set(root.dir = "..")
+```
+
+```{r df, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 
 df <- read_excel(F("data/current/March2022Sheet.xlsx"), sheet = 1)
 
