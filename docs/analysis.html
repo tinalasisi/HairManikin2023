@@ -11,7 +11,7 @@
 
 <meta name="author" content="Tina Lasisi" />
 
-<meta name="date" content="2022-08-12" />
+<meta name="date" content="2022-10-13" />
 
 <title>Analysis</title>
 
@@ -359,7 +359,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Analysis</h1>
 <h4 class="author">Tina Lasisi</h4>
-<h4 class="date">August 12, 2022</h4>
+<h4 class="date">October 13, 2022</h4>
 
 </div>
 
@@ -367,7 +367,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -378,8 +378,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -388,13 +388,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-08-12
+<strong>Last updated:</strong> 2022-10-13
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>HairManikin2022/</code> <span
@@ -417,21 +417,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -522,15 +519,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treec817e49e2414e8907507f9e13023302fb28e2316targetblankc817e49a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treeb4e6cdd8e92b0295cc7d6ea1a4fe6e232a0fc506targetblankb4e6cdda">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/tinalasisi/HairManikin2022/tree/c817e49e2414e8907507f9e13023302fb28e2316" target="_blank">c817e49</a>
+<a href="https://github.com/tinalasisi/HairManikin2022/tree/b4e6cdd8e92b0295cc7d6ea1a4fe6e232a0fc506" target="_blank">b4e6cdd</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treec817e49e2414e8907507f9e13023302fb28e2316targetblankc817e49a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treeb4e6cdd8e92b0295cc7d6ea1a4fe6e232a0fc506targetblankb4e6cdda"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -540,7 +537,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/tinalasisi/HairManikin2022/tree/c817e49e2414e8907507f9e13023302fb28e2316" target="_blank">c817e49</a>.
+<a href="https://github.com/tinalasisi/HairManikin2022/tree/b4e6cdd8e92b0295cc7d6ea1a4fe6e232a0fc506" target="_blank">b4e6cdd</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -559,9 +556,11 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
 
-Unstaged changes:
-    Modified:   analysis/analysis.Rmd
-    Modified:   analysis/dataPrep.rmd
+Untracked files:
+    Untracked:  Rplot.png
+    Untracked:  output/sweat_combo_plot.png
+    Untracked:  output/v2_manuscript_plt1.png
+    Untracked:  output/v2_manuscript_plt2.png
 
 </code></pre>
 <p>
@@ -607,6 +606,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/b4e6cdd8e92b0295cc7d6ea1a4fe6e232a0fc506/analysis/analysis.Rmd" target="_blank">b4e6cdd</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-10-13
+</td>
+<td>
+wflow_publish("analysis/analysis.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/analysis/analysis.Rmd" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+<td>
+Website updated
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/224e8109af3e6915638c7561496f1f55ad55dd29/docs/analysis.html" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+<td>
+Website updated
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1234,6 +1284,43 @@ head(df_wetdry)</code></pre>
 </table>
 
 <p><img src="figure/analysis.Rmd/General-Plots-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-General-Plots-1">
+Past versions of General-Plots-1.png
+</button>
+</p>
+<div id="fig-General-Plots-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/General-Plots-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="removing-outlier" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Removing Outlier</h2>
 <p>It was noticed that the 2nd trial conducted with wet, tightly curled
@@ -1244,6 +1331,43 @@ point.</p>
 <pre class="r"><code># Remove specific entry
 df_wetdry &lt;- df_wetdry %&gt;% filter(!(wig == &quot;Tightly\nCurled&quot; &amp; wind == 2.5 &amp; radiation == &quot;on&quot; &amp; wet_dry == &quot;wet&quot; &amp; trial == &quot;1&quot;))</code></pre>
 <p><img src="figure/analysis.Rmd/General-After-Outlier-Removal-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-General-After-Outlier-Removal-1">
+Past versions of General-After-Outlier-Removal-1.png
+</button>
+</p>
+<div id="fig-General-After-Outlier-Removal-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/General-After-Outlier-Removal-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="regression-models" class="section level1" number="2">
@@ -1263,12 +1387,12 @@ Residuals:
 -8.0303 -3.9809  0.1861  2.6542 14.6310 
 
 Coefficients:
-                    Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           46.156      2.250   20.52  &lt; 2e-16 ***
-wind                  11.270      1.009   11.17 2.13e-12 ***
-wigStraight          -40.341      2.618  -15.41 4.46e-16 ***
-wigSlightly\nCurled  -40.747      2.618  -15.56 3.38e-16 ***
-wigTightly\nCurled   -38.362      2.618  -14.65 1.76e-15 ***
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)             46.156      2.250   20.52  &lt; 2e-16 ***
+wind                    11.270      1.009   11.17 2.13e-12 ***
+wigStraight            -40.341      2.618  -15.41 4.46e-16 ***
+wigModerately\nCurled  -40.747      2.618  -15.56 3.38e-16 ***
+wigTightly\nCurled     -38.362      2.618  -14.65 1.76e-15 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -1290,12 +1414,12 @@ Residuals:
 -13.6776  -4.8542  -0.0306   3.3559  19.1058 
 
 Coefficients:
-                    Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         -129.327      2.835  -45.61  &lt; 2e-16 ***
-wind                  17.406      1.271   13.69  1.1e-14 ***
-wigStraight           69.844      3.300   21.16  &lt; 2e-16 ***
-wigSlightly\nCurled   91.558      3.300   27.74  &lt; 2e-16 ***
-wigTightly\nCurled   113.668      3.300   34.44  &lt; 2e-16 ***
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           -129.327      2.835  -45.61  &lt; 2e-16 ***
+wind                    17.406      1.271   13.69  1.1e-14 ***
+wigStraight             69.844      3.300   21.16  &lt; 2e-16 ***
+wigModerately\nCurled   91.558      3.300   27.74  &lt; 2e-16 ***
+wigTightly\nCurled     113.668      3.300   34.44  &lt; 2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -1319,12 +1443,12 @@ Residuals:
 -8.079 -3.816  1.087  2.763  9.105 
 
 Coefficients:
-                     Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)          175.4829     2.0133  87.161  &lt; 2e-16 ***
-wind                  -6.1369     0.9028  -6.798  1.3e-07 ***
-wigStraight         -110.1848     2.3434 -47.019  &lt; 2e-16 ***
-wigSlightly\nCurled -132.3051     2.3434 -56.459  &lt; 2e-16 ***
-wigTightly\nCurled  -152.0302     2.3434 -64.876  &lt; 2e-16 ***
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            175.4829     2.0133  87.161  &lt; 2e-16 ***
+wind                    -6.1369     0.9028  -6.798  1.3e-07 ***
+wigStraight           -110.1848     2.3434 -47.019  &lt; 2e-16 ***
+wigModerately\nCurled -132.3051     2.3434 -56.459  &lt; 2e-16 ***
+wigTightly\nCurled    -152.0302     2.3434 -64.876  &lt; 2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -1354,7 +1478,7 @@ loss regression models</h3>
 <tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-45.68, -35.00]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[63.11, 76.58]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-114.96, -105.41]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigSlightly<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.75 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">91.56 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-132.31 ***</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigModerately<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.75 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">91.56 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-132.31 ***</td></tr>
 <tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-46.09, -35.41]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[84.83, 98.29]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-137.08, -127.53]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
@@ -1397,6 +1521,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/tinalasisi/HairManikin2022/blob/6e7065986c03ae28795d86cbddb4745a4702a795/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">6e70659</a>
@@ -1458,12 +1593,12 @@ Residuals:
 -32.382  -6.006   2.673   5.870  40.839 
 
 Coefficients:
-                    Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)          171.043      9.132   18.73 8.71e-13 ***
-wind                  42.585      3.929   10.84 4.69e-09 ***
-wigStraight         -116.024     10.179  -11.40 2.20e-09 ***
-wigSlightly\nCurled -129.170     10.179  -12.69 4.26e-10 ***
-wigTightly\nCurled  -134.409     10.695  -12.57 4.95e-10 ***
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            171.043      9.132   18.73 8.71e-13 ***
+wind                    42.585      3.929   10.84 4.69e-09 ***
+wigStraight           -116.024     10.179  -11.40 2.20e-09 ***
+wigModerately\nCurled -129.170     10.179  -12.69 4.26e-10 ***
+wigTightly\nCurled    -134.409     10.695  -12.57 4.95e-10 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -1483,12 +1618,12 @@ Residuals:
 -47.426 -11.303   4.423   6.822  54.290 
 
 Coefficients:
-                    Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)          117.541     12.726   9.236 4.90e-08 ***
-wind                  55.445      5.475  10.127 1.29e-08 ***
-wigStraight         -106.632     14.186  -7.517 8.44e-07 ***
-wigSlightly\nCurled -113.898     14.186  -8.029 3.48e-07 ***
-wigTightly\nCurled  -123.891     14.905  -8.312 2.16e-07 ***
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            117.541     12.726   9.236 4.90e-08 ***
+wind                    55.445      5.475  10.127 1.29e-08 ***
+wigStraight           -106.632     14.186  -7.517 8.44e-07 ***
+wigModerately\nCurled -113.898     14.186  -8.029 3.48e-07 ***
+wigTightly\nCurled    -123.891     14.905  -8.312 2.16e-07 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -1509,12 +1644,12 @@ Residuals:
 -13.4512  -4.2205  -0.7951   3.9758  15.0438 
 
 Coefficients:
-                    Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           53.502      4.585  11.669 1.54e-09 ***
-wind                 -12.860      1.973  -6.520 5.24e-06 ***
-wigStraight           -9.392      5.111  -1.838  0.08368 .  
-wigSlightly\nCurled  -15.272      5.111  -2.988  0.00826 ** 
-wigTightly\nCurled   -10.518      5.370  -1.959  0.06676 .  
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)             53.502      4.585  11.669 1.54e-09 ***
+wind                   -12.860      1.973  -6.520 5.24e-06 ***
+wigStraight             -9.392      5.111  -1.838  0.08368 .  
+wigModerately\nCurled  -15.272      5.111  -2.988  0.00826 ** 
+wigTightly\nCurled     -10.518      5.370  -1.959  0.06676 .  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -1544,7 +1679,7 @@ evaporative heat loss regression models</h3>
 <tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-137.50, -94.55]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-136.56, -76.70]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-20.17, 1.39]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigSlightly<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-129.17 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-113.90 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-15.27 **&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigModerately<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-129.17 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-113.90 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-15.27 **&nbsp;</td></tr>
 <tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-150.65, -107.69]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-143.83, -83.97]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-26.06, -4.49]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
@@ -1587,6 +1722,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/tinalasisi/HairManikin2022/blob/6e7065986c03ae28795d86cbddb4745a4702a795/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">6e70659</a>
@@ -1639,6 +1785,43 @@ T_{Air}}{H_{Dry}}\]</span></p>
 # For the dry data, leave this blank
 df_wetdry &lt;- df_wetdry %&gt;% mutate(dry_heat_resistance = ifelse(wet_dry == &#39;wet&#39;, NaN, dry_heat_resistance))</code></pre>
 <p><img src="figure/analysis.Rmd/Thermal-Resistance-Plots-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Thermal-Resistance-Plots-1">
+Past versions of Thermal-Resistance-Plots-1.png
+</button>
+</p>
+<div id="fig-Thermal-Resistance-Plots-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/Thermal-Resistance-Plots-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="calculating-net-solar-influx" class="section level1"
 number="4">
@@ -1666,7 +1849,82 @@ df_net_influx_plots &lt;- df_radiation_split %&gt;%
             net_influx = heat_loss_off - heat_loss_on) 
 
 df_net_influx &lt;- df_net_influx_plots %&gt;%  spread(wet_dry, net_influx)</code></pre>
-<p><img src="figure/analysis.Rmd/net-solar-influx-plts-1.png" width="768" style="display: block; margin: auto;" /><img src="figure/analysis.Rmd/net-solar-influx-plts-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/analysis.Rmd/net-solar-influx-plts-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-net-solar-influx-plts-1">
+Past versions of net-solar-influx-plts-1.png
+</button>
+</p>
+<div id="fig-net-solar-influx-plts-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/net-solar-influx-plts-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/analysis.Rmd/net-solar-influx-plts-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-net-solar-influx-plts-2">
+Past versions of net-solar-influx-plts-2.png
+</button>
+</p>
+<div id="fig-net-solar-influx-plts-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/net-solar-influx-plts-2.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="adjusting-heat-losses-to-30-degrees-celsius"
 class="section level1" number="5">
@@ -1721,7 +1979,82 @@ df_adjusted_solar[&#39;wet_heat_loss&#39;] &lt;-  + heat_evap$heat_loss_on + df_
 
 df_adjusted_solar_plots &lt;-df_adjusted_solar %&gt;% 
   pivot_longer(cols = c(&#39;dry_heat_loss&#39;, &#39;wet_heat_loss&#39;), names_to = &#39;wet_dry&#39;, values_to = &#39;heat_loss&#39;)</code></pre>
-<p><img src="figure/analysis.Rmd/plt-heatloss-radiation-1.png" width="768" style="display: block; margin: auto;" /><img src="figure/analysis.Rmd/plt-heatloss-radiation-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/analysis.Rmd/plt-heatloss-radiation-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plt-heatloss-radiation-1">
+Past versions of plt-heatloss-radiation-1.png
+</button>
+</p>
+<div id="fig-plt-heatloss-radiation-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-heatloss-radiation-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/analysis.Rmd/plt-heatloss-radiation-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plt-heatloss-radiation-2">
+Past versions of plt-heatloss-radiation-2.png
+</button>
+</p>
+<div id="fig-plt-heatloss-radiation-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-heatloss-radiation-2.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="calculating-evaporative-potential" class="section level1"
@@ -1759,6 +2092,43 @@ colnames(df_sweat_requirements) &lt;- c(&#39;sweat_max&#39;, &#39;sweat_zero&#39
 #Replace all values less than 0 with 0 per formula
 df_sweat_requirements[&#39;sweat_zero&#39;][df_sweat_requirements[&#39;sweat_zero&#39;] &lt; 0] &lt;- 0</code></pre>
 <p><img src="figure/analysis.Rmd/plt-sweat-req-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plt-sweat-req-1">
+Past versions of plt-sweat-req-1.png
+</button>
+</p>
+<div id="fig-plt-sweat-req-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-sweat-req-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1769,7 +2139,7 @@ Session information
 <div id="workflowr-sessioninfo" class="collapse">
 <pre><code>R version 4.2.1 (2022-06-23)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Monterey 12.3
+Running under: macOS Monterey 12.6
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
