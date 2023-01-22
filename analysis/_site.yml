@@ -1,7 +1,7 @@
-name: "HairManikin_manuscript"
+name: "HairManikin2023"
 output_dir: ../docs
 navbar:
-  title: "HairManikin_manuscript"
+  title: "Hair Manikin Study 2023"
   left:
   - text: Home
     href: index.html
