@@ -11,11 +11,11 @@
 
 <meta name="author" content="Tina Lasisi" />
 
-<meta name="date" content="2022-10-14" />
+<meta name="date" content="2023-01-21" />
 
 <title>Analysis</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -156,11 +156,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -189,8 +193,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -198,16 +202,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -329,7 +326,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">HairManikin_manuscript</a>
+      <a class="navbar-brand" href="index.html">Hair Manikin Study 2023</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -359,7 +356,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Analysis</h1>
 <h4 class="author">Tina Lasisi</h4>
-<h4 class="date">October 14, 2022</h4>
+<h4 class="date">January 21, 2023</h4>
 
 </div>
 
@@ -388,7 +385,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-10-14
+<strong>Last updated:</strong> 2023-01-21
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -397,7 +394,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>HairManikin2022/</code> <span
+<strong>Knit directory:</strong> <code>HairManikin2023/</code> <span
 class="glyphicon glyphicon-question-sign" aria-hidden="true"
 title="This is the local directory in which the code in this file was executed.">
 </span>
@@ -519,15 +516,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022tree229763699a54bd64b496846ca6b9135abe765a92targetblank2297636a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2023tree979b33ec9e5399c6db8d950828e56cddd647490atargetblank979b33ea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/tinalasisi/HairManikin2022/tree/229763699a54bd64b496846ca6b9135abe765a92" target="_blank">2297636</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/tree/979b33ec9e5399c6db8d950828e56cddd647490a" target="_blank">979b33e</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022tree229763699a54bd64b496846ca6b9135abe765a92targetblank2297636a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2023tree979b33ec9e5399c6db8d950828e56cddd647490atargetblank979b33ea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -537,7 +534,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/tinalasisi/HairManikin2022/tree/229763699a54bd64b496846ca6b9135abe765a92" target="_blank">2297636</a>.
+<a href="https://github.com/tinalasisi/HairManikin2023/tree/979b33ec9e5399c6db8d950828e56cddd647490a" target="_blank">979b33e</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -552,12 +549,12 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
 
-Untracked files:
-    Untracked:  output/v2_manuscriplt_plt_influx.png
+Unstaged changes:
+    Modified:   analysis/_site.yml
+    Modified:   output/sweat_combo_plot.png
+    Modified:   output/v2_manuscriplt_plt_influx.png
 
 </code></pre>
 <p>
@@ -608,7 +605,41 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/229763699a54bd64b496846ca6b9135abe765a92/analysis/analysis.Rmd" target="_blank">2297636</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/979b33ec9e5399c6db8d950828e56cddd647490a/analysis/analysis.Rmd" target="_blank">979b33e</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-11-26
+</td>
+<td>
+update analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/921a4d19e4332de1fcb7dce6f88c25efe2ea4a6e/docs/analysis.html" target="_blank">921a4d1</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-10-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/229763699a54bd64b496846ca6b9135abe765a92/analysis/analysis.Rmd" target="_blank">2297636</a>
 </td>
 <td>
 Tina Lasisi
@@ -625,7 +656,7 @@ wflow_publish("analysis/analysis.Rmd")
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/analysis.html" target="_blank">43ec126</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/analysis.html" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -642,7 +673,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/b4e6cdd8e92b0295cc7d6ea1a4fe6e232a0fc506/analysis/analysis.Rmd" target="_blank">b4e6cdd</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/b4e6cdd8e92b0295cc7d6ea1a4fe6e232a0fc506/analysis/analysis.Rmd" target="_blank">b4e6cdd</a>
 </td>
 <td>
 Tina Lasisi
@@ -659,7 +690,7 @@ wflow_publish("analysis/analysis.Rmd")
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/analysis/analysis.Rmd" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/analysis/analysis.Rmd" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -676,7 +707,7 @@ Website updated
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/224e8109af3e6915638c7561496f1f55ad55dd29/docs/analysis.html" target="_blank">224e810</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/224e8109af3e6915638c7561496f1f55ad55dd29/docs/analysis.html" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -693,7 +724,7 @@ Website updated
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/c817e49e2414e8907507f9e13023302fb28e2316/analysis/analysis.Rmd" target="_blank">c817e49</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/c817e49e2414e8907507f9e13023302fb28e2316/analysis/analysis.Rmd" target="_blank">c817e49</a>
 </td>
 <td>
 Tina Lasisi
@@ -710,7 +741,7 @@ Finalized figures
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/a776080b202cd274244f07c55d15f09f8b5048c5/analysis/analysis.Rmd" target="_blank">a776080</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/a776080b202cd274244f07c55d15f09f8b5048c5/analysis/analysis.Rmd" target="_blank">a776080</a>
 </td>
 <td>
 Tina Lasisi
@@ -727,7 +758,7 @@ Updated manuscript figures
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/f4e92555186836a732a5d9732fc5c25c99677ac0/analysis/analysis.Rmd" target="_blank">f4e9255</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/f4e92555186836a732a5d9732fc5c25c99677ac0/analysis/analysis.Rmd" target="_blank">f4e9255</a>
 </td>
 <td>
 Tina Lasisi
@@ -744,7 +775,7 @@ Updated figures and saved manuscript fig
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/637ecd53228e171fcbd4b1bd3cdbdb2e47dca015/analysis/analysis.Rmd" target="_blank">637ecd5</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/637ecd53228e171fcbd4b1bd3cdbdb2e47dca015/analysis/analysis.Rmd" target="_blank">637ecd5</a>
 </td>
 <td>
 Tina Lasisi
@@ -761,7 +792,7 @@ Update analysis.Rmd
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/0efd834708d043d201afeeebf33d3ecacfbdec2e/analysis/analysis.Rmd" target="_blank">0efd834</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/0efd834708d043d201afeeebf33d3ecacfbdec2e/analysis/analysis.Rmd" target="_blank">0efd834</a>
 </td>
 <td>
 Tina Lasisi
@@ -778,7 +809,7 @@ Update analysis.Rmd
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/39c5f2957371a10887ac984eb37982dc37379f62/analysis/analysis.Rmd" target="_blank">39c5f29</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/39c5f2957371a10887ac984eb37982dc37379f62/analysis/analysis.Rmd" target="_blank">39c5f29</a>
 </td>
 <td>
 Ben Zydney
@@ -795,7 +826,7 @@ Fixed data input.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/39c5f2957371a10887ac984eb37982dc37379f62/docs/analysis.html" target="_blank">39c5f29</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/39c5f2957371a10887ac984eb37982dc37379f62/docs/analysis.html" target="_blank">39c5f29</a>
 </td>
 <td>
 Ben Zydney
@@ -812,7 +843,7 @@ Fixed data input.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/60ac80ebbcab4e6ff3f059f82b27285690165ade/analysis/analysis.Rmd" target="_blank">60ac80e</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/60ac80ebbcab4e6ff3f059f82b27285690165ade/analysis/analysis.Rmd" target="_blank">60ac80e</a>
 </td>
 <td>
 Ben Zydney
@@ -831,7 +862,7 @@ class="uri">https://github.com/tinalasisi/HairManikin2022</a>
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/3a1d68cf44853b697e00dfc0536943e9ad45894e/analysis/analysis.Rmd" target="_blank">3a1d68c</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/3a1d68cf44853b697e00dfc0536943e9ad45894e/analysis/analysis.Rmd" target="_blank">3a1d68c</a>
 </td>
 <td>
 Ben Zydney
@@ -848,7 +879,7 @@ Updated analysis folder.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/3a1d68cf44853b697e00dfc0536943e9ad45894e/docs/analysis.html" target="_blank">3a1d68c</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/3a1d68cf44853b697e00dfc0536943e9ad45894e/docs/analysis.html" target="_blank">3a1d68c</a>
 </td>
 <td>
 Ben Zydney
@@ -865,7 +896,7 @@ Updated analysis folder.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/78fb2fecfa3afacf6ee64f051bffbed28d9fe351/analysis/analysis.Rmd" target="_blank">78fb2fe</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/78fb2fecfa3afacf6ee64f051bffbed28d9fe351/analysis/analysis.Rmd" target="_blank">78fb2fe</a>
 </td>
 <td>
 Tina Lasisi
@@ -882,7 +913,7 @@ Updated plots + libraries
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/6e7065986c03ae28795d86cbddb4745a4702a795/docs/analysis.html" target="_blank">6e70659</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/6e7065986c03ae28795d86cbddb4745a4702a795/docs/analysis.html" target="_blank">6e70659</a>
 </td>
 <td>
 Ben Zydney
@@ -899,7 +930,7 @@ Updated Website
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/9db041e4b6398afa36bb09bf3116a804878d70c2/analysis/analysis.Rmd" target="_blank">9db041e</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/9db041e4b6398afa36bb09bf3116a804878d70c2/analysis/analysis.Rmd" target="_blank">9db041e</a>
 </td>
 <td>
 Ben Zydney
@@ -916,7 +947,7 @@ Reworked hair analysis calculations.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/dd0e722ee11be49f29de3d25c534eab452fd10b2/analysis/analysis.Rmd" target="_blank">dd0e722</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/dd0e722ee11be49f29de3d25c534eab452fd10b2/analysis/analysis.Rmd" target="_blank">dd0e722</a>
 </td>
 <td>
 Tina Lasisi
@@ -933,7 +964,7 @@ edited df creation
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/dd0e722ee11be49f29de3d25c534eab452fd10b2/docs/analysis.html" target="_blank">dd0e722</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/dd0e722ee11be49f29de3d25c534eab452fd10b2/docs/analysis.html" target="_blank">dd0e722</a>
 </td>
 <td>
 Tina Lasisi
@@ -950,7 +981,7 @@ edited df creation
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/210cee300a13bf9d51874d5fe474131de6e909a4/analysis/analysis.Rmd" target="_blank">210cee3</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/210cee300a13bf9d51874d5fe474131de6e909a4/analysis/analysis.Rmd" target="_blank">210cee3</a>
 </td>
 <td>
 Tina Lasisi
@@ -967,7 +998,7 @@ updated figure size
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/210cee300a13bf9d51874d5fe474131de6e909a4/docs/analysis.html" target="_blank">210cee3</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/210cee300a13bf9d51874d5fe474131de6e909a4/docs/analysis.html" target="_blank">210cee3</a>
 </td>
 <td>
 Tina Lasisi
@@ -984,7 +1015,7 @@ updated figure size
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/bf62a0754a7efad116c570d83df56ef2324682ac/analysis/analysis.Rmd" target="_blank">bf62a07</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/bf62a0754a7efad116c570d83df56ef2324682ac/analysis/analysis.Rmd" target="_blank">bf62a07</a>
 </td>
 <td>
 Tina Lasisi
@@ -1001,7 +1032,7 @@ Updating analyses + figures
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/bf62a0754a7efad116c570d83df56ef2324682ac/docs/analysis.html" target="_blank">bf62a07</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/bf62a0754a7efad116c570d83df56ef2324682ac/docs/analysis.html" target="_blank">bf62a07</a>
 </td>
 <td>
 Tina Lasisi
@@ -1018,7 +1049,7 @@ Updating analyses + figures
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/1a1f7bcec15fb8e0f805f7a2e340d01ae66066df/docs/analysis.html" target="_blank">1a1f7bc</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/1a1f7bcec15fb8e0f805f7a2e340d01ae66066df/docs/analysis.html" target="_blank">1a1f7bc</a>
 </td>
 <td>
 Tina Lasisi
@@ -1035,7 +1066,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/7478e4c3ccd86466e8836b3cf9ab141488325169/analysis/analysis.Rmd" target="_blank">7478e4c</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/7478e4c3ccd86466e8836b3cf9ab141488325169/analysis/analysis.Rmd" target="_blank">7478e4c</a>
 </td>
 <td>
 Tina Lasisi
@@ -1052,7 +1083,7 @@ updating analyses with models
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/analysis.html" target="_blank">c0ce5d2</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/analysis.html" target="_blank">c0ce5d2</a>
 </td>
 <td>
 Tina Lasisi
@@ -1069,7 +1100,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/4041aec07ff991f3b62a11670ec42a79e5e647e2/analysis/analysis.Rmd" target="_blank">4041aec</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/4041aec07ff991f3b62a11670ec42a79e5e647e2/analysis/analysis.Rmd" target="_blank">4041aec</a>
 </td>
 <td>
 Tina Lasisi
@@ -1086,7 +1117,7 @@ wflow_publish(files = "analysis/*", all = TRUE, republish = TRUE,
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/4041aec07ff991f3b62a11670ec42a79e5e647e2/docs/analysis.html" target="_blank">4041aec</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/4041aec07ff991f3b62a11670ec42a79e5e647e2/docs/analysis.html" target="_blank">4041aec</a>
 </td>
 <td>
 Tina Lasisi
@@ -1103,7 +1134,7 @@ wflow_publish(files = "analysis/*", all = TRUE, republish = TRUE,
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/a796ceb70413899af7154a4f526e63bba83d501d/analysis/analysis.Rmd" target="_blank">a796ceb</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/a796ceb70413899af7154a4f526e63bba83d501d/analysis/analysis.Rmd" target="_blank">a796ceb</a>
 </td>
 <td>
 Ginawsy
@@ -1120,7 +1151,7 @@ updated sum_manikin_df variable
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/520dcfca106833292595eec7e0b18712a3fd283f/analysis/analysis.Rmd" target="_blank">520dcfc</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/520dcfca106833292595eec7e0b18712a3fd283f/analysis/analysis.Rmd" target="_blank">520dcfc</a>
 </td>
 <td>
 GitHub
@@ -1137,7 +1168,7 @@ Update analysis.Rmd
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/9c5b0d86d638b5c8d14208e36baee75f17d40d6e/analysis/analysis.Rmd" target="_blank">9c5b0d8</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/9c5b0d86d638b5c8d14208e36baee75f17d40d6e/analysis/analysis.Rmd" target="_blank">9c5b0d8</a>
 </td>
 <td>
 Tina Lasisi
@@ -1154,7 +1185,7 @@ Update analysis + figures
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/9c5b0d86d638b5c8d14208e36baee75f17d40d6e/docs/analysis.html" target="_blank">9c5b0d8</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/9c5b0d86d638b5c8d14208e36baee75f17d40d6e/docs/analysis.html" target="_blank">9c5b0d8</a>
 </td>
 <td>
 Tina Lasisi
@@ -1171,7 +1202,7 @@ Update analysis + figures
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/e9fa430aae2d237d57bbb287ca40b2c9cbee84ac/analysis/analysis.Rmd" target="_blank">e9fa430</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/e9fa430aae2d237d57bbb287ca40b2c9cbee84ac/analysis/analysis.Rmd" target="_blank">e9fa430</a>
 </td>
 <td>
 GitHub
@@ -1188,7 +1219,7 @@ Update analysis.Rmd
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/bb367202470261504c0355fb04ca3ce5ee3b50fc/docs/analysis.html" target="_blank">bb36720</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/bb367202470261504c0355fb04ca3ce5ee3b50fc/docs/analysis.html" target="_blank">bb36720</a>
 </td>
 <td>
 Tina Lasisi
@@ -1205,7 +1236,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/05389ae9a05378be6fea1679c7d4914e36072201/analysis/analysis.Rmd" target="_blank">05389ae</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/05389ae9a05378be6fea1679c7d4914e36072201/analysis/analysis.Rmd" target="_blank">05389ae</a>
 </td>
 <td>
 Tina Lasisi
@@ -1222,7 +1253,7 @@ Added figures + analysis placeholders
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/05389ae9a05378be6fea1679c7d4914e36072201/docs/analysis.html" target="_blank">05389ae</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/05389ae9a05378be6fea1679c7d4914e36072201/docs/analysis.html" target="_blank">05389ae</a>
 </td>
 <td>
 Tina Lasisi
@@ -1239,7 +1270,7 @@ Added figures + analysis placeholders
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/bb99f1dce5a475cfeca059fc0a0004ca480a3771/analysis/analysis.Rmd" target="_blank">bb99f1d</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/bb99f1dce5a475cfeca059fc0a0004ca480a3771/analysis/analysis.Rmd" target="_blank">bb99f1d</a>
 </td>
 <td>
 Tina Lasisi
@@ -1256,7 +1287,7 @@ Update analysis.rmd + add data
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/bb99f1dce5a475cfeca059fc0a0004ca480a3771/docs/analysis.html" target="_blank">bb99f1d</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/bb99f1dce5a475cfeca059fc0a0004ca480a3771/docs/analysis.html" target="_blank">bb99f1d</a>
 </td>
 <td>
 Tina Lasisi
@@ -1273,7 +1304,7 @@ Update analysis.rmd + add data
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/0a50ef7d090d17c46a1975feb02e8f06552ba632/analysis/analysis.Rmd" target="_blank">0a50ef7</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/0a50ef7d090d17c46a1975feb02e8f06552ba632/analysis/analysis.Rmd" target="_blank">0a50ef7</a>
 </td>
 <td>
 Tina Lasisi
@@ -1303,13 +1334,13 @@ head(df_wetdry)</code></pre>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.3</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">90.9</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4.36e-08</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.81e-07</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">45.8</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.3</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">86.7</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00121&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00782&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34.1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">45.8</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.3</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">86.7</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00121&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00782&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34.1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">45.8</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">227&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.000119</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.000767</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">46.3</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">227&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.000119</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.000767</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">46.3</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.5</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">276&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00082&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00529&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34.3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">48.2</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.5</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">276&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00082&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00529&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34.3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">48.2</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.5</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">272&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.000804</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.00519&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34.2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">48.1</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.5</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Nude</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">272&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.000804</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.00519&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34.2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">48.1</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.3</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Straight</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wet</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">30&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.00422&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.0272&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34.1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">45.4</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">on</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
 </table>
@@ -1339,7 +1370,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/General-Plots-1.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/General-Plots-1.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -1350,7 +1381,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/General-Plots-1.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/General-Plots-1.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -1397,7 +1428,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/General-After-Outlier-Removal-1.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/General-After-Outlier-Removal-1.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -1408,7 +1439,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/General-After-Outlier-Removal-1.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/General-After-Outlier-Removal-1.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -1519,27 +1550,27 @@ loss regression models</h3>
 <col><col><col><col><tr>
 <th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Radiation Off</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Radiation On</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Solar Influx</th></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(Intercept)</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">46.16 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-129.33 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">175.48 ***</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(Intercept)</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">46.16 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-129.33 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">175.48 ***</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[41.57, 50.74]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-135.11, -123.54]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[171.38, 179.59]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[41.57, 50.74]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-135.11, -123.54]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[171.38, 179.59]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wind</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11.27 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">17.41 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-6.14 ***</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wind</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11.27 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">17.41 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-6.14 ***</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[9.21, 13.33]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[14.81, 20.00]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-7.98, -4.30]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[9.21, 13.33]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[14.81, 20.00]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-7.98, -4.30]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigStraight</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.34 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">69.84 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-110.18 ***</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigStraight</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.34 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">69.84 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-110.18 ***</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-45.68, -35.00]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[63.11, 76.58]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-114.96, -105.41]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-45.68, -35.00]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[63.11, 76.58]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-114.96, -105.41]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigModerately<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.75 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">91.56 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-132.31 ***</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigModerately<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-40.75 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">91.56 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-132.31 ***</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-46.09, -35.41]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[84.83, 98.29]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-137.08, -127.53]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-46.09, -35.41]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[84.83, 98.29]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-137.08, -127.53]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigTightly<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-38.36 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">113.67 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-152.03 ***</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigTightly<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-38.36 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">113.67 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-152.03 ***</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-43.70, -33.02]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[106.94, 120.40]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-156.81, -147.25]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-43.70, -33.02]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[106.94, 120.40]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-156.81, -147.25]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">N</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">N</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">R2</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.94&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.98&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.99&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
@@ -1576,7 +1607,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -1587,7 +1618,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -1598,7 +1629,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/6e7065986c03ae28795d86cbddb4745a4702a795/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">6e70659</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/6e7065986c03ae28795d86cbddb4745a4702a795/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">6e70659</a>
 </td>
 <td>
 Ben Zydney
@@ -1609,7 +1640,7 @@ Ben Zydney
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/bf62a0754a7efad116c570d83df56ef2324682ac/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">bf62a07</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/bf62a0754a7efad116c570d83df56ef2324682ac/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">bf62a07</a>
 </td>
 <td>
 Tina Lasisi
@@ -1620,7 +1651,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/1a1f7bcec15fb8e0f805f7a2e340d01ae66066df/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">1a1f7bc</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/1a1f7bcec15fb8e0f805f7a2e340d01ae66066df/docs/figure/analysis.Rmd/plt-summary-models-1.png" target="_blank">1a1f7bc</a>
 </td>
 <td>
 Tina Lasisi
@@ -1731,27 +1762,27 @@ evaporative heat loss regression models</h3>
 <col><col><col><col><tr>
 <th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Radiation Off</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Radiation On</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Solar Influx</th></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(Intercept)</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">171.04 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">117.54 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">53.50 ***</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(Intercept)</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">171.04 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">117.54 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">53.50 ***</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[151.78, 190.31]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[90.69, 144.39]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[43.83, 63.18]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[151.78, 190.31]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[90.69, 144.39]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[43.83, 63.18]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wind</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">42.58 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">55.44 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-12.86 ***</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wind</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">42.58 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">55.44 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-12.86 ***</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[34.30, 50.87]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[43.89, 67.00]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-17.02, -8.70]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[34.30, 50.87]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[43.89, 67.00]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-17.02, -8.70]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigStraight</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-116.02 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-106.63 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-9.39&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigStraight</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-116.02 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-106.63 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-9.39&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-137.50, -94.55]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-136.56, -76.70]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-20.17, 1.39]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-137.50, -94.55]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-136.56, -76.70]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-20.17, 1.39]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigModerately<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-129.17 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-113.90 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-15.27 **&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigModerately<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-129.17 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-113.90 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-15.27 **&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-150.65, -107.69]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-143.83, -83.97]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-26.06, -4.49]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-150.65, -107.69]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-143.83, -83.97]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-26.06, -4.49]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigTightly<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-134.41 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-123.89 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-10.52&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">wigTightly<br>Curled</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-134.41 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-123.89 ***</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-10.52&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-156.97, -111.84]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-155.34, -92.45]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-21.85, 0.81]&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-156.97, -111.84]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-155.34, -92.45]&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">[-21.85, 0.81]&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">N</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">N</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">R2</th><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.96&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.93&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.75&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 <tr>
@@ -1788,7 +1819,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -1799,7 +1830,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -1810,7 +1841,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/6e7065986c03ae28795d86cbddb4745a4702a795/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">6e70659</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/6e7065986c03ae28795d86cbddb4745a4702a795/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">6e70659</a>
 </td>
 <td>
 Ben Zydney
@@ -1821,7 +1852,7 @@ Ben Zydney
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/bf62a0754a7efad116c570d83df56ef2324682ac/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">bf62a07</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/bf62a0754a7efad116c570d83df56ef2324682ac/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">bf62a07</a>
 </td>
 <td>
 Tina Lasisi
@@ -1832,7 +1863,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/1a1f7bcec15fb8e0f805f7a2e340d01ae66066df/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">1a1f7bc</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/1a1f7bcec15fb8e0f805f7a2e340d01ae66066df/docs/figure/analysis.Rmd/plt-summary-models-wet-1.png" target="_blank">1a1f7bc</a>
 </td>
 <td>
 Tina Lasisi
@@ -1884,7 +1915,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/Thermal-Resistance-Plots-1.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/Thermal-Resistance-Plots-1.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -1895,7 +1926,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/Thermal-Resistance-Plots-1.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/Thermal-Resistance-Plots-1.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -1960,7 +1991,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/net-solar-influx-plts-1.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/net-solar-influx-plts-1.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -1971,7 +2002,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/net-solar-influx-plts-1.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/net-solar-influx-plts-1.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -2009,7 +2040,18 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/net-solar-influx-plts-2.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/921a4d19e4332de1fcb7dce6f88c25efe2ea4a6e/docs/figure/analysis.Rmd/net-solar-influx-plts-2.png" target="_blank">921a4d1</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-10-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/net-solar-influx-plts-2.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -2020,7 +2062,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/net-solar-influx-plts-2.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/net-solar-influx-plts-2.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -2112,7 +2154,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-heatloss-radiation-1.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-heatloss-radiation-1.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -2123,7 +2165,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-heatloss-radiation-1.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-heatloss-radiation-1.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -2161,7 +2203,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-heatloss-radiation-2.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-heatloss-radiation-2.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -2172,7 +2214,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-heatloss-radiation-2.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-heatloss-radiation-2.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -2246,7 +2288,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-sweat-req-1.png" target="_blank">43ec126</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/43ec126f98ab0083b3d181f9fe107691345fd9b3/docs/figure/analysis.Rmd/plt-sweat-req-1.png" target="_blank">43ec126</a>
 </td>
 <td>
 Tina Lasisi
@@ -2257,7 +2299,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-sweat-req-1.png" target="_blank">224e810</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/analysis.Rmd/plt-sweat-req-1.png" target="_blank">224e810</a>
 </td>
 <td>
 Tina Lasisi
@@ -2278,9 +2320,9 @@ Session information
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
-<pre><code>R version 4.2.1 (2022-06-23)
+<pre><code>R version 4.2.2 (2022-10-31)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Monterey 12.6
+Running under: macOS Ventura 13.0.1
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
@@ -2293,44 +2335,45 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] jtools_2.2.0        huxtable_5.5.0      broom.mixed_0.2.9.4
- [4] patchwork_1.1.1     gridExtra_2.3       fs_1.5.2           
- [7] knitr_1.39          forcats_0.5.1       stringr_1.4.0      
-[10] dplyr_1.0.9         purrr_0.3.4         readr_2.1.2        
-[13] tidyr_1.2.0         tibble_3.1.8        ggplot2_3.3.6      
-[16] tidyverse_1.3.2     workflowr_1.7.0    
+ [1] ggstance_0.3.6      jtools_2.2.1        huxtable_5.5.2     
+ [4] broom.mixed_0.2.9.4 patchwork_1.1.2     gridExtra_2.3      
+ [7] fs_1.5.2            knitr_1.41          forcats_0.5.2      
+[10] stringr_1.5.0       dplyr_1.0.10        purrr_0.3.5        
+[13] readr_2.1.3         tidyr_1.2.1         tibble_3.1.8       
+[16] ggplot2_3.4.0       tidyverse_1.3.2     workflowr_1.7.0    
 
 loaded via a namespace (and not attached):
- [1] nlme_3.1-157        bit64_4.0.5         lubridate_1.8.0    
- [4] httr_1.4.3          rprojroot_2.0.3     tools_4.2.1        
- [7] backports_1.4.1     bslib_0.4.0         utf8_1.2.2         
+ [1] nlme_3.1-160        bit64_4.0.5         lubridate_1.9.0    
+ [4] httr_1.4.4          rprojroot_2.0.3     tools_4.2.2        
+ [7] backports_1.4.1     bslib_0.4.1         utf8_1.2.2         
 [10] R6_2.5.1            DBI_1.1.3           colorspace_2.0-3   
-[13] withr_2.5.0         tidyselect_1.1.2    processx_3.7.0     
-[16] bit_4.0.4           compiler_4.2.1      git2r_0.30.1       
-[19] cli_3.3.0           rvest_1.0.2         xml2_1.3.3         
-[22] labeling_0.4.2      sass_0.4.2          scales_1.2.0       
-[25] callr_3.7.1         commonmark_1.8.0    digest_0.6.29      
-[28] rmarkdown_2.14      pkgconfig_2.0.3     htmltools_0.5.3    
-[31] parallelly_1.32.1   highr_0.9           dbplyr_2.2.1       
-[34] fastmap_1.1.0       rlang_1.0.4         readxl_1.4.0       
-[37] rstudioapi_0.13     farver_2.1.1        jquerylib_0.1.4    
-[40] generics_0.1.3      jsonlite_1.8.0      vroom_1.5.7        
-[43] googlesheets4_1.0.0 magrittr_2.0.3      Rcpp_1.0.9         
-[46] munsell_0.5.0       fansi_1.0.3         lifecycle_1.0.1    
-[49] furrr_0.3.0         stringi_1.7.8       whisker_0.4        
-[52] yaml_2.3.5          plyr_1.8.7          ggstance_0.3.5     
-[55] paletteer_1.4.0     grid_4.2.1          parallel_4.2.1     
-[58] listenv_0.8.0       promises_1.2.0.1    crayon_1.5.1       
-[61] lattice_0.20-45     haven_2.5.0         splines_4.2.1      
-[64] pander_0.6.5        hms_1.1.1           ps_1.7.1           
-[67] pillar_1.8.0        codetools_0.2-18    reprex_2.0.1       
-[70] glue_1.6.2          evaluate_0.16       getPass_0.2-2      
-[73] modelr_0.1.8        vctrs_0.4.1         tzdb_0.3.0         
-[76] httpuv_1.6.5        cellranger_1.1.0    gtable_0.3.0       
-[79] rematch2_2.1.2      future_1.27.0       assertthat_0.2.1   
-[82] cachem_1.0.6        xfun_0.32           broom_1.0.0        
-[85] later_1.3.0         googledrive_2.0.0   gargle_1.2.0       
-[88] globals_0.16.0      ellipsis_0.3.2     </code></pre>
+[13] withr_2.5.0         tidyselect_1.2.0    processx_3.8.0     
+[16] bit_4.0.5           compiler_4.2.2      git2r_0.30.1       
+[19] textshaping_0.3.6   cli_3.4.1           rvest_1.0.3        
+[22] xml2_1.3.3          labeling_0.4.2      sass_0.4.4         
+[25] scales_1.2.1        callr_3.7.3         systemfonts_1.0.4  
+[28] commonmark_1.8.1    digest_0.6.30       rmarkdown_2.18     
+[31] pkgconfig_2.0.3     htmltools_0.5.3     parallelly_1.32.1  
+[34] highr_0.9           dbplyr_2.2.1        fastmap_1.1.0      
+[37] rlang_1.0.6         readxl_1.4.1        rstudioapi_0.14    
+[40] farver_2.1.1        jquerylib_0.1.4     generics_0.1.3     
+[43] jsonlite_1.8.3      vroom_1.6.0         googlesheets4_1.0.1
+[46] magrittr_2.0.3      Rcpp_1.0.9          munsell_0.5.0      
+[49] fansi_1.0.3         lifecycle_1.0.3     furrr_0.3.1        
+[52] stringi_1.7.8       whisker_0.4         yaml_2.3.6         
+[55] paletteer_1.5.0     grid_4.2.2          parallel_4.2.2     
+[58] listenv_0.8.0       promises_1.2.0.1    crayon_1.5.2       
+[61] lattice_0.20-45     haven_2.5.1         splines_4.2.2      
+[64] pander_0.6.5        hms_1.1.2           ps_1.7.2           
+[67] pillar_1.8.1        codetools_0.2-18    reprex_2.0.2       
+[70] glue_1.6.2          evaluate_0.18       getPass_0.2-2      
+[73] modelr_0.1.10       vctrs_0.5.1         tzdb_0.3.0         
+[76] httpuv_1.6.6        cellranger_1.1.0    gtable_0.3.1       
+[79] rematch2_2.1.2      future_1.29.0       assertthat_0.2.1   
+[82] cachem_1.0.6        xfun_0.35           broom_1.0.1        
+[85] later_1.3.0         ragg_1.2.4          googledrive_2.0.0  
+[88] gargle_1.2.1        timechange_0.1.1    globals_0.16.2     
+[91] ellipsis_0.3.2     </code></pre>
 </div>
 </div>
 

@@ -11,11 +11,11 @@
 
 <meta name="author" content="Tina Lasisi" />
 
-<meta name="date" content="2022-08-12" />
+<meta name="date" content="2023-01-21" />
 
 <title>Experimental Set Up &amp; Data</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -156,11 +156,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -189,8 +193,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -198,16 +202,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -329,7 +326,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">HairManikin_manuscript</a>
+      <a class="navbar-brand" href="index.html">Hair Manikin Study 2023</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -359,7 +356,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Experimental Set Up &amp; Data</h1>
 <h4 class="author">Tina Lasisi</h4>
-<h4 class="date">August 12, 2022</h4>
+<h4 class="date">January 21, 2023</h4>
 
 </div>
 
@@ -388,7 +385,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-08-12
+<strong>Last updated:</strong> 2023-01-21
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -397,7 +394,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>HairManikin2022/</code> <span
+<strong>Knit directory:</strong> <code>HairManikin2023/</code> <span
 class="glyphicon glyphicon-question-sign" aria-hidden="true"
 title="This is the local directory in which the code in this file was executed.">
 </span>
@@ -519,15 +516,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treec817e49e2414e8907507f9e13023302fb28e2316targetblankc817e49a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2023tree979b33ec9e5399c6db8d950828e56cddd647490atargetblank979b33ea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/tinalasisi/HairManikin2022/tree/c817e49e2414e8907507f9e13023302fb28e2316" target="_blank">c817e49</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/tree/979b33ec9e5399c6db8d950828e56cddd647490a" target="_blank">979b33e</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treec817e49e2414e8907507f9e13023302fb28e2316targetblankc817e49a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2023tree979b33ec9e5399c6db8d950828e56cddd647490atargetblank979b33ea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -537,7 +534,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/tinalasisi/HairManikin2022/tree/c817e49e2414e8907507f9e13023302fb28e2316" target="_blank">c817e49</a>.
+<a href="https://github.com/tinalasisi/HairManikin2023/tree/979b33ec9e5399c6db8d950828e56cddd647490a" target="_blank">979b33e</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -552,13 +549,12 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
 
 Unstaged changes:
-    Modified:   analysis/analysis.Rmd
-    Modified:   analysis/dataPrep.rmd
+    Modified:   analysis/_site.yml
+    Modified:   output/sweat_combo_plot.png
+    Modified:   output/v2_manuscriplt_plt_influx.png
 
 </code></pre>
 <p>
@@ -609,7 +605,24 @@ Message
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/experimental-set-up.html" target="_blank">c0ce5d2</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/224e8109af3e6915638c7561496f1f55ad55dd29/docs/experimental-set-up.html" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+<td>
+Website updated
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/experimental-set-up.html" target="_blank">c0ce5d2</a>
 </td>
 <td>
 Tina Lasisi
@@ -626,7 +639,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/bb367202470261504c0355fb04ca3ce5ee3b50fc/docs/experimental-set-up.html" target="_blank">bb36720</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/bb367202470261504c0355fb04ca3ce5ee3b50fc/docs/experimental-set-up.html" target="_blank">bb36720</a>
 </td>
 <td>
 Tina Lasisi
@@ -643,7 +656,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/05389ae9a05378be6fea1679c7d4914e36072201/analysis/experimental-set-up.Rmd" target="_blank">05389ae</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/05389ae9a05378be6fea1679c7d4914e36072201/analysis/experimental-set-up.Rmd" target="_blank">05389ae</a>
 </td>
 <td>
 Tina Lasisi
@@ -660,7 +673,7 @@ Added figures + analysis placeholders
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/05389ae9a05378be6fea1679c7d4914e36072201/docs/experimental-set-up.html" target="_blank">05389ae</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/05389ae9a05378be6fea1679c7d4914e36072201/docs/experimental-set-up.html" target="_blank">05389ae</a>
 </td>
 <td>
 Tina Lasisi
@@ -677,7 +690,7 @@ Added figures + analysis placeholders
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/bb99f1dce5a475cfeca059fc0a0004ca480a3771/analysis/experimental-set-up.Rmd" target="_blank">bb99f1d</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/bb99f1dce5a475cfeca059fc0a0004ca480a3771/analysis/experimental-set-up.Rmd" target="_blank">bb99f1d</a>
 </td>
 <td>
 Tina Lasisi
@@ -694,7 +707,7 @@ Update analysis.rmd + add data
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/680aafe67ebb3ad38b845f1ab83259b4f89b74de/analysis/experimental-set-up.Rmd" target="_blank">680aafe</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/680aafe67ebb3ad38b845f1ab83259b4f89b74de/analysis/experimental-set-up.Rmd" target="_blank">680aafe</a>
 </td>
 <td>
 Ginawsy
@@ -711,7 +724,7 @@ change file of analysis
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/9feaa00d90091cb16d4a13acd554058f125fb093/analysis/experimental-set-up.Rmd" target="_blank">9feaa00</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/9feaa00d90091cb16d4a13acd554058f125fb093/analysis/experimental-set-up.Rmd" target="_blank">9feaa00</a>
 </td>
 <td>
 Tina Lasisi
@@ -728,7 +741,7 @@ Updated data
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/700233ba13156f5bbf279013a9c160f642db7395/docs/experimental-set-up.html" target="_blank">700233b</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/700233ba13156f5bbf279013a9c160f642db7395/docs/experimental-set-up.html" target="_blank">700233b</a>
 </td>
 <td>
 Tina Lasisi
@@ -745,7 +758,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/6ab220a1275985e8a1627b9af9f09fb84f770dbc/analysis/experimental-set-up.Rmd" target="_blank">6ab220a</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/6ab220a1275985e8a1627b9af9f09fb84f770dbc/analysis/experimental-set-up.Rmd" target="_blank">6ab220a</a>
 </td>
 <td>
 Tina Lasisi
@@ -762,7 +775,7 @@ update images
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/b7aa96707e8ddc4ceaeb2db71066004a78d34cd6/docs/experimental-set-up.html" target="_blank">b7aa967</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/b7aa96707e8ddc4ceaeb2db71066004a78d34cd6/docs/experimental-set-up.html" target="_blank">b7aa967</a>
 </td>
 <td>
 Tina Lasisi
@@ -779,7 +792,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/6a6f477fda200126fccdee6b8e1719145f5bca31/analysis/experimental-set-up.Rmd" target="_blank">6a6f477</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/6a6f477fda200126fccdee6b8e1719145f5bca31/analysis/experimental-set-up.Rmd" target="_blank">6a6f477</a>
 </td>
 <td>
 Tina Lasisi
@@ -796,7 +809,7 @@ update images
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/experimental-set-up.html" target="_blank">b319b9e</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/experimental-set-up.html" target="_blank">b319b9e</a>
 </td>
 <td>
 Tina Lasisi
@@ -813,7 +826,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/68a2c58cecb2ce7dcac58942e45358978da4c731/analysis/experimental-set-up.Rmd" target="_blank">68a2c58</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/68a2c58cecb2ce7dcac58942e45358978da4c731/analysis/experimental-set-up.Rmd" target="_blank">68a2c58</a>
 </td>
 <td>
 Tina Lasisi
@@ -875,7 +888,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/afab42a4b3dd36256c5f5e3bfff91556e2b5e388/docs/assets/manikin-chamber-setup.jpeg" target="_blank">afab42a</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/afab42a4b3dd36256c5f5e3bfff91556e2b5e388/docs/assets/manikin-chamber-setup.jpeg" target="_blank">afab42a</a>
 </td>
 <td>
 Tina Lasisi
@@ -914,7 +927,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/c5d61989510f4032b74775b39f00cb72d8ec158a/docs/assets/manikin-chamber-setup-diagram.png" target="_blank">c5d6198</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/c5d61989510f4032b74775b39f00cb72d8ec158a/docs/assets/manikin-chamber-setup-diagram.png" target="_blank">c5d6198</a>
 </td>
 <td>
 Tina Lasisi
@@ -950,8 +963,7 @@ head(raw_manikin)</code></pre>
 #   r_up_thigh_fr_21 &lt;chr&gt;, r_up_thigh_grd_22 &lt;chr&gt;, r_up_thigh_bk_23 &lt;chr&gt;,
 #   l_up_thigh_fr_24 &lt;chr&gt;, l_up_thigh_grd_25 &lt;chr&gt;, l_up_thigh_bk_26 &lt;chr&gt;,
 #   r_lwr_thigh_fr_27 &lt;chr&gt;, r_lwr_thigh_bk_28 &lt;chr&gt;, l_lwr_thigh_fr_29 &lt;chr&gt;,
-#   l_lwr_thigh_bk_30 &lt;chr&gt;, r_calf_fr_31 &lt;chr&gt;, r_calf_bk_32 &lt;chr&gt;, …
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   l_lwr_thigh_bk_30 &lt;chr&gt;, r_calf_fr_31 &lt;chr&gt;, r_calf_bk_32 &lt;chr&gt;, …</code></pre>
 <p>The data can be cleaned using the following pipeline.</p>
 <pre class="r"><code>library(lubridate)
 library(fs)
@@ -993,8 +1005,7 @@ head(raw_manikin)</code></pre>
 5 150.0695835s (~2.5 minutes) 15H 29M 8S  round_1… 37.94   95.0    1.57    1.34 
 6 180.0843002s (~3 minutes)   15H 29M 38S round_1… 37.94   96.7    1.53    1.31 
 # … with 3 more variables: amb_2 &lt;chr&gt;, rh &lt;chr&gt;, round &lt;chr&gt;, and abbreviated
-#   variable names ¹​surface_temp, ²​heatflux
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   variable names ¹​surface_temp, ²​heatflux</code></pre>
 <div id="variables-extracted" class="section level3" number="0.3.1">
 <h3><span class="header-section-number">0.3.1</span> Variables
 extracted</h3>
@@ -1047,7 +1058,18 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/05389ae9a05378be6fea1679c7d4914e36072201/docs/figure/experimental-set-up.Rmd/unnamed-chunk-6-1.png" target="_blank">05389ae</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/224e8109af3e6915638c7561496f1f55ad55dd29/docs/figure/experimental-set-up.Rmd/unnamed-chunk-6-1.png" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/05389ae9a05378be6fea1679c7d4914e36072201/docs/figure/experimental-set-up.Rmd/unnamed-chunk-6-1.png" target="_blank">05389ae</a>
 </td>
 <td>
 Tina Lasisi
@@ -1058,7 +1080,7 @@ Tina Lasisi
 </tr>
 <tr>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/figure/experimental-set-up.Rmd/unnamed-chunk-6-1.png" target="_blank">b319b9e</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/figure/experimental-set-up.Rmd/unnamed-chunk-6-1.png" target="_blank">b319b9e</a>
 </td>
 <td>
 Tina Lasisi
@@ -1117,9 +1139,9 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.1 (2022-06-23)
+<pre><code>R version 4.2.2 (2022-10-31)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Monterey 12.3
+Running under: macOS Ventura 13.0.1
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
@@ -1132,37 +1154,37 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] fs_1.5.2        janitor_2.1.0   lubridate_1.8.0 forcats_0.5.1  
- [5] stringr_1.4.0   dplyr_1.0.9     purrr_0.3.4     readr_2.1.2    
- [9] tidyr_1.2.0     tibble_3.1.8    ggplot2_3.3.6   tidyverse_1.3.2
-[13] workflowr_1.7.0
+ [1] fs_1.5.2         janitor_2.1.0    lubridate_1.9.0  timechange_0.1.1
+ [5] forcats_0.5.2    stringr_1.5.0    dplyr_1.0.10     purrr_0.3.5     
+ [9] readr_2.1.3      tidyr_1.2.1      tibble_3.1.8     ggplot2_3.4.0   
+[13] tidyverse_1.3.2  workflowr_1.7.0 
 
 loaded via a namespace (and not attached):
- [1] httr_1.4.3          sass_0.4.2          bit64_4.0.5        
- [4] vroom_1.5.7         jsonlite_1.8.0      modelr_0.1.8       
- [7] bslib_0.4.0         assertthat_0.2.1    getPass_0.2-2      
-[10] highr_0.9           googlesheets4_1.0.0 cellranger_1.1.0   
-[13] yaml_2.3.5          pillar_1.8.0        backports_1.4.1    
-[16] glue_1.6.2          digest_0.6.29       promises_1.2.0.1   
-[19] rvest_1.0.2         snakecase_0.11.0    colorspace_2.0-3   
-[22] htmltools_0.5.3     httpuv_1.6.5        pkgconfig_2.0.3    
-[25] broom_1.0.0         haven_2.5.0         scales_1.2.0       
-[28] processx_3.7.0      whisker_0.4         later_1.3.0        
+ [1] httr_1.4.4          sass_0.4.4          bit64_4.0.5        
+ [4] vroom_1.6.0         jsonlite_1.8.3      modelr_0.1.10      
+ [7] bslib_0.4.1         assertthat_0.2.1    getPass_0.2-2      
+[10] highr_0.9           googlesheets4_1.0.1 cellranger_1.1.0   
+[13] yaml_2.3.6          pillar_1.8.1        backports_1.4.1    
+[16] glue_1.6.2          digest_0.6.30       promises_1.2.0.1   
+[19] rvest_1.0.3         snakecase_0.11.0    colorspace_2.0-3   
+[22] htmltools_0.5.3     httpuv_1.6.6        pkgconfig_2.0.3    
+[25] broom_1.0.1         haven_2.5.1         scales_1.2.1       
+[28] processx_3.8.0      whisker_0.4         later_1.3.0        
 [31] tzdb_0.3.0          git2r_0.30.1        googledrive_2.0.0  
 [34] farver_2.1.1        generics_0.1.3      ellipsis_0.3.2     
-[37] cachem_1.0.6        withr_2.5.0         cli_3.3.0          
-[40] magrittr_2.0.3      crayon_1.5.1        readxl_1.4.0       
-[43] evaluate_0.16       ps_1.7.1            fansi_1.0.3        
-[46] xml2_1.3.3          tools_4.2.1         hms_1.1.1          
-[49] gargle_1.2.0        lifecycle_1.0.1     munsell_0.5.0      
-[52] reprex_2.0.1        callr_3.7.1         compiler_4.2.1     
-[55] jquerylib_0.1.4     rlang_1.0.4         grid_4.2.1         
-[58] rstudioapi_0.13     labeling_0.4.2      rmarkdown_2.14     
-[61] gtable_0.3.0        DBI_1.1.3           R6_2.5.1           
-[64] knitr_1.39          fastmap_1.1.0       bit_4.0.4          
+[37] cachem_1.0.6        withr_2.5.0         cli_3.4.1          
+[40] magrittr_2.0.3      crayon_1.5.2        readxl_1.4.1       
+[43] evaluate_0.18       ps_1.7.2            fansi_1.0.3        
+[46] xml2_1.3.3          tools_4.2.2         hms_1.1.2          
+[49] gargle_1.2.1        lifecycle_1.0.3     munsell_0.5.0      
+[52] reprex_2.0.2        callr_3.7.3         compiler_4.2.2     
+[55] jquerylib_0.1.4     rlang_1.0.6         grid_4.2.2         
+[58] rstudioapi_0.14     labeling_0.4.2      rmarkdown_2.18     
+[61] gtable_0.3.1        DBI_1.1.3           R6_2.5.1           
+[64] knitr_1.41          fastmap_1.1.0       bit_4.0.5          
 [67] utf8_1.2.2          rprojroot_2.0.3     stringi_1.7.8      
-[70] parallel_4.2.1      Rcpp_1.0.9          vctrs_0.4.1        
-[73] dbplyr_2.2.1        tidyselect_1.1.2    xfun_0.32          </code></pre>
+[70] parallel_4.2.2      Rcpp_1.0.9          vctrs_0.5.1        
+[73] dbplyr_2.2.1        tidyselect_1.2.0    xfun_0.35          </code></pre>
 </div>
 </div>
 </div>

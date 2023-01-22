@@ -13,7 +13,7 @@
 
 <title>About</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -151,11 +151,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -184,8 +188,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -193,16 +197,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -251,7 +248,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">HairManikin_manuscript</a>
+      <a class="navbar-brand" href="index.html">Hair Manikin Study 2023</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -308,7 +305,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-08-12
+<strong>Last updated:</strong> 2023-01-21
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -317,7 +314,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
 aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>HairManikin2022/</code> <span
+<strong>Knit directory:</strong> <code>HairManikin2023/</code> <span
 class="glyphicon glyphicon-question-sign" aria-hidden="true"
 title="This is the local directory in which the code in this file was executed.">
 </span>
@@ -355,15 +352,15 @@ results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treec817e49e2414e8907507f9e13023302fb28e2316targetblankc817e49a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2023tree979b33ec9e5399c6db8d950828e56cddd647490atargetblank979b33ea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/tinalasisi/HairManikin2022/tree/c817e49e2414e8907507f9e13023302fb28e2316" target="_blank">c817e49</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/tree/979b33ec9e5399c6db8d950828e56cddd647490a" target="_blank">979b33e</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2022treec817e49e2414e8907507f9e13023302fb28e2316targetblankc817e49a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomtinalasisiHairManikin2023tree979b33ec9e5399c6db8d950828e56cddd647490atargetblank979b33ea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -373,7 +370,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/tinalasisi/HairManikin2022/tree/c817e49e2414e8907507f9e13023302fb28e2316" target="_blank">c817e49</a>.
+<a href="https://github.com/tinalasisi/HairManikin2023/tree/979b33ec9e5399c6db8d950828e56cddd647490a" target="_blank">979b33e</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -388,13 +385,12 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
 
 Unstaged changes:
-    Modified:   analysis/analysis.Rmd
-    Modified:   analysis/dataPrep.rmd
+    Modified:   analysis/_site.yml
+    Modified:   output/sweat_combo_plot.png
+    Modified:   output/v2_manuscriplt_plt_influx.png
 
 </code></pre>
 <p>
@@ -444,7 +440,24 @@ Message
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/about.html" target="_blank">c0ce5d2</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/224e8109af3e6915638c7561496f1f55ad55dd29/docs/about.html" target="_blank">224e810</a>
+</td>
+<td>
+Tina Lasisi
+</td>
+<td>
+2022-08-12
+</td>
+<td>
+Website updated
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/c0ce5d2cc4677079a539c20cfc8c0b65a71b1b99/docs/about.html" target="_blank">c0ce5d2</a>
 </td>
 <td>
 Tina Lasisi
@@ -461,7 +474,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/bb367202470261504c0355fb04ca3ce5ee3b50fc/docs/about.html" target="_blank">bb36720</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/bb367202470261504c0355fb04ca3ce5ee3b50fc/docs/about.html" target="_blank">bb36720</a>
 </td>
 <td>
 Tina Lasisi
@@ -478,7 +491,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/80d98a95a0c860dccbc095932e67d7ef918d5b42/docs/about.html" target="_blank">80d98a9</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/80d98a95a0c860dccbc095932e67d7ef918d5b42/docs/about.html" target="_blank">80d98a9</a>
 </td>
 <td>
 Tina Lasisi
@@ -495,7 +508,7 @@ Updating QC + about
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/about.html" target="_blank">b319b9e</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/b319b9ef798cfff69e46e77efd1e55cf527bcb58/docs/about.html" target="_blank">b319b9e</a>
 </td>
 <td>
 Tina Lasisi
@@ -512,7 +525,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2022/8ebf79654c87c2e56301f12f1ef9408020a04f45/docs/about.html" target="_blank">8ebf796</a>
+<a href="https://rawcdn.githack.com/tinalasisi/HairManikin2023/8ebf79654c87c2e56301f12f1ef9408020a04f45/docs/about.html" target="_blank">8ebf796</a>
 </td>
 <td>
 Tina Lasisi
@@ -529,7 +542,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/399390965fb2c0ea21bce2332a80db24cab67065/analysis/about.Rmd" target="_blank">3993909</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/399390965fb2c0ea21bce2332a80db24cab67065/analysis/about.Rmd" target="_blank">3993909</a>
 </td>
 <td>
 Tina Lasisi
@@ -546,7 +559,7 @@ Publish initial project files
 Rmd
 </td>
 <td>
-<a href="https://github.com/tinalasisi/HairManikin2022/blob/23940250fc5fe7fb3d6cf7b0d7ec01242399aff7/analysis/about.Rmd" target="_blank">2394025</a>
+<a href="https://github.com/tinalasisi/HairManikin2023/blob/23940250fc5fe7fb3d6cf7b0d7ec01242399aff7/analysis/about.Rmd" target="_blank">2394025</a>
 </td>
 <td>
 Tina Lasisi
