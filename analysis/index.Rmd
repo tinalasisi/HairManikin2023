@@ -1,5 +1,5 @@
 ---
-title: "Hair Manikin Experiments"
+title: "Hair Manikin Study 2023"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -8,4 +8,13 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+# Welcome to the Hair Manikin Study research website
+
+Welcome to our website for our study on human scalp hair as a thermoregulatory adaptation. 
+
+Our goal was to investigate the potential function of human scalp hair and variation in its morphology within an evolutionary framework. To do this, we conducted experimental studies using a thermal manikin and human hair wigs in a controlled environment, and collected data on heat fluxes to and from the scalp in relation to properties of different hair morphologies.
+
+Our analyses were conducted using  R and all of the data and code used in this project can be found in the [GitHub repository](https://github.com/tinalasisi/HairManikin2023). We have also created this website using workflowr to share our results and the underlying data and code with the scientific community.
+
+Currently, the paper is on [bioRxiv](https://www.biorxiv.org/content/early/2022/01/22/your_paper_number) and is currently awaiting peer review. We hope that our work will contribute to a better understanding of the evolution of human scalp hair and its possible functions.
+
