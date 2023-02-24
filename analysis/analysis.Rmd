@@ -788,7 +788,14 @@ manuscript_plt4 <- sweat_combo_plot
 ```{r plt-combo-paper, eval=FALSE, include=FALSE}
 
 
-manuscript_plt6 <- (manuscript_plt_dry_lm)+ (manuscript_plt_wet_lm + theme(axis.text.y = element_blank())) + plot_layout(guides = "collect") & theme(legend.title = element_blank())
+
+
+manuscript_plt6 <- (manuscript_plt_dry_lm)+ (manuscript_plt_wet_lm + theme(axis.text.y = element_blank())) + plot_annotation(tag_levels = "A") + plot_layout(guides = "collect") & theme(legend.title = element_blank(), axis.title.x = element_blank(), legend.position = "bottom") 
+
+
+manuscript_plt6
+
+pltsave_func(manuscript_plt6, plot_path, width = 8, height = 4)
 
 # manuscript_plt1 + manuscript_plt5 + manuscript_plt6 + guide_area() + manuscript_plt2 + manuscript_plt3 + manuscript_plt4 + plot_layout(design = design, guides = "collect") + plot_annotation(tag_levels = "A")
 
