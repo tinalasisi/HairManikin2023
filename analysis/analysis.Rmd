@@ -3,12 +3,16 @@ title: "Analysis"
 author: "Tina Lasisi"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
+  pdf_document: default
   workflowr::wflow_html:
     toc: yes
     number_sections: yes
 editor_options:
   chunk_output_type: console
+header-includes: \usepackage{booktabs}
+
 ---
+
 
 ```{r setup, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 library(tidyverse)
@@ -20,15 +24,19 @@ library(broom.mixed)
 library(huxtable)
 library(jtools)
 library(ggstance)
+library(ggstatsplot)
+library(PMCMRplus)
+library(kableExtra)
 # knitting to pdf
 # rmarkdown::render(input = "analysis/analysis.Rmd", output_format = "pdf_document", output_dir = "output")
 F = rprojroot::is_rstudio_project$make_fix_file()
 palettedf <- tibble(paletteer::palettes_d_names)
 # filter(.data = palettedf, length > 10 & type == "qualitative")
-knitr::opts_chunk$set(echo = FALSE, include = TRUE, eval = TRUE, warning = FALSE, message = FALSE, fig.retina = 2, fig.width = 8, fig.height = 6)
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, eval = TRUE, warning = FALSE, message = FALSE, fig.retina = 2, fig.width = 10, fig.height = 5, out.width = "95%", tidy.opts = list(width.cutoff = 55), tidy = TRUE)
 
 knitr::opts_knit$set(root.dir = "..")
 ```
+
 
 ```{r functions, include=FALSE}
 # This is a function to save the figures
@@ -132,12 +140,19 @@ df_wetdry_plots <- df_wetdry %>%
 
 ```
 
+### Data preview
+
 ```{r Data-preview, echo=TRUE}
 # Preview data
-head(df_wetdry)
+head(df_wetdry) %>% 
+  kbl(booktabs=T) %>% 
+  kable_styling(latex_options=c("striped", "scale_down"))
+
 ```
 
-```{r General-Plots, echo=FALSE, fig.height=5, fig.width=8}
+
+### Plots
+```{r General-Plots, echo=FALSE}
 
 raw_barplot <- ggplot(df_wetdry_plots, aes(x = wig, y = heat_loss, fill = data_points)) + 
   geom_bar(stat = "identity", position = "dodge", colour="black") + 
@@ -154,7 +169,7 @@ raw_barplot
 
 
 
-```{r General-Not-Used, echo=FALSE, include=FALSE}
+```{r General-Not-Used}
 
 change_winds <- function(df, windCol, wigCol) {
   df[windCol] <- df[windCol] + (0.1)*(ifelse(df[wigCol] == "Nude", 0, ifelse(df[wigCol] == "Straight", -0.5, ifelse(df[wigCol] == "Moderately\nCurled", 0, 0.5))))
@@ -194,7 +209,7 @@ df_wetdry <- df_wetdry %>% filter(!(wig == "Tightly\nCurled" & wind == 2.5 & rad
 ```
 
 
-```{r General-After-Outlier-Removal, fig.height=5, fig.width=8}
+```{r General-After-Outlier-Removal}
 df_wetdry_plots <- df_wetdry %>% 
   unite('data_points', c('radiation','trial'), remove=FALSE)
 
@@ -336,34 +351,66 @@ df_dry <- df_wetdry_final %>%
   filter(wet_dry == "dry")
 
 
-model_dry <- lm(influx~wind+wig, data=df_dry)
+model_dry_influx <- lm(influx~wind+wig, data=df_dry)
 
-summary(model_dry)
+summary(model_dry_influx)
 ```
 
 
 ### Summary of dry heat loss regression models
 
 
-#### All separate
-
 ```{r lm-summary, echo=FALSE, results='asis'}
-
 # export_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
-export_summs(model_dry_off, model_dry_on, model_dry, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+export_summs(model_dry_off, model_dry_on, model_dry_influx, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 ```
 
-```{r plt-summary-models, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=6}
+
+```{r lm-save-dry, eval=FALSE, include=FALSE}
+manuscript_tbl_dry_lm <- export_summs(model_dry_off, model_dry_on, model_dry_influx, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"), to.file = "docx", file.name = "output/manuscript_tbl_dry_lm.docx")
+
+```
+
+```{r plt-summary-models, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=5, out.width="60%", fig.align='center'}
 
 # scaled 
-# plot_summs(model_dry_off, model_dry_on, model_dry, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+# plot_summs(model_dry_off, model_dry_on, model_dry_influx, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 
 # unscaled 
-manuscript_plt_dry_lm <- plot_summs(model_dry_off, model_dry_on, model_dry,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+manuscript_plt_dry_lm <- plot_summs(model_dry_off, model_dry_on, model_dry_influx,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 
 manuscript_plt_dry_lm
 
 ```
+
+
+### Dry heat loss ANOVA plots
+```{r ggbetweenstats-dry, fig.align='center', fig.width=10, fig.height=6, fig.cap="ANOVA of dry heat loss"}
+
+data_long <- df_dry %>%
+  pivot_longer(cols = c("influx", "off", "on"), names_to = "variable", values_to = "value") %>% 
+  mutate(variable = factor(variable, 
+                           levels = c("off", "on", "influx"),
+                           labels = c("Radiation Off", "Radiation On", "Solar Influx")))
+
+
+# Create the plot using grouped_ggbetweenstats
+ggstatsplot::grouped_ggbetweenstats(
+  data = data_long,
+  x = wig,
+  y = value,
+  xlab = "Wig",
+  ylab = "Heat influx",
+  grouping.var = variable,
+  type = "np", # non-parametric
+  pairwise.comparisons = TRUE,
+  pairwise.display = "s",
+  p.adjust.method = "bonferroni",
+  results.subtitle = FALSE,
+  ggtheme = ggplot2::theme_bw(),
+  ggplot.component = list(theme(plot.subtitle = element_text(size = 6), axis.title.y.right = element_text(size = 6))))
+```
+
 
 ## Evaporative resistance (wet experiments)
 
@@ -424,15 +471,18 @@ summary(model_wet)
 ### Summary of evaporative heat loss regression models
 
 
-#### All separate
-
 ```{r lm-summary-wet, echo=FALSE, results='asis'}
 
 # export_summs(model_wet_off, model_weet_on, model_wet, scale = TRUE, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
 export_summs(model_wet_off, model_wet_on, model_wet, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
+
 ```
 
-```{r plt-summary-models-wet, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=6}
+```{r lm-save-wet, eval=FALSE, include=FALSE}
+manuscript_tbl_wet_lm <- export_summs(model_wet_off, model_wet_on, model_wet, error_format = "[{conf.low}, {conf.high}]", model.names = c("Radiation Off", "Radiation On", "Solar Influx"), to.file = "docx", file.name = "output/manuscript_tbl_wet_lm.docx")
+```
+
+```{r plt-summary-models-wet, echo=FALSE, fig.cap="Regression coefficients across regression models.", fig.height=3, fig.width=5, out.width="60%", fig.align='center'}
 
 # scaled 
 # plot_summs(model_wet_off, model_wet_on, model_wet, scale = TRUE,  model.names = c("Radiation Off", "Radiation On", "Solar Influx"))
@@ -444,6 +494,35 @@ manuscript_plt_wet_lm <- plot_summs(model_wet_off, model_wet_on, model_wet,  mod
 manuscript_plt_wet_lm
 
 ```
+
+### Evaporative heat ANOVA plots
+
+```{r ggbetweenstats-wet, fig.align='center', fig.width=10, fig.height=6, fig.cap="ANOVA of evaporative heat loss"}
+
+data_long <- df_wet %>%
+  pivot_longer(cols = c("influx", "off", "on"), names_to = "variable", values_to = "value") %>% 
+  mutate(variable = factor(variable, 
+                           levels = c("off", "on", "influx"),
+                           labels = c("Radiation Off", "Radiation On", "Solar Influx")))
+
+
+# Create the plot using grouped_ggbetweenstats
+ggstatsplot::grouped_ggbetweenstats(
+  data = data_long,
+  x = wig,
+  y = value,
+  xlab = "Wig",
+  ylab = "Heat influx",
+  grouping.var = variable,
+  type = "np", # non-parametric
+  pairwise.comparisons = TRUE,
+  pairwise.display = "s",
+  p.adjust.method = "bonferroni",
+  results.subtitle = FALSE,
+  ggtheme = ggplot2::theme_bw(),
+  ggplot.component = list(theme(plot.subtitle = element_text(size = 6), axis.title.y.right = element_text(size = 6))))
+```
+
 
 
 # Calculating Thermal Resistance
