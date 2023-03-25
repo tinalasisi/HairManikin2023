@@ -1,0 +1,67 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.3.25)  25 MAR 2023 14:42
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**my_table.tex
+(./my_table.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-02-22> (/Users/tinalasisi-usc/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/Users/tinalasisi-usc/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+) (/Users/tinalasisi-usc/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen141
+\ar@mcellbox=\box51
+\extrarowheight=\dimen142
+\NC@list=\toks16
+\extratabsurround=\skip50
+\backup@length=\skip51
+\ar@cellbox=\box52
+) (/Users/tinalasisi-usc/Library/TinyTeX/texmf-dist/tex/latex/tools/hhline.sty
+Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
+) (/Users/tinalasisi-usc/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+ (/Users/tinalasisi-usc/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+ (/Users/tinalasisi-usc/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+)
+
+! LaTeX Error: File `colortbl.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.270 \long
+           \def\@secondoffive#1#2#3#4#5{#2}^^M
+*** (cannot \read from terminal in nonstop modes)
+
+ 
+Here is how much of TeX's memory you used:
+ 648 strings out of 477985
+ 9276 string characters out of 5838478
+ 1849388 words of memory out of 5000000
+ 20919 multiletter control sequences out of 15000+600000
+ 512287 words of font info for 32 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 34i,0n,43p,175b,36s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!
